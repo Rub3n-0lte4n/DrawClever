@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; font-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self'; object-src 'none'" />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+  <title>Portfolio — Draw Clever</title>
+  <meta name="description" content="The Draw Clever portfolio — luxury residences, interiors and commercial spaces across Romania, Spain and beyond. Every space, a story." />
+  <meta name="theme-color" content="#0A0908" />
+  <link rel="icon" type="image/png" sizes="32x32" href="./icons/favicon-32.png" />
+  <link rel="icon" type="image/png" sizes="192x192" href="./icons/icon-192.png" />
+  <link rel="apple-touch-icon" href="./icons/apple-touch-icon.png" />
+  <link rel="manifest" href="./site.webmanifest" />
+  <link rel="preload" as="image" href="./Renders/Casa-Marbella/05-scaled.avif" type="image/avif" media="(min-width: 681px)" />
+  <link rel="preload" as="image" href="./Renders/Casa-Marbella/05-scaled-1024.avif" type="image/avif" media="(max-width: 680px)" />
+  <link rel="preload" as="font" href="./Fonts/Playfair_Display_SC/PlayfairDisplaySC-Regular.woff2" type="font/woff2" crossorigin />
+  <link rel="preload" as="font" href="./Fonts/Inter/Inter.woff2" type="font/woff2" crossorigin />
+  <link rel="canonical" href="https://rub3n-0lte4n.github.io/DrawClever-v3/projects.html" />
+  <meta property="og:site_name" content="Draw Clever" />
+  <meta property="og:title" content="Portfolio — Draw Clever" />
+  <meta property="og:description" content="The Draw Clever portfolio — luxury residences, interiors and commercial spaces across Romania, Spain and beyond. Every space, a story." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://rub3n-0lte4n.github.io/DrawClever-v3/projects.html" />
+  <meta property="og:image" content="https://rub3n-0lte4n.github.io/DrawClever-v3/Renders/Casa-Marbella/04-scaled.jpg" />
+  <meta property="og:image:width" content="2560" />
+  <meta property="og:image:height" content="1440" />
+  <meta property="og:image:alt" content="Casa Marbella — a Mediterranean villa of glass and stone by Draw Clever" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Portfolio — Draw Clever" />
+  <meta name="twitter:description" content="The Draw Clever portfolio — luxury residences, interiors and commercial spaces across Romania, Spain and beyond." />
+  <meta name="twitter:image" content="https://rub3n-0lte4n.github.io/DrawClever-v3/Renders/Casa-Marbella/04-scaled.jpg" />
+  <style>
+    @font-face { font-family: 'Inter'; src: url('./Fonts/Inter/Inter.woff2') format('woff2-variations'), url('./Fonts/Inter/Inter.woff2') format('woff2'); font-weight: 100 900; font-style: normal; font-display: swap; }
+    @font-face { font-family: 'Inter'; src: url('./Fonts/Inter/Inter-Italic.woff2') format('woff2-variations'), url('./Fonts/Inter/Inter-Italic.woff2') format('woff2'); font-weight: 100 900; font-style: italic; font-display: swap; }
+    @font-face { font-family: 'Playfair Display SC'; src: url('./Fonts/Playfair_Display_SC/PlayfairDisplaySC-Regular.woff2') format('woff2'); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: 'Playfair Display SC'; src: url('./Fonts/Playfair_Display_SC/PlayfairDisplaySC-Italic.woff2') format('woff2'); font-weight: 400; font-style: italic; font-display: swap; }
+    @font-face { font-family: 'Playfair Display SC'; src: url('./Fonts/Playfair_Display_SC/PlayfairDisplaySC-Bold.woff2') format('woff2'); font-weight: 700; font-style: normal; font-display: swap; }
+    @font-face { font-family: 'Playfair Display SC'; src: url('./Fonts/Playfair_Display_SC/PlayfairDisplaySC-BoldItalic.woff2') format('woff2'); font-weight: 700; font-style: italic; font-display: swap; }
+    @font-face { font-family: 'Playfair Display'; src: url('./Fonts/Playfair_Display/PlayfairDisplay.woff2') format('woff2-variations'), url('./Fonts/Playfair_Display/PlayfairDisplay.woff2') format('woff2'); font-weight: 100 900; font-style: normal; font-display: swap; }
+    @font-face { font-family: 'Playfair Display'; src: url('./Fonts/Playfair_Display/PlayfairDisplay-Italic.woff2') format('woff2-variations'), url('./Fonts/Playfair_Display/PlayfairDisplay-Italic.woff2') format('woff2'); font-weight: 100 900; font-style: italic; font-display: swap; }
+  </style>
+  <link rel="stylesheet" href="/src/site.css" />
+  <script>(function(){var h=document.documentElement,first=true;try{first=!sessionStorage.getItem("dcv");sessionStorage.setItem("dcv","1");}catch(e){}h.classList.add(first?"dc-loading":"dc-ready");})();</script>
+  <style>
+    #portfolio { padding: 110px var(--pad) 150px; }
+    .pf-filters { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 48px; }
+    .pf-filter { font-family: 'Inter', sans-serif; font-size: 10px; letter-spacing: .14em; text-transform: uppercase; color: var(--sub); background: transparent; border: 1px solid var(--line-2); border-radius: 100px; padding: 11px 22px; cursor: pointer; transition: color .3s, background .3s, border-color .3s; }
+    .pf-filter:hover { color: var(--text); border-color: var(--gold-dim); }
+    .pf-filter.active { color: #15110A; background: var(--grad-gold); border-color: transparent; }
+    .pf-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(440px, 1fr)); gap: 8px; align-items: start; }
+    .pf-grid .pc picture { flex: 0 0 auto; aspect-ratio: 4 / 3; }
+    .pc.hide { display: none; }
+    @media (max-width: 680px) { #portfolio { padding-top: 80px; } .pf-grid { grid-template-columns: 1fr; } .pf-grid .pc picture { aspect-ratio: 3 / 2; }
+      .banner-bg { background-image: -webkit-image-set(url('./Renders/Casa-Marbella/05-scaled-1024.avif') type('image/avif'), url('./Renders/Casa-Marbella/05-scaled-1024.webp') type('image/webp')) !important; background-image: image-set(url('./Renders/Casa-Marbella/05-scaled-1024.avif') type('image/avif'), url('./Renders/Casa-Marbella/05-scaled-1024.webp') type('image/webp')) !important; } }
+  </style>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<div id="dc-loader" aria-hidden="true"><img class="dc-mark" src="./Logo Variants/Logo Mark.png" alt="" /><span class="dc-bar"></span></div>
+
+<div class="grain" aria-hidden="true"></div>
+<div class="progress" id="progress" aria-hidden="true"></div>
+
+<nav id="nav">
+  <a href="index.html" class="brand" aria-label="Draw Clever — home"><img src="./Logo Variants/Logo Mark.png" alt="Draw Clever" /></a>
+  <ul class="nav-links">
+    <li><a href="projects.html" class="active">Portfolio</a></li>
+    <li><a href="about-us.html">About</a></li>
+    <li><a href="services.html">Services</a></li>
+    <li><a href="contact.html" class="nav-cta">Contact</a></li>
+  </ul>
+  <button class="nav-toggle" aria-label="Open menu" aria-controls="drawer" aria-expanded="false"><span></span><span></span><span></span></button>
+</nav>
+
+<div class="drawer" id="drawer" aria-hidden="true">
+  <div class="drawer-inner">
+    <ul class="drawer-links">
+      <li><a href="projects.html" class="active">Portfolio</a></li>
+      <li><a href="about-us.html">About</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <div class="drawer-foot">
+      <span class="e">Draw Clever</span>
+      <p class="l">Romania &middot; Spain<br /><a href="mailto:hello@drawclever.com">hello@drawclever.com</a></p>
+      <ul class="drawer-social"><li><a href="https://www.instagram.com/drawclever.design/">Instagram</a></li><li><a href="https://pinterest.com/drawclever/">Pinterest</a></li><li><a href="https://x.com/DrawClever">X</a></li></ul>
+    </div>
+  </div>
+</div>
+
+<!-- BANNER -->
+<header class="banner" id="main" tabindex="-1">
+  <div class="banner-bg" style="background-image:url('./Renders/Casa-Marbella/05-scaled.jpg');background-image:-webkit-image-set(url('./Renders/Casa-Marbella/05-scaled.avif') type('image/avif'),url('./Renders/Casa-Marbella/05-scaled.webp') type('image/webp'),url('./Renders/Casa-Marbella/05-scaled.jpg') type('image/jpeg'));background-image:image-set(url('./Renders/Casa-Marbella/05-scaled.avif') type('image/avif'),url('./Renders/Casa-Marbella/05-scaled.webp') type('image/webp'),url('./Renders/Casa-Marbella/05-scaled.jpg') type('image/jpeg'))"></div>
+  <div class="banner-inner dc-head">
+    <div class="crumbs"><a href="index.html">Home</a><span class="sep">/</span><span>Portfolio</span></div>
+    <span class="eyebrow" style="margin-top:18px;">Our Portfolio</span>
+    <h1>Every space,<br /><span class="gold">a story.</span></h1>
+    <p class="sub">A decade of residences, interiors and commercial spaces — composed across Romania, Spain and beyond. Select any project to enter its gallery.</p>
+  </div>
+</header>
+
+<!-- PORTFOLIO GRID -->
+<section id="portfolio">
+  <div class="pf-filters reveal">
+    <button class="pf-filter active" data-filter="all">All</button>
+    <button class="pf-filter" data-filter="architecture">Architecture</button>
+    <button class="pf-filter" data-filter="interior">Interior Design</button>
+    <button class="pf-filter" data-filter="residential">Residential</button>
+    <button class="pf-filter" data-filter="commercial">Commercial</button>
+  </div>
+  <div class="pf-grid reveal d1">
+    <article class="pc" data-project="casa-marbella" data-cat="architecture residential" aria-label="Open Casa Marbella gallery">
+      <picture style="--lqip:url('data:image/webp;base64,UklGRrAAAABXRUJQVlA4IKQAAADQBACdASocAA8APu1iqU2ppaOiMAgBMB2JZQCsAd0ZA8QSelV5D5yo7qMF4HZWAAD+6kviuoNv0qzOlkiemh/P9fEMVspGaMv/RLu5Ush9HzVeqRU0jZ/QKpPF1H8a6NNTsb201DKG6CSobtIGCaltUxgTZZY5PwA8tErqeNjQxaV18Ui2KUmI8j2H4mmj/WKRi2N4rZPJ2xUINT1n8xHh5JAAAA==')"><source type="image/avif" srcset="./Renders/Casa-Marbella/04-scaled-480.avif 480w, ./Renders/Casa-Marbella/04-scaled-1024.avif 1024w, ./Renders/Casa-Marbella/04-scaled-1600.avif 1600w" sizes="(max-width: 860px) 100vw, (max-width: 1200px) 50vw, 34vw" /><source type="image/webp" srcset="./Renders/Casa-Marbella/04-scaled-480.webp 480w, ./Renders/Casa-Marbella/04-scaled-1024.webp 1024w, ./Renders/Casa-Marbella/04-scaled-1600.webp 1600w" sizes="(max-width: 860px) 100vw, (max-width: 1200px) 50vw, 34vw" /><img decoding="async" src="./Renders/Casa-Marbella/04-scaled.jpg" alt="Casa Marbella" loading="lazy" /></picture>
+      <div class="pc-info"><div class="pc-cat">Architecture · Residential</div><div class="pc-name">Casa Marbella</div><div class="pc-loc">Marbella, Spain</div></div>
+      <span class="pc-arrow"><svg viewBox="0 0 24 24"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span>
+    </article>
+    <article class="pc" data-project="penthouse-oradea" data-cat="interior residential" aria-label="Open Penthouse Oradea gallery">
+      <picture style="--lqip:url('data:image/webp;base64,UklGRqIAAABXRUJQVlA4IJYAAAAQBACdASocAA8APu1kqk4ppaQiMAgBMB2JYwCsACIFpQmxZlGu+ueBwAD92N3RiqzqjimuqiardGhUXidB2GLO398KmZGEA5s7qOk+G2RznpgJYpIFS3Z8cI/k2pU6j6BvbFfXIsGP67ntZ7Lm1FKDpu0yEHhduMlI5uBkAFtSTfJlU+vJVwhu41uMCGXBJYwqSwcAAAA=')"><source type="image/avif" srcset="./Renders/Penthouse-Oradea/21-480.avif 480w, ./Renders/Penthouse-Oradea/21-1024.avif 1024w, ./Renders/Penthouse-Oradea/21-1600.avif 1600w" sizes="(max-width: 860px) 100vw, (max-width: 1200px) 50vw, 34vw" /><source type="image/webp" srcset="./Renders/Penthouse-Oradea/21-480.webp 480w, ./Renders/Penthouse-Oradea/21-1024.webp 1024w, ./Renders/Penthouse-Oradea/21-1600.webp 1600w" sizes="(max-width: 860px) 100vw, (max-width: 1200px) 50vw, 34vw" /><img decoding="async" src="./Renders/Penthouse-Oradea/21.jpg" alt="Penthouse Oradea" loading="lazy" /></picture>
+      <div class="pc-info"><div class="pc-cat">Interior Design</div><div class="pc-name">Penthouse Oradea</div><div class="pc-loc">Oradea, Romania</div></div>
+      <span class="pc-arrow"><svg viewBox="0 0 24 24"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span>
+    </article>
+    <article class="pc" data-project="florida-house" data-cat="architecture residential" aria-label="Open Florida House gallery">
+      <picture style="--lqip:url('data:image/webp;base64,UklGRrIAAABXRUJQVlA4IKYAAADQAwCdASocAA8APu1iqU2ppaQiMAgBMB2JQBOkGQAXC4a7dgxjzwAA/Wkuqx+9olu1x0YaQgjoKcrHO4gqwlfojyjoPfck9EOpyizNdokoAVS23xvi3mBxeBfxqvnJ/iUegI2pedB+1wBckegSDvQXHhf34/7a5PtSnQal0ovAaWJuaIVRQ62fHCH0wOU2PqZ6X1bGAaCl6d1Wl2SqPsqV7QMvZAAA')"><source type="image/avif" srcset="./Renders/Florida-House/01-480.avif 480w, ./Renders/Florida-House/01-1024.avif 1024w, ./Renders/Florida-House/01-1600.avif 1600w" sizes="(max-width: 860px) 100vw, (max-width: 1200px) 50vw, 34vw" /><source type="image/webp" srcset="./Renders/Florida-House/01-480.webp 480w, ./Renders/Florida-House/01-1024.webp 1024w, ./Renders/Florida-House/01-1600.webp 1600w" sizes="(max-width: 860px) 100vw, (max-width: 1200px) 50vw, 34vw" /><img decoding="async" src="./Renders/Florida-House/01.jpg" alt="Florida House" loading="lazy" /></picture>
+      <div class="pc-info"><div class="pc-cat">Architecture · Residential</div><div class="pc-name">Florida House</div><div class="pc-loc">Florida, USA</div></div>
+      <span class="pc-arrow"><svg viewBox="0 0 24 24"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span>
+    </article>
+    <article class="pc" data-project="casa-corbeanca" data-cat="architecture residential" aria-label="Open Villa Corbeanca gallery">
+      <picture style="--lqip:url('data:image/webp;base64,UklGRpYAAABXRUJQVlA4IIoAAAAwBACdASocAA8APu1iqk2ppaQiMAgBMB2JQBOj+ABi/LdCU6DgBuJm1wAA/FI69oieqd3oxJTVFDVbt0kTEhTgdHNc+kW0BeDNmSETSO32XzB5PN/AOfYeL0tCMgAXs3Qc+6jSV+NLeOrGw74dQ6K+gtS2nZ8ViaCxTX1WKb98ZPgA3cxURLiaAAA=')"><source type="image/avif" srcset="./Renders/Casa-Corebeanca/110-480.avif 480w, ./Renders/Casa-Corebeanca/110-1024.avif 1024w, ./Renders/Casa-Corebeanca/110-1600.avif 1600w" sizes="(max-width: 860px) 100vw, (max-width: 1200px) 50vw, 34vw" /><source type="image/webp" srcset="./Renders/Casa-Corebeanca/110-480.webp 480w, ./Renders/Casa-Corebeanca/110-1024.webp 1024w, ./Renders/Casa-Corebeanca/110-1600.webp 1600w" sizes="(max-width: 860px) 100vw, (max-width: 1200px) 50vw, 34vw" /><img decoding="async" src="./Renders/Casa-Corebeanca/110.jpg" alt="Villa Corbeanca" loading="lazy" /></picture>
+      <div class="pc-info"><div class="pc-cat">Architecture · Residential</div><div class="pc-name">Villa Corbeanca</div><div class="pc-loc">Corbeanca, Romania</div></div>
+      <span class="pc-arrow"><svg viewBox="0 0 24 24"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span>
+    </article>
+    <article class="pc" data-project="event-hall-baia-mare" data-cat="interior commercial" aria-label="Open Grand Event Hall gallery">
+      <picture style="--lqip:url('data:image/webp;base64,UklGRnQAAABXRUJQVlA4IGgAAAAQBACdASocAA8APu1iqk2ppaQiMAgBMB2JZwDCgCIjHCHMJP2ZfLmkAAD+tZZKZihE+sSOIE+Hi1xw3Q2mWTmRpU7mDKu6pKz+f/nzrk4KZ3sVpqGLsjZrRvreYK6n3UziZuvhrR4gAA==')"><source type="image/avif" srcset="./Renders/Event-Hall-Baia-Mare/02_2-Photo-scaled-480.avif 480w, ./Renders/Event-Hall-Baia-Mare/02_2-Photo-scaled-1024.avif 1024w, ./Renders/Event-Hall-Baia-Mare/02_2-Photo-scaled-1600.avif 1600w" sizes="(max-width: 860px) 100vw, (max-width: 1200px) 50vw, 34vw" /><source type="image/webp" srcset="./Renders/Event-Hall-Baia-Mare/02_2-Photo-scaled-480.webp 480w, ./Renders/Event-Hall-Baia-Mare/02_2-Photo-scaled-1024.webp 1024w, ./Renders/Event-Hall-Baia-Mare/02_2-Photo-scaled-1600.webp 1600w" sizes="(max-width: 860px) 100vw, (max-width: 1200px) 50vw, 34vw" /><img decoding="async" src="./Renders/Event-Hall-Baia-Mare/02_2-Photo-scaled.jpg" alt="Grand Event Hall" loading="lazy" /></picture>
+      <div class="pc-info"><div class="pc-cat">Interior Design · Commercial</div><div class="pc-name">Grand Event Hall</div><div class="pc-loc">Baia Mare, Romania</div></div>
+      <span class="pc-arrow"><svg viewBox="0 0 24 24"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span>
+    </article>
+    <article class="pc" data-project="boutique-mosilor" data-cat="architecture residential" aria-label="Open Boutique Moșilor gallery">
+      <picture style="--lqip:url('data:image/webp;base64,UklGRn4AAABXRUJQVlA4IHIAAABQBACdASocAA8APu1mqk2ppaQiMAgBMB2JYwC7ABuc3s73ax7ayqlFIUoAAP6pPWqEQo3xaPuKuWMvJO4/rVXJy3MCCjSVK2fDIxokRvC1qzkqjBiJl47fAnyRgX3P4MxClRaed/P3HMc8+oSh3qQAAAA=')"><source type="image/avif" srcset="./Renders/Boutique-Mosilor/03-scaled-480.avif 480w, ./Renders/Boutique-Mosilor/03-scaled-1024.avif 1024w, ./Renders/Boutique-Mosilor/03-scaled-1600.avif 1600w" sizes="(max-width: 860px) 100vw, (max-width: 1200px) 50vw, 34vw" /><source type="image/webp" srcset="./Renders/Boutique-Mosilor/03-scaled-480.webp 480w, ./Renders/Boutique-Mosilor/03-scaled-1024.webp 1024w, ./Renders/Boutique-Mosilor/03-scaled-1600.webp 1600w" sizes="(max-width: 860px) 100vw, (max-width: 1200px) 50vw, 34vw" /><img decoding="async" src="./Renders/Boutique-Mosilor/03-scaled.jpg" alt="Boutique Moșilor" loading="lazy" /></picture>
+      <div class="pc-info"><div class="pc-cat">Architecture · Residential</div><div class="pc-name">Boutique Moșilor</div><div class="pc-loc">Bucharest, Romania</div></div>
+      <span class="pc-arrow"><svg viewBox="0 0 24 24"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span>
+    </article>
+    <article class="pc" data-project="apartment-in-oradea" data-cat="interior residential" aria-label="Open Apartment in Oradea gallery">
+      <picture style="--lqip:url('data:image/webp;base64,UklGRp4AAABXRUJQVlA4IJIAAAAQBACdASocAA8APu1kqU2ppaQiMAgBMB2JZwC7ACFf942jBMIjjGtXAAD+rsXZidLzaKqUoeaXTK56DBd4ICUYnb7P6NhwO+FRyNF+lONL7riTDUh1XGHugP+ZC7c2oMasuceF6WT4Ppit+VYLZaGcnzVnsazVeJPS1YoSvA98SpT60OIIh7U7S1/yidzTftgAAA==')"><source type="image/avif" srcset="./Renders/Apartment-in-Oradea/03-6-scaled-480.avif 480w, ./Renders/Apartment-in-Oradea/03-6-scaled-1024.avif 1024w, ./Renders/Apartment-in-Oradea/03-6-scaled-1600.avif 1600w" sizes="(max-width: 860px) 100vw, (max-width: 1200px) 50vw, 34vw" /><source type="image/webp" srcset="./Renders/Apartment-in-Oradea/03-6-scaled-480.webp 480w, ./Renders/Apartment-in-Oradea/03-6-scaled-1024.webp 1024w, ./Renders/Apartment-in-Oradea/03-6-scaled-1600.webp 1600w" sizes="(max-width: 860px) 100vw, (max-width: 1200px) 50vw, 34vw" /><img decoding="async" src="./Renders/Apartment-in-Oradea/03-6-scaled.jpg" alt="Apartment in Oradea" loading="lazy" /></picture>
+      <div class="pc-info"><div class="pc-cat">Interior Design</div><div class="pc-name">Apartment in Oradea</div><div class="pc-loc">Oradea, Romania</div></div>
+      <span class="pc-arrow"><svg viewBox="0 0 24 24"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span>
+    </article>
+    <article class="pc" data-project="uav-library" data-cat="architecture commercial" aria-label="Open University Library gallery">
+      <picture style="--lqip:url('data:image/webp;base64,UklGRowAAABXRUJQVlA4IIAAAAAQBACdASocAA8ALrV2u12jqampiYC0SygFR6IiPfpgy6hUErTIoq7IAAD+9XGNoIkyr1f0lNhniHkEneOwF/p7a2dLnv57nptUXSkLuApzcHx62fSBOaaL/k1xiUfGKyR4OUZ0bA+fXM7emFMsoX3dWYmX4aXNa518aODyt0agAA==')"><source type="image/avif" srcset="./Renders/UAV-Library/74-480.avif 480w, ./Renders/UAV-Library/74-1024.avif 1024w, ./Renders/UAV-Library/74-1600.avif 1600w" sizes="(max-width: 860px) 100vw, (max-width: 1200px) 50vw, 34vw" /><source type="image/webp" srcset="./Renders/UAV-Library/74-480.webp 480w, ./Renders/UAV-Library/74-1024.webp 1024w, ./Renders/UAV-Library/74-1600.webp 1600w" sizes="(max-width: 860px) 100vw, (max-width: 1200px) 50vw, 34vw" /><img decoding="async" src="./Renders/UAV-Library/74.jpg" alt="University Library" loading="lazy" /></picture>
+      <div class="pc-info"><div class="pc-cat">Architecture · Cultural</div><div class="pc-name">University Library</div><div class="pc-loc">Arad, Romania</div></div>
+      <span class="pc-arrow"><svg viewBox="0 0 24 24"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span>
+    </article>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta">
+  <span class="eyebrow center reveal">Start a conversation</span>
+  <h2 class="reveal d1">Your space, our<br /><span class="gold">next story.</span></h2>
+  <a href="contact.html" class="btn btn-solid reveal d2" style="font-size:11px;padding:17px 46px;">Begin Your Project</a>
+</section>
+
+<footer>
+  <div class="foot-top">
+    <a href="index.html" aria-label="Draw Clever — home"><img src="./Logo Variants/Word Mark.png" alt="Draw Clever" /></a>
+    <ul class="foot-nav"><li><a href="projects.html">Portfolio</a></li><li><a href="about-us.html">About</a></li><li><a href="services.html">Services</a></li><li><a href="contact.html">Contact</a></li></ul>
+  </div>
+  <div class="foot-bottom">
+    <p>© 2026 Draw Clever — We redefine the luxury life.</p>
+    <ul class="foot-social"><li><a href="https://www.instagram.com/drawclever.design/">Instagram</a></li><li><a href="https://pinterest.com/drawclever/">Pinterest</a></li><li><a href="https://x.com/DrawClever">X</a></li></ul>
+    <a href="#top" class="to-top">Back to top <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/></svg></a>
+  </div>
+</footer>
+
+<script>
+  /* Portfolio filter — animated. Leaving cards fade out, the grid reflows with a
+     FLIP slide for survivors, and incoming cards stagger in. Falls back to an
+     instant toggle under reduced-motion or without Web Animations. */
+  (function () {
+    const grid  = document.querySelector('.pf-grid');
+    if (!grid) return;
+    const pills = [...document.querySelectorAll('.pf-filter')];
+    const cards = [...document.querySelectorAll('.pf-grid .pc')];
+    const EASE  = 'cubic-bezier(.16,1,.3,1)';
+    const plain = matchMedia('(prefers-reduced-motion: reduce)').matches || !('animate' in Element.prototype);
+    let busy = false;
+
+    const wants = (c, f) => f === 'all' || (c.dataset.cat || '').split(' ').includes(f);
+
+    function apply(f) {
+      const leaving  = cards.filter((c) => !c.classList.contains('hide') && !wants(c, f));
+      const entering = cards.filter((c) =>  c.classList.contains('hide') &&  wants(c, f));
+      const staying  = cards.filter((c) => !c.classList.contains('hide') &&  wants(c, f));
+
+      if (plain) { cards.forEach((c) => c.classList.toggle('hide', !wants(c, f))); return; }
+
+      busy = true;
+      const commit = () => {
+        const first = new Map(staying.map((c) => [c, c.getBoundingClientRect()]));   // FIRST
+        leaving.forEach((c) => { c.classList.add('hide'); c.style.opacity = ''; c.style.transform = ''; });
+        entering.forEach((c) => c.classList.remove('hide'));                          // layout change
+        staying.forEach((c) => {                                                      // LAST → INVERT/PLAY
+          const a = first.get(c), b = c.getBoundingClientRect();
+          const dx = a.left - b.left, dy = a.top - b.top;
+          if (dx || dy) c.animate(
+            [{ transform: `translate(${dx}px, ${dy}px)` }, { transform: 'translate(0,0)' }],
+            { duration: 540, easing: EASE }
+          );
+        });
+        const base = staying.length ? 110 : 0;
+        entering.forEach((c, i) => {
+          c.getAnimations().forEach((an) => an.cancel());                             // clear any stale fade
+          c.animate(
+            [{ opacity: 0, transform: 'translateY(18px) scale(.985)' }, { opacity: 1, transform: 'none' }],
+            { duration: 560, delay: base + i * 55, easing: EASE, fill: 'backwards' }
+          );
+        });
+        busy = false;
+      };
+
+      if (!leaving.length) { commit(); return; }
+      let pending = leaving.length;
+      leaving.forEach((c) => {
+        const an = c.animate(
+          [{ opacity: 1, transform: 'none' }, { opacity: 0, transform: 'scale(.97)' }],
+          { duration: 220, easing: EASE, fill: 'forwards' }
+        );
+        an.onfinish = an.oncancel = () => { if (--pending === 0) commit(); };
+      });
+    }
+
+    pills.forEach((p) => p.addEventListener('click', () => {
+      if (busy || p.classList.contains('active')) return;
+      pills.forEach((x) => x.classList.remove('active'));
+      p.classList.add('active');
+      apply(p.dataset.filter);
+    }));
+  })();
+</script>
+<script type="module" src="/src/site.js"></script>
+<script type="module" src="/src/lightbox.js"></script>
+</body>
+</html>

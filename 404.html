@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; font-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self'; object-src 'none'" />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+  <title>Not Found — Draw Clever</title>
+  <meta name="robots" content="noindex" />
+  <meta name="theme-color" content="#0A0908" />
+  <link rel="icon" type="image/png" sizes="32x32" href="https://rub3n-0lte4n.github.io/DrawClever-v3/icons/favicon-32.png" />
+  <link rel="icon" type="image/png" sizes="192x192" href="https://rub3n-0lte4n.github.io/DrawClever-v3/icons/icon-192.png" />
+  <link rel="apple-touch-icon" href="https://rub3n-0lte4n.github.io/DrawClever-v3/icons/apple-touch-icon.png" />
+  <!-- Self-contained: a 404 may be served at any path depth, so it must not
+       depend on relatively-resolved external CSS. Asset URLs and links are
+       absolute on the Pages base — update them if a custom domain is added
+       (same caveat as the canonical/OG URLs on the other pages). -->
+  <style>
+    @font-face { font-family: 'Playfair Display SC'; src: url('https://rub3n-0lte4n.github.io/DrawClever-v3/Fonts/Playfair_Display_SC/PlayfairDisplaySC-Regular.woff2') format('woff2'); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: 'Playfair Display SC'; src: url('https://rub3n-0lte4n.github.io/DrawClever-v3/Fonts/Playfair_Display_SC/PlayfairDisplaySC-Italic.woff2') format('woff2'); font-weight: 400; font-style: italic; font-display: swap; }
+    @font-face { font-family: 'Playfair Display'; src: url('https://rub3n-0lte4n.github.io/DrawClever-v3/Fonts/Playfair_Display/PlayfairDisplay.woff2') format('woff2-variations'), url('https://rub3n-0lte4n.github.io/DrawClever-v3/Fonts/Playfair_Display/PlayfairDisplay.woff2') format('woff2'); font-weight: 100 900; font-style: normal; font-display: swap; }
+    @font-face { font-family: 'Playfair Display'; src: url('https://rub3n-0lte4n.github.io/DrawClever-v3/Fonts/Playfair_Display/PlayfairDisplay-Italic.woff2') format('woff2-variations'), url('https://rub3n-0lte4n.github.io/DrawClever-v3/Fonts/Playfair_Display/PlayfairDisplay-Italic.woff2') format('woff2'); font-weight: 100 900; font-style: italic; font-display: swap; }
+    @font-face { font-family: 'Inter'; src: url('https://rub3n-0lte4n.github.io/DrawClever-v3/Fonts/Inter/Inter.woff2') format('woff2'); font-weight: 100 900; font-style: normal; font-display: swap; }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    :root { --ink:#0A0908; --text:#F3EEE6; --sub:#B3ABA0; --muted:#6E675C; --line:#211F1B; --line-2:#2C2925; --champ:#EAD9B0; --ease:cubic-bezier(.16,1,.3,1);
+      --grad-gold: linear-gradient(102deg,#EAD9B0 0%,#D9BD82 26%,#C8A96A 50%,#B5853F 76%,#9C6B2E 100%); }
+    @view-transition { navigation: auto; }
+    ::view-transition-old(root) { animation: vt-out .34s cubic-bezier(.16,1,.3,1) both; }
+    ::view-transition-new(root) { animation: vt-in .5s cubic-bezier(.16,1,.3,1) both; }
+    @keyframes vt-out { to { opacity: 0; } }
+    @keyframes vt-in { from { opacity: 0; } }
+    @media (prefers-reduced-motion: reduce) { ::view-transition-old(root), ::view-transition-new(root) { animation: none !important; } }
+    body { background: var(--ink); color: var(--text); font-family: 'Inter', sans-serif; font-weight: 300; min-height: 100svh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 40px; -webkit-font-smoothing: antialiased; overflow: hidden; }
+    .mark { height: 46px; margin-bottom: 56px; mix-blend-mode: screen; opacity: .9; }
+    .code { font-family: 'Playfair Display SC', serif; font-size: clamp(110px, 26vw, 320px); line-height: .82; letter-spacing: -.01em; color: var(--champ); }
+    h1 { font-family: 'Playfair Display SC', serif; font-weight: 400; text-transform: none; font-size: clamp(24px, 3.2vw, 38px); letter-spacing: .012em; margin: 28px 0 16px; }
+    h1 .i { font-style: italic; color: var(--champ); }
+    p { font-size: 14px; color: var(--sub); line-height: 1.8; max-width: 44ch; margin-bottom: 40px; }
+    .btn { font-size: 10px; font-weight: 500; letter-spacing: .18em; text-transform: uppercase; text-decoration: none; padding: 15px 34px; border-radius: 100px; background: var(--grad-gold); color: #15110A; transition: transform .3s cubic-bezier(.16,1,.3,1), box-shadow .3s; display: inline-flex; }
+    .btn:hover { transform: translateY(-2px); box-shadow: 0 14px 40px rgba(200,169,106,.28); }
+    .links { margin-top: 30px; display: flex; gap: 22px; flex-wrap: wrap; justify-content: center; }
+    .links a { font-size: 10px; letter-spacing: .14em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color .3s; }
+    .links a:hover { color: #C8A96A; }
+    #dc-loader { position: fixed; inset: 0; z-index: 9500; background: var(--ink); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 30px; opacity: 0; visibility: hidden; pointer-events: none; transition: opacity .7s var(--ease), visibility .7s; }
+    html.dc-loading { overflow: hidden; }
+    html.dc-loading #dc-loader { opacity: 1; visibility: visible; pointer-events: auto; }
+    #dc-loader .dc-mark { height: 50px; width: auto; mix-blend-mode: screen; opacity: .9; animation: dcPulse 2.1s ease-in-out infinite; }
+    #dc-loader .dc-bar { position: relative; width: 122px; height: 1px; background: var(--line-2); overflow: hidden; }
+    #dc-loader .dc-bar::after { content: ''; position: absolute; inset: 0; background: var(--grad-gold); transform: translateX(-100%); animation: dcBar 1.5s var(--ease) infinite; }
+    @keyframes dcPulse { 0%,100% { opacity: .4; } 50% { opacity: 1; } }
+    @keyframes dcBar { to { transform: translateX(100%); } }
+    html.dc-ready .code, html.dc-ready h1, html.dc-ready p, html.dc-ready .btn, html.dc-ready .links { animation: dcHeadIn .9s var(--ease) both; }
+    html.dc-ready h1 { animation-delay: .12s; } html.dc-ready p { animation-delay: .22s; } html.dc-ready .btn { animation-delay: .32s; } html.dc-ready .links { animation-delay: .42s; }
+    @keyframes dcHeadIn { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: none; } }
+  </style>
+  <script>(function(){var h=document.documentElement,first=true;try{first=!sessionStorage.getItem("dcv");sessionStorage.setItem("dcv","1");}catch(e){}if(!first){h.classList.add('dc-ready');return;}h.classList.add('dc-loading');var MIN=450,MAX=4500,t0=Date.now(),done=false;function go(){if(done)return;done=true;setTimeout(function(){h.classList.remove('dc-loading');h.classList.add('dc-ready');},Math.max(0,MIN-(Date.now()-t0)));}var ff=document.fonts;(ff&&ff.ready?ff.ready:Promise.resolve()).then(go);setTimeout(go,MAX);})();</script>
+</head>
+<body>
+  <div id="dc-loader" aria-hidden="true"><img class="dc-mark" src="https://rub3n-0lte4n.github.io/DrawClever-v3/Logo Variants/Logo Mark.png" alt="" /><span class="dc-bar"></span></div>
+  <img class="mark" src="https://rub3n-0lte4n.github.io/DrawClever-v3/Logo Variants/Logo Mark.png" alt="Draw Clever" />
+  <div class="code">404</div>
+  <h1>This space hasn't<br />been <span class="i">built</span> yet.</h1>
+  <p>The page you're looking for has moved, or never existed. Let's return you to something beautifully designed.</p>
+  <a href="https://rub3n-0lte4n.github.io/DrawClever-v3/" class="btn">Back to Home</a>
+  <div class="links">
+    <a href="https://rub3n-0lte4n.github.io/DrawClever-v3/projects.html">Portfolio</a>
+    <a href="https://rub3n-0lte4n.github.io/DrawClever-v3/about-us.html">About</a>
+    <a href="https://rub3n-0lte4n.github.io/DrawClever-v3/services.html">Services</a>
+    <a href="https://rub3n-0lte4n.github.io/DrawClever-v3/contact.html">Contact</a>
+  </div>
+</body>
+</html>

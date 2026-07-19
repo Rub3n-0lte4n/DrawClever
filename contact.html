@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; font-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'; connect-src 'self' https://api.web3forms.com; frame-ancestors 'none'; base-uri 'self'; form-action 'self'; object-src 'none'" />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+  <title>Contact — Draw Clever</title>
+  <meta name="description" content="Start a conversation with Draw Clever. Ateliers in Romania and Spain. Tell us about your project — let's create something new." />
+  <meta name="theme-color" content="#0A0908" />
+  <link rel="icon" type="image/png" sizes="32x32" href="./icons/favicon-32.png" />
+  <link rel="icon" type="image/png" sizes="192x192" href="./icons/icon-192.png" />
+  <link rel="apple-touch-icon" href="./icons/apple-touch-icon.png" />
+  <link rel="manifest" href="./site.webmanifest" />
+  <link rel="preload" as="image" href="./Renders/Casa-Corebeanca/103.avif" type="image/avif" media="(min-width: 681px)" />
+  <link rel="preload" as="image" href="./Renders/Casa-Corebeanca/103-1024.avif" type="image/avif" media="(max-width: 680px)" />
+  <link rel="preload" as="font" href="./Fonts/Playfair_Display_SC/PlayfairDisplaySC-Regular.woff2" type="font/woff2" crossorigin />
+  <link rel="preload" as="font" href="./Fonts/Inter/Inter.woff2" type="font/woff2" crossorigin />
+  <link rel="canonical" href="https://rub3n-0lte4n.github.io/DrawClever-v3/contact.html" />
+  <meta property="og:site_name" content="Draw Clever" />
+  <meta property="og:title" content="Contact — Draw Clever" />
+  <meta property="og:description" content="Start a conversation with Draw Clever. Ateliers in Romania and Spain. Tell us about your project — let's create something new." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://rub3n-0lte4n.github.io/DrawClever-v3/contact.html" />
+  <meta property="og:image" content="https://rub3n-0lte4n.github.io/DrawClever-v3/Renders/Casa-Marbella/04-scaled.jpg" />
+  <meta property="og:image:width" content="2560" />
+  <meta property="og:image:height" content="1440" />
+  <meta property="og:image:alt" content="Casa Marbella — a Mediterranean villa of glass and stone by Draw Clever" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Contact — Draw Clever" />
+  <meta name="twitter:description" content="Start a conversation with Draw Clever. Ateliers in Romania and Spain." />
+  <meta name="twitter:image" content="https://rub3n-0lte4n.github.io/DrawClever-v3/Renders/Casa-Marbella/04-scaled.jpg" />
+  <style>
+    @font-face { font-family: 'Inter'; src: url('./Fonts/Inter/Inter.woff2') format('woff2-variations'), url('./Fonts/Inter/Inter.woff2') format('woff2'); font-weight: 100 900; font-style: normal; font-display: swap; }
+    @font-face { font-family: 'Inter'; src: url('./Fonts/Inter/Inter-Italic.woff2') format('woff2-variations'), url('./Fonts/Inter/Inter-Italic.woff2') format('woff2'); font-weight: 100 900; font-style: italic; font-display: swap; }
+    @font-face { font-family: 'Playfair Display SC'; src: url('./Fonts/Playfair_Display_SC/PlayfairDisplaySC-Regular.woff2') format('woff2'); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: 'Playfair Display SC'; src: url('./Fonts/Playfair_Display_SC/PlayfairDisplaySC-Italic.woff2') format('woff2'); font-weight: 400; font-style: italic; font-display: swap; }
+    @font-face { font-family: 'Playfair Display'; src: url('./Fonts/Playfair_Display/PlayfairDisplay.woff2') format('woff2-variations'), url('./Fonts/Playfair_Display/PlayfairDisplay.woff2') format('woff2'); font-weight: 100 900; font-style: normal; font-display: swap; }
+    @font-face { font-family: 'Playfair Display'; src: url('./Fonts/Playfair_Display/PlayfairDisplay-Italic.woff2') format('woff2-variations'), url('./Fonts/Playfair_Display/PlayfairDisplay-Italic.woff2') format('woff2'); font-weight: 100 900; font-style: italic; font-display: swap; }
+    @font-face { font-family: 'Playfair Display SC'; src: url('./Fonts/Playfair_Display_SC/PlayfairDisplaySC-Bold.woff2') format('woff2'); font-weight: 700; font-style: normal; font-display: swap; }
+  </style>
+  <link rel="stylesheet" href="/src/site.css" />
+  <script>(function(){var h=document.documentElement,first=true;try{first=!sessionStorage.getItem("dcv");sessionStorage.setItem("dcv","1");}catch(e){}h.classList.add(first?"dc-loading":"dc-ready");})();</script>
+  <style>
+    #contact { padding: 150px var(--pad); }
+    .contact-grid { display: grid; grid-template-columns: 1fr 1.25fr; gap: 96px; align-items: start; }
+    .contact-aside { position: sticky; top: 130px; display: flex; flex-direction: column; gap: 40px; }
+    .contact-aside h2 { font-size: clamp(32px, 3.6vw, 54px); line-height: 1.05; letter-spacing: 0; margin-top: 18px; }
+    .contact-offices { display: flex; flex-direction: column; gap: 30px; padding-top: 36px; border-top: 1px solid var(--line); }
+    .form-card { background: var(--ink-2); border: 1px solid var(--line); padding: 52px 48px; }
+    .form-card h3 { font-family: 'Playfair Display SC', serif; font-size: 27px; text-transform: none; letter-spacing: .012em; margin-bottom: 32px; }
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
+    .form-grid .full { grid-column: 1 / -1; }
+    #form-ok { display: flex; flex-direction: column; gap: 8px; padding: 8px 0 0; }
+    #faq { padding: 0 var(--pad) 176px; max-width: 960px; margin: 0 auto; }
+    @media (max-width: 900px) { .contact-grid { grid-template-columns: 1fr; gap: 48px; } .contact-aside { position: static; } }
+    @media (max-width: 680px) { #contact { padding: 80px 20px 60px; } .form-card { padding: 36px 26px; } .form-grid { grid-template-columns: 1fr; gap: 24px; } #faq { padding: 0 20px 80px; }
+      .banner-bg { background-image: -webkit-image-set(url('./Renders/Casa-Corebeanca/103-1024.avif') type('image/avif'), url('./Renders/Casa-Corebeanca/103-1024.webp') type('image/webp')) !important; background-image: image-set(url('./Renders/Casa-Corebeanca/103-1024.avif') type('image/avif'), url('./Renders/Casa-Corebeanca/103-1024.webp') type('image/webp')) !important; } }
+  </style>
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<div id="dc-loader" aria-hidden="true"><img class="dc-mark" src="./Logo Variants/Logo Mark.png" alt="" /><span class="dc-bar"></span></div>
+
+<div class="grain" aria-hidden="true"></div>
+<div class="progress" id="progress" aria-hidden="true"></div>
+
+<nav id="nav">
+  <a href="index.html" class="brand" aria-label="Draw Clever — home"><img src="./Logo Variants/Logo Mark.png" alt="Draw Clever" /></a>
+  <ul class="nav-links">
+    <li><a href="projects.html">Portfolio</a></li>
+    <li><a href="about-us.html">About</a></li>
+    <li><a href="services.html">Services</a></li>
+    <li><a href="contact.html" class="nav-cta">Contact</a></li>
+  </ul>
+  <button class="nav-toggle" aria-label="Open menu" aria-controls="drawer" aria-expanded="false"><span></span><span></span><span></span></button>
+</nav>
+
+<div class="drawer" id="drawer" aria-hidden="true">
+  <div class="drawer-inner">
+    <ul class="drawer-links">
+      <li><a href="projects.html">Portfolio</a></li>
+      <li><a href="about-us.html">About</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="contact.html" class="active">Contact</a></li>
+    </ul>
+    <div class="drawer-foot">
+      <span class="e">Draw Clever</span>
+      <p class="l">Romania &middot; Spain<br /><a href="mailto:hello@drawclever.com">hello@drawclever.com</a></p>
+      <ul class="drawer-social"><li><a href="https://www.instagram.com/drawclever.design/">Instagram</a></li><li><a href="https://pinterest.com/drawclever/">Pinterest</a></li><li><a href="https://x.com/DrawClever">X</a></li></ul>
+    </div>
+  </div>
+</div>
+
+<!-- BANNER -->
+<header class="banner" id="main" tabindex="-1">
+  <div class="banner-bg" style="background-image:url('./Renders/Casa-Corebeanca/103.jpg');background-image:-webkit-image-set(url('./Renders/Casa-Corebeanca/103.avif') type('image/avif'),url('./Renders/Casa-Corebeanca/103.webp') type('image/webp'),url('./Renders/Casa-Corebeanca/103.jpg') type('image/jpeg'));background-image:image-set(url('./Renders/Casa-Corebeanca/103.avif') type('image/avif'),url('./Renders/Casa-Corebeanca/103.webp') type('image/webp'),url('./Renders/Casa-Corebeanca/103.jpg') type('image/jpeg'))"></div>
+  <div class="banner-inner dc-head">
+    <div class="crumbs"><a href="index.html">Home</a><span class="sep">/</span><span>Contact</span></div>
+    <span class="eyebrow" style="margin-top:18px;">Get in Touch</span>
+    <h1>Let's create<br /><span class="gold">something new.</span></h1>
+    <p class="sub">Tell us about your project. We read every enquiry personally and reply within two business days.</p>
+  </div>
+</header>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="contact-grid">
+    <aside class="contact-aside reveal">
+      <div>
+        <span class="eyebrow">Two ateliers</span>
+        <h2>One team, across <span class="gold">borders.</span></h2>
+      </div>
+      <div class="contact-offices">
+        <div class="office">
+          <div class="t">Romania — Headquarters</div>
+          <div class="b"><span class="nm">Miguel</span><br /><a href="tel:+40000000000">+40 (0) 000 000 000</a><br /><a href="mailto:hello@drawclever.com">hello@drawclever.com</a><br />Bucharest, Romania</div>
+        </div>
+        <div class="office">
+          <div class="t">Spain — Branch</div>
+          <div class="b"><a href="mailto:hello@drawclever.com">hello@drawclever.com</a><br />Marbella, Spain</div>
+        </div>
+      </div>
+    </aside>
+
+    <div class="form-card reveal d1">
+      <h3>Tell us about your project</h3>
+      <p class="form-note" style="margin-bottom:28px;">Fields marked <span class="req" aria-hidden="true">*</span> are required.</p>
+      <!-- No backend: submitting composes a pre-filled email. Swap the handler
+           in the inline script (or set action=) for Formspree / your endpoint. -->
+      <form id="contact-form" novalidate>
+        <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0" />
+        <div class="form-grid">
+          <div class="field"><label for="first">First name <span class="req" aria-hidden="true">*</span></label><input id="first" name="first" type="text" placeholder="Jane" autocomplete="given-name" required /></div>
+          <div class="field"><label for="last">Last name <span class="req" aria-hidden="true">*</span></label><input id="last" name="last" type="text" placeholder="Doe" autocomplete="family-name" required /></div>
+          <div class="field full"><label for="email">Email <span class="req" aria-hidden="true">*</span></label><input id="email" name="email" type="email" placeholder="jane@email.com" autocomplete="email" required /></div>
+          <div class="field full"><label for="type">Project type</label>
+            <select id="type" name="type">
+              <option value="" disabled selected>Select a service</option>
+              <option>Architecture</option>
+              <option>Interior Design</option>
+              <option>3D Visualisation</option>
+              <option>Landscaping</option>
+              <option>Full Project</option>
+            </select>
+          </div>
+          <div class="field full"><label for="message">Message <span class="req" aria-hidden="true">*</span></label><textarea id="message" name="message" placeholder="Tell us about the site, the vision, the timeline…" required></textarea></div>
+          <div class="full" style="display:flex;align-items:center;gap:24px;flex-wrap:wrap;">
+            <button type="submit" class="btn btn-solid" style="font-size:11px;padding:16px 40px;">Send Message</button>
+            <p class="form-note">Prefer email? Write to <a href="mailto:hello@drawclever.com" style="color:var(--gold);text-decoration:none;">hello@drawclever.com</a></p>
+          </div>
+          <div class="full" id="form-ok" role="status" aria-live="polite" tabindex="-1" hidden>
+            <span class="form-ok" id="form-ok-title">Thank you. Your message is on its way.</span>
+            <p class="form-note" id="form-ok-note">We read every enquiry personally and reply within two business days.</p>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section id="faq">
+  <div class="sec-head reveal" style="margin-bottom:36px;">
+    <div><span class="eyebrow">Questions</span><h2 style="font-size:clamp(30px,3.4vw,50px);margin-top:16px;">Before you<br /><span class="gold">begin.</span></h2></div>
+  </div>
+  <div class="acc reveal d1">
+    <div class="acc-item"><button class="acc-q" type="button">Where are you based?<span class="acc-icon"></span></button><div class="acc-a">A headquarters in Bucharest, Romania and a branch in Marbella, Spain — working with clients across Europe, the United States and the Middle East.</div></div>
+    <div class="acc-item"><button class="acc-q" type="button">Do you handle architecture and interiors together?<span class="acc-icon"></span></button><div class="acc-a">Yes. Architecture, interiors and grounds are authored by one team as a single, continuous gesture — we don't refer the work out.</div></div>
+    <div class="acc-item"><button class="acc-q" type="button">How does a project begin?<span class="acc-icon"></span></button><div class="acc-a">Every commission begins with a conversation. Tell us about your project using the form above and we'll arrange an introductory call to understand the brief.</div></div>
+    <div class="acc-item"><button class="acc-q" type="button">Do you work internationally?<span class="acc-icon"></span></button><div class="acc-a">We do — our portfolio spans several countries across two continents. A well-run process makes distance a detail, not an obstacle.</div></div>
+  </div>
+</section>
+
+<footer>
+  <div class="foot-top">
+    <a href="index.html" aria-label="Draw Clever — home"><img src="./Logo Variants/Word Mark.png" alt="Draw Clever" /></a>
+    <ul class="foot-nav"><li><a href="projects.html">Portfolio</a></li><li><a href="about-us.html">About</a></li><li><a href="services.html">Services</a></li><li><a href="contact.html">Contact</a></li></ul>
+  </div>
+  <div class="foot-bottom">
+    <p>© 2026 Draw Clever — We redefine the luxury life.</p>
+    <ul class="foot-social"><li><a href="https://www.instagram.com/drawclever.design/">Instagram</a></li><li><a href="https://pinterest.com/drawclever/">Pinterest</a></li><li><a href="https://x.com/DrawClever">X</a></li></ul>
+    <a href="#top" class="to-top">Back to top <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/></svg></a>
+  </div>
+</footer>
+
+<script>
+  (function () {
+    const form = document.getElementById('contact-form');
+    if (!form) return;
+
+    // Web3Forms access key (managed at app.web3forms.com; safe to expose —
+    // it only lets people send mail TO the studio inbox).
+    const ACCESS_KEY = 'ff6e40a3-c49e-4162-a929-efe5a2ef6372';
+
+    const ok = document.getElementById('form-ok');
+    const okTitle = document.getElementById('form-ok-title');
+    const okNote = document.getElementById('form-ok-note');
+    const btn = form.querySelector('button[type="submit"]');
+
+    function showOk(title, note) {
+      if (okTitle) okTitle.textContent = title;
+      if (okNote) okNote.textContent = note;
+      if (ok) { ok.hidden = false; ok.focus(); }
+    }
+
+    function mailtoFallback(d, name) {
+      const subject = encodeURIComponent('New project enquiry: ' + (d.get('type') || 'General'));
+      const body = encodeURIComponent(
+        'Name: ' + name + '\nEmail: ' + (d.get('email') || '') + '\nProject type: ' + (d.get('type') || '') + '\n\n' + (d.get('message') || '')
+      );
+      window.location.href = 'mailto:hello@drawclever.com?subject=' + subject + '&body=' + body;
+      showOk('Almost there. Your email is ready to send.',
+             "Your mail app should have opened with your enquiry pre-filled. If it didn't, write to us at hello@drawclever.com.");
+    }
+
+    form.addEventListener('submit', async function (e) {
+      e.preventDefault();
+      if (!form.reportValidity()) return;
+      const d = new FormData(form);
+      const name = ((d.get('first') || '') + ' ' + (d.get('last') || '')).trim();
+
+      if (btn) { btn.disabled = true; btn.textContent = 'Sending…'; }
+      try {
+        const res = await fetch('https://api.web3forms.com/submit', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+          signal: (typeof AbortSignal !== 'undefined' && AbortSignal.timeout) ? AbortSignal.timeout(12000) : undefined,
+          body: JSON.stringify({
+            access_key: ACCESS_KEY,
+            subject: 'New project enquiry: ' + (d.get('type') || 'General'),
+            from_name: name || 'Draw Clever website',
+            name: name,
+            email: d.get('email') || '',
+            project_type: d.get('type') || '',
+            message: d.get('message') || '',
+            botcheck: d.get('botcheck') || '',
+          }),
+        });
+        const data = await res.json();
+        if (!res.ok || !data.success) throw new Error(data.message || 'send failed');
+        form.reset();
+        showOk('Thank you. Your message is on its way.',
+               'We read every enquiry personally and reply within two business days.');
+      } catch (err) {
+        mailtoFallback(d, name);
+      } finally {
+        if (btn) { btn.disabled = false; btn.textContent = 'Send Message'; }
+      }
+    });
+  })();
+</script>
+<script type="module" src="/src/site.js"></script>
+</body>
+</html>

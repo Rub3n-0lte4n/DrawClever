@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://rub3n-0lte4n.github.io/DrawClever-v3/sitemap.xml

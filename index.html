@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; font-src 'self'; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'; connect-src 'self'; frame-ancestors 'none'; base-uri 'self'; form-action 'self'; object-src 'none'" />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+  <title>Draw Clever — Luxury Architecture & Interior Design</title>
+  <meta name="description" content="Draw Clever is a luxury architecture and interior design studio with ateliers in Romania and Spain. We redefine the luxury life — from the first sketch to the final handover." />
+  <meta name="theme-color" content="#0A0908" />
+  <link rel="icon" type="image/png" sizes="32x32" href="./icons/favicon-32.png" />
+  <link rel="icon" type="image/png" sizes="192x192" href="./icons/icon-192.png" />
+  <link rel="apple-touch-icon" href="./icons/apple-touch-icon.png" />
+  <link rel="manifest" href="./site.webmanifest" />
+  <link rel="preload" as="image" href="./Renders/Casa-Marbella/04-scaled.avif" type="image/avif" media="(min-width: 681px)" />
+  <link rel="preload" as="image" href="./Renders/Casa-Marbella/04-scaled-1024.avif" type="image/avif" media="(max-width: 680px)" />
+  <link rel="preload" as="font" href="./Fonts/Playfair_Display_SC/PlayfairDisplaySC-Regular.woff2" type="font/woff2" crossorigin />
+  <link rel="preload" as="font" href="./Fonts/Playfair_Display/PlayfairDisplay-Italic.woff2" type="font/woff2" crossorigin />
+  <link rel="preload" as="font" href="./Fonts/Inter/Inter.woff2" type="font/woff2" crossorigin />
+  <link rel="canonical" href="https://rub3n-0lte4n.github.io/DrawClever-v3/" />
+  <meta property="og:site_name" content="Draw Clever" />
+  <meta property="og:title" content="Draw Clever — We Redefine The Luxury Life" />
+  <meta property="og:description" content="Luxury architecture & interior design. Ateliers in Romania and Spain." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://rub3n-0lte4n.github.io/DrawClever-v3/" />
+  <meta property="og:image" content="https://rub3n-0lte4n.github.io/DrawClever-v3/Renders/Casa-Marbella/04-scaled.jpg" />
+  <meta property="og:image:width" content="2560" />
+  <meta property="og:image:height" content="1440" />
+  <meta property="og:image:alt" content="Casa Marbella — a Mediterranean villa of glass and stone by Draw Clever" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Draw Clever — We Redefine The Luxury Life" />
+  <meta name="twitter:description" content="Luxury architecture & interior design. Ateliers in Romania and Spain." />
+  <meta name="twitter:image" content="https://rub3n-0lte4n.github.io/DrawClever-v3/Renders/Casa-Marbella/04-scaled.jpg" />
+
+  <!-- Structured data — studio + both ateliers (phone omitted while placeholder) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "name": "Draw Clever",
+    "alternateName": "Draw Clever Architecture & Interior Design",
+    "description": "Luxury architecture and interior design atelier with studios in Romania and Spain, working across Europe, the United States and the Middle East.",
+    "url": "https://rub3n-0lte4n.github.io/DrawClever-v3/",
+    "logo": "https://rub3n-0lte4n.github.io/DrawClever-v3/Logo%20Variants/Word%20Mark.png",
+    "image": "https://rub3n-0lte4n.github.io/DrawClever-v3/Renders/Casa-Marbella/04-scaled.jpg",
+    "email": "hello@drawclever.com",
+    "foundingDate": "2014",
+    "areaServed": ["Europe", "United States", "Middle East"],
+    "knowsAbout": ["Architecture", "Interior Design", "3D Visualisation", "Landscape Design"],
+    "sameAs": [
+      "https://www.instagram.com/drawclever.design/",
+      "https://pinterest.com/drawclever/",
+      "https://x.com/DrawClever"
+    ],
+    "address": [
+      { "@type": "PostalAddress", "addressLocality": "Bucharest", "addressCountry": "RO" },
+      { "@type": "PostalAddress", "addressLocality": "Marbella", "addressCountry": "ES" }
+    ]
+  }
+  </script>
+
+  <!-- Fonts inline (document-relative so they resolve on any base) -->
+  <style>
+    @font-face { font-family: 'Inter'; src: url('./Fonts/Inter/Inter.woff2') format('woff2-variations'), url('./Fonts/Inter/Inter.woff2') format('woff2'); font-weight: 100 900; font-style: normal; font-display: swap; }
+    @font-face { font-family: 'Inter'; src: url('./Fonts/Inter/Inter-Italic.woff2') format('woff2-variations'), url('./Fonts/Inter/Inter-Italic.woff2') format('woff2'); font-weight: 100 900; font-style: italic; font-display: swap; }
+    @font-face { font-family: 'Playfair Display'; src: url('./Fonts/Playfair_Display/PlayfairDisplay.woff2') format('woff2-variations'), url('./Fonts/Playfair_Display/PlayfairDisplay.woff2') format('woff2'); font-weight: 100 900; font-style: normal; font-display: swap; }
+    @font-face { font-family: 'Playfair Display'; src: url('./Fonts/Playfair_Display/PlayfairDisplay-Italic.woff2') format('woff2-variations'), url('./Fonts/Playfair_Display/PlayfairDisplay-Italic.woff2') format('woff2'); font-weight: 100 900; font-style: italic; font-display: swap; }
+    @font-face { font-family: 'Playfair Display SC'; src: url('./Fonts/Playfair_Display_SC/PlayfairDisplaySC-Regular.woff2') format('woff2'); font-weight: 400; font-style: normal; font-display: swap; }
+    @font-face { font-family: 'Playfair Display SC'; src: url('./Fonts/Playfair_Display_SC/PlayfairDisplaySC-Italic.woff2') format('woff2'); font-weight: 400; font-style: italic; font-display: swap; }
+    @font-face { font-family: 'Playfair Display SC'; src: url('./Fonts/Playfair_Display_SC/PlayfairDisplaySC-Bold.woff2') format('woff2'); font-weight: 700; font-style: normal; font-display: swap; }
+    @font-face { font-family: 'Playfair Display SC'; src: url('./Fonts/Playfair_Display_SC/PlayfairDisplaySC-BoldItalic.woff2') format('woff2'); font-weight: 700; font-style: italic; font-display: swap; }
+  </style>
+  <link rel="stylesheet" href="/src/site.css" />
+  <script>(function(){var h=document.documentElement,first=true;try{first=!sessionStorage.getItem("dcv");sessionStorage.setItem("dcv","1");}catch(e){}h.classList.add(first?"dc-loading":"dc-ready");})();</script>
+
+  <!-- Homepage-only section styles -->
+  <style>
+    /* HERO */
+    #hero { position: relative; height: 100svh; min-height: 660px; display: flex; flex-direction: column; justify-content: flex-end; overflow: hidden; }
+    .hero-bg { position: absolute; inset: 0; background-color: var(--ink); background-position: center; background-size: cover; background-repeat: no-repeat;
+      background-image: url('./Renders/Casa-Marbella/04-scaled.jpg');
+      background-image: -webkit-image-set(url('./Renders/Casa-Marbella/04-scaled.avif') type('image/avif'), url('./Renders/Casa-Marbella/04-scaled.webp') type('image/webp'), url('./Renders/Casa-Marbella/04-scaled.jpg') type('image/jpeg'));
+      background-image: image-set(url('./Renders/Casa-Marbella/04-scaled.avif') type('image/avif'), url('./Renders/Casa-Marbella/04-scaled.webp') type('image/webp'), url('./Renders/Casa-Marbella/04-scaled.jpg') type('image/jpeg'));
+      filter: brightness(.62) saturate(.88) contrast(1.04); transform: scale(1.08); animation: heroZoom 18s var(--ease) forwards; }
+    .hero-veil { position: absolute; inset: 0; z-index: 2; pointer-events: none; background: linear-gradient(to bottom, rgba(10,9,8,.5) 0%, transparent 28%, transparent 48%, rgba(10,9,8,.96) 100%), radial-gradient(120% 80% at 50% 40%, transparent 40%, rgba(10,9,8,.5) 100%); }
+    .hero-body { position: relative; z-index: 3; padding: 0 var(--pad) 76px; display: flex; justify-content: space-between; align-items: flex-end; gap: 48px; }
+    .hero-badge { display: inline-flex; align-items: center; gap: 9px; border: 1px solid rgba(243,238,230,.16); border-radius: 100px; padding: 7px 15px 7px 11px; font-size: 9.5px; letter-spacing: .12em; text-transform: uppercase; color: rgba(243,238,230,.7); margin-bottom: 28px; backdrop-filter: blur(8px); width: fit-content; opacity: 0; animation: fadeUp .8s ease .3s forwards; }
+    .badge-dot { width: 7px; height: 7px; border-radius: 50%; background: #6FCF8E; box-shadow: 0 0 0 0 rgba(111,207,142,.5); animation: pulse 2.6s ease-in-out 1s infinite; }
+    @keyframes pulse { 0%,100% { box-shadow: 0 0 0 0 rgba(111,207,142,.5); } 50% { box-shadow: 0 0 0 7px rgba(111,207,142,0); } }
+    .hero-title { font-size: clamp(58px, 9.4vw, 168px); line-height: .9; letter-spacing: 0; }
+    .hero-title .row { display: block; overflow: hidden; }
+    .hero-title .row > span { display: block; transform: translateY(105%); animation: slideUp 1.05s var(--ease) forwards; }
+    .hero-title .row:nth-child(1) > span { animation-delay: .5s; } .hero-title .row:nth-child(2) > span { animation-delay: .66s; } .hero-title .row:nth-child(3) > span { animation-delay: .82s; }
+    .hero-right { flex-shrink: 0; text-align: right; display: flex; flex-direction: column; align-items: flex-end; gap: 26px; padding-bottom: 8px; opacity: 0; animation: fadeUp .9s ease 1.15s forwards; }
+    .hero-desc { font-size: 13.5px; font-weight: 300; line-height: 1.85; color: rgba(243,238,230,.62); max-width: 312px; }
+    .hero-actions { display: flex; gap: 12px; }
+    .hero-scroll { position: absolute; left: 50%; bottom: 28px; transform: translateX(-50%); z-index: 3; display: flex; flex-direction: column; align-items: center; gap: 10px; font-size: 8.5px; letter-spacing: .3em; text-transform: uppercase; color: rgba(243,238,230,.5); opacity: 0; animation: fadeUp 1s ease 1.5s forwards; }
+    .hero-scroll .bar { width: 1px; height: 46px; background: linear-gradient(to bottom, var(--gold), transparent); animation: scrollPulse 2.4s var(--ease) infinite; transform-origin: top; }
+    @keyframes scrollPulse { 0% { transform: scaleY(0); opacity: 0; } 40% { transform: scaleY(1); opacity: 1; } 100% { transform: scaleY(1) translateY(46px); opacity: 0; } }
+    @keyframes fadeUp { to { opacity: 1; transform: none; } }
+    @keyframes slideUp { to { transform: none; } }
+    /* Hold the hero entrance until the loader releases; plays normally when fonts are cached / no JS */
+    html.dc-loading .hero-badge, html.dc-loading .hero-right, html.dc-loading .hero-scroll, html.dc-loading .hero-title .row > span { animation-play-state: paused; }
+
+    /* MARQUEE */
+    .marquee { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); background: var(--ink-2); padding: 22px 0; overflow: hidden; }
+    .marquee-track { display: flex; width: max-content; animation: marquee 38s linear infinite; }
+    .marquee:hover .marquee-track { animation-play-state: paused; }
+    .marquee-item { display: flex; align-items: center; gap: 34px; padding: 0 34px; font-family: 'Playfair Display', serif; font-variation-settings: 'opsz' 40, 'wght' 380; font-style: italic; font-size: 22px; letter-spacing: -.01em; color: var(--sub); white-space: nowrap; }
+    .marquee-item .star { color: var(--gold-dim); font-style: normal; font-family: 'Inter', sans-serif; font-weight: 300; font-size: 16px; }
+    @keyframes marquee { to { transform: translateX(-50%); } }
+
+    /* MANIFESTO */
+    #manifesto { padding: 190px var(--pad); max-width: 1500px; margin: 0 auto; }
+    .manifesto-grid { display: grid; grid-template-columns: 1fr 1.55fr; gap: 80px; align-items: start; }
+    .manifesto-side { position: sticky; top: 130px; display: flex; flex-direction: column; gap: 26px; }
+    .manifesto-side .mark { height: 60px; width: auto; align-self: flex-start; mix-blend-mode: screen; opacity: .9; }
+    .manifesto-side p { font-size: 12.5px; line-height: 1.9; color: var(--muted); max-width: 32ch; }
+    .manifesto-lede { font-size: clamp(27px, 3.3vw, 50px); line-height: 1.3; letter-spacing: -.015em; font-weight: 300; font-family: 'Inter', sans-serif; color: var(--text); }
+    .manifesto-lede .gold { font-family: 'Playfair Display', serif; font-variation-settings: 'opsz' 100, 'wght' 400; }
+    .manifesto-foot { margin-top: 46px; padding-top: 32px; border-top: 1px solid var(--line); display: flex; flex-wrap: wrap; gap: 14px 26px; align-items: center; font-size: 10px; letter-spacing: .22em; text-transform: uppercase; color: var(--sub); }
+    .manifesto-foot .dot { width: 3px; height: 3px; border-radius: 50%; background: var(--gold-dim); }
+    .manifesto-foot .sig { font-family: 'Playfair Display', serif; font-variation-settings: 'opsz' 36, 'wght' 420; font-style: italic; font-size: 18px; text-transform: none; letter-spacing: -.01em; color: var(--text); }
+
+    /* WORKS */
+    #works { padding: 176px var(--pad) 188px; }
+    .works-main { display: grid; grid-template-columns: repeat(12, 1fr); gap: 8px; margin-bottom: 8px; }
+    .works-row { display: grid; gap: 8px; margin-bottom: 8px; }
+    .works-row.three { grid-template-columns: repeat(3, 1fr); }
+    .works-row.two { grid-template-columns: 7fr 5fr; }
+    .pc.feature { grid-column: span 7; grid-row: span 2; min-height: 640px; }
+    .pc.half { grid-column: span 5; min-height: 316px; }
+    .works-row.three .pc { min-height: 360px; }
+    .works-row.two .pc { min-height: 440px; }
+
+    /* STUDIO */
+    #studio { padding: 190px var(--pad); background: var(--ink-2); display: grid; grid-template-columns: 1fr 1fr; gap: 110px; align-items: center; border-top: 1px solid var(--line); }
+    .studio-brand { height: 64px; width: auto; mix-blend-mode: screen; opacity: .9; margin-bottom: 44px; }
+    #studio h2 { font-size: clamp(36px, 4.2vw, 66px); line-height: 1.04; letter-spacing: 0; }
+    .studio-body p { font-size: 15px; font-weight: 300; line-height: 1.95; color: var(--sub); margin-bottom: 22px; }
+    #studio .stats { margin-top: 48px; padding-top: 44px; border-top: 1px solid var(--line); grid-template-columns: repeat(3, 1fr); }
+    #studio .tags { margin-top: 40px; }
+
+    /* DISCIPLINES */
+    #disciplines { padding: 188px var(--pad); }
+    .disc-list { border-top: 1px solid var(--line); display: grid; grid-template-columns: 1fr 1fr; column-gap: 90px; }
+    .disc { padding: 38px 0 34px; border-bottom: 1px solid var(--line); display: grid; grid-template-columns: 44px 1fr; gap: 24px; align-items: baseline; transition: padding-left .45s var(--ease); }
+    .disc:hover { padding-left: 14px; }
+    .disc-n { font-family: 'Inter', sans-serif; font-weight: 500; font-size: 11px; letter-spacing: .14em; color: var(--gold-dim); font-feature-settings: 'tnum' 1; }
+    .disc-name { font-family: 'Playfair Display SC', serif; font-style: normal; font-size: clamp(25px, 2.5vw, 38px); line-height: 1.06; text-transform: none; letter-spacing: .01em; margin-bottom: 14px; transition: color .35s; }
+    .disc:hover .disc-name { color: var(--gold); }
+    .disc-body { font-size: 13px; font-weight: 300; line-height: 1.85; color: var(--muted); max-width: 46ch; }
+
+    /* PHILOSOPHY */
+    #philosophy { padding: 188px var(--pad); background: var(--ink-2); border-top: 1px solid var(--line); }
+    /* .tenets/.tenet* now live in shared site.css */
+
+    #cta h2 { font-size: clamp(44px, 7.4vw, 122px); }
+
+    /* HOMEPAGE RESPONSIVE */
+    @media (max-width: 1100px) {
+      .manifesto-grid { grid-template-columns: 1fr; gap: 48px; } .manifesto-side { position: static; }
+      #studio { grid-template-columns: 1fr; gap: 48px; }
+    }
+    @media (max-width: 860px) {
+      .pc.feature { grid-column: span 12; grid-row: auto; min-height: 0; }
+      .pc.half { grid-column: span 12; }
+      .works-main, .works-row.three, .works-row.two { grid-template-columns: 1fr; }
+      .pc.feature, .pc.half, .works-row.three .pc, .works-row.two .pc { min-height: calc(72vw + 116px); max-height: 536px; }
+      .disc-list { grid-template-columns: 1fr; column-gap: 0; }
+    }
+    @media (max-width: 680px) {
+      #manifesto, #works, #studio, #disciplines, #philosophy { padding-top: 88px; padding-bottom: 88px; }
+      /* HERO: let it grow on short screens (no clipping), reserve nav clearance
+         via padding-top, and shrink the oversized title so it can't push the
+         badge up under the fixed nav. */
+      nav { padding: 15px 20px; }
+      #hero { height: auto; min-height: 100svh; }
+      .hero-title { font-size: clamp(38px, 11vw, 58px); }
+      .hero-badge { margin-bottom: 18px; }
+      .hero-body { flex-direction: column; align-items: flex-start; padding: 116px 20px 46px; gap: 22px; }
+      .hero-right { align-items: flex-start; text-align: left; } .hero-desc { text-align: left; max-width: 100%; }
+      .hero-actions { flex-wrap: wrap; } .hero-scroll { display: none; }
+      #studio .stats { grid-template-columns: 1fr; }
+      .marquee-item { font-size: 14px; }
+      /* Phones: load a 1024px hero instead of the full 2560px image */
+      .hero-bg {
+        background-image: -webkit-image-set(url('./Renders/Casa-Marbella/04-scaled-1024.avif') type('image/avif'), url('./Renders/Casa-Marbella/04-scaled-1024.webp') type('image/webp')) !important;
+        background-image: image-set(url('./Renders/Casa-Marbella/04-scaled-1024.avif') type('image/avif'), url('./Renders/Casa-Marbella/04-scaled-1024.webp') type('image/webp')) !important;
+      }
+    }
+  </style>
+</head>
+<body>
+<a class="skip-link" href="#hero">Skip to content</a>
+<div id="dc-loader" aria-hidden="true"><img class="dc-mark" src="./Logo Variants/Logo Mark.png" alt="" /><span class="dc-bar"></span></div>
+
+<div class="grain" aria-hidden="true"></div>
+<div class="progress" id="progress" aria-hidden="true"></div>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="index.html" class="brand" aria-label="Draw Clever — home">
+    <img src="./Logo Variants/Logo Mark.png" alt="Draw Clever" />
+  </a>
+  <ul class="nav-links">
+    <li><a href="projects.html">Portfolio</a></li>
+    <li><a href="about-us.html">About</a></li>
+    <li><a href="services.html">Services</a></li>
+    <li><a href="contact.html" class="nav-cta">Contact</a></li>
+  </ul>
+  <button class="nav-toggle" aria-label="Open menu" aria-controls="drawer" aria-expanded="false"><span></span><span></span><span></span></button>
+</nav>
+
+<!-- DRAWER -->
+<div class="drawer" id="drawer" aria-hidden="true">
+  <div class="drawer-inner">
+    <ul class="drawer-links">
+      <li><a href="projects.html">Portfolio</a></li>
+      <li><a href="about-us.html">About</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+    <div class="drawer-foot">
+      <span class="e">Draw Clever</span>
+      <p class="l">Romania &middot; Spain<br /><a href="mailto:hello@drawclever.com">hello@drawclever.com</a></p>
+      <ul class="drawer-social">
+        <li><a href="https://www.instagram.com/drawclever.design/">Instagram</a></li>
+        <li><a href="https://pinterest.com/drawclever/">Pinterest</a></li>
+        <li><a href="https://x.com/DrawClever">X</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- HERO -->
+<section id="hero" tabindex="-1">
+  <div class="hero-bg"></div>
+  <div class="hero-veil"></div>
+  <div class="hero-body">
+    <div class="hero-left">
+      <span class="hero-badge"><span class="badge-dot"></span> Accepting commissions for 2026</span>
+      <h1 class="hero-title">
+        <span class="row"><span>We Redefine</span></span>
+        <span class="row"><span>The <em class="gold">Luxury</em></span></span>
+        <span class="row"><span>Life.</span></span>
+      </h1>
+    </div>
+    <div class="hero-right">
+      <p class="hero-desc">A luxury architecture &amp; interior design atelier — sculpting residences, interiors and grounds from the first sketch to the final handover.</p>
+      <div class="hero-actions">
+        <a href="contact.html" class="btn btn-solid">Start a Project</a>
+        <a href="projects.html" class="btn btn-ghost">View Portfolio</a>
+      </div>
+    </div>
+  </div>
+  <div class="hero-scroll"><span>Scroll</span><span class="bar"></span></div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track">
+    <span class="marquee-item">Architecture <span class="star">/</span></span>
+    <span class="marquee-item">Interior Design <span class="star">/</span></span>
+    <span class="marquee-item">3D Visualisation <span class="star">/</span></span>
+    <span class="marquee-item">Landscape <span class="star">/</span></span>
+    <span class="marquee-item">Residential <span class="star">/</span></span>
+    <span class="marquee-item">Commercial <span class="star">/</span></span>
+    <span class="marquee-item">Romania &amp; Spain <span class="star">/</span></span>
+    <span class="marquee-item">Architecture <span class="star">/</span></span>
+    <span class="marquee-item">Interior Design <span class="star">/</span></span>
+    <span class="marquee-item">3D Visualisation <span class="star">/</span></span>
+    <span class="marquee-item">Landscape <span class="star">/</span></span>
+    <span class="marquee-item">Residential <span class="star">/</span></span>
+    <span class="marquee-item">Commercial <span class="star">/</span></span>
+    <span class="marquee-item">Romania &amp; Spain <span class="star">/</span></span>
+  </div>
+</div>
+
+<!-- MANIFESTO -->
+<section id="manifesto">
+  <div class="manifesto-grid">
+    <div class="manifesto-side reveal">
+      <img class="mark" src="./Logo Variants/Logo Mark.png" alt="Draw Clever" />
+      <p>An atelier of architecture &amp; interiors. Ateliers in Bucharest &amp; Marbella, working across Europe, the United States and the Middle East.</p>
+    </div>
+    <div class="manifesto-lede reveal d1">
+      <p>For over a decade, Draw Clever has composed homes for clients who measure luxury in <span class="gold">restraint</span>, not excess — architecture, interiors and grounds authored by <span class="gold">one hand</span>, from the first sketch to the final handover.</p>
+      <div class="manifesto-foot">
+        <span>Bucharest</span><span class="dot"></span><span>Marbella</span><span class="dot"></span>
+        <span class="sig">One team, from sketch to handover.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SELECTED WORKS -->
+<section id="works">
+  <div class="sec-head reveal">
+    <div>
+      <span class="eyebrow">Selected Work</span>
+      <h2>Spaces that<br /><span class="gold">transcend.</span></h2>
+    </div>
+    <p class="intro">A portfolio that spans continents — each commission a singular response to its place, its light, and the life it is built to hold. Tap any project to enter its gallery.</p>
+  </div>
+
+  <div class="works-main reveal d1">
+    <article class="pc feature" data-project="casa-marbella" aria-label="Open Casa Marbella gallery">
+      <picture style="--lqip:url('data:image/webp;base64,UklGRp4AAABXRUJQVlA4IJIAAADQBACdASocAA8APu1iqU2ppaQiMAgBMB2JQBOmUAnABRkK55KQAvg/hLmD6vDbAADKKE0Qs+RiVkOP15r7jql3caRZVOMRvomH9x3qASDkfg5zvmDDrXPc3eLtRUBUHlwswkR8JmK3TTq2RdW+8VL5Xq4Ejou+Jg69K7Q9lHeCQidY5vQyENOS0vpIuFaK7a4AAA==')"><source type="image/avif" srcset="./Renders/Casa-Marbella/07-scaled-480.avif 480w, ./Renders/Casa-Marbella/07-scaled-1024.avif 1024w, ./Renders/Casa-Marbella/07-scaled-1600.avif 1600w" sizes="(max-width: 860px) 100vw, (max-width: 1200px) 50vw, 34vw" /><source type="image/webp" srcset="./Renders/Casa-Marbella/07-scaled-480.webp 480w, ./Renders/Casa-Marbella/07-scaled-1024.webp 1024w, ./Renders/Casa-Marbella/07-scaled-1600.webp 1600w" sizes="(max-width: 860px) 100vw, (max-width: 1200px) 50vw, 34vw" /><img decoding="async" src="./Renders/Casa-Marbella/07-scaled.jpg" alt="Casa Marbella" loading="lazy" /></picture>
+      <div class="pc-info"><div class="pc-cat">Architecture · Residential</div><div class="pc-name">Casa Marbella</div><div class="pc-loc">Marbella, Spain</div></div>
+      <span class="pc-arrow"><svg viewBox="0 0 24 24"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span>
+    </article>
+    <article class="pc half" data-project="penthouse-oradea" aria-label="Open Penthouse Oradea gallery">
+      <picture style="--lqip:url('data:image/webp;base64,UklGRqIAAABXRUJQVlA4IJYAAAAQBACdASocAA8APu1kqk4ppaQiMAgBMB2JYwCsACIFpQmxZlGu+ueBwAD92N3RiqzqjimuqiardGhUXidB2GLO398KmZGEA5s7qOk+G2RznpgJYpIFS3Z8cI/k2pU6j6BvbFfXIsGP67ntZ7Lm1FKDpu0yEHhduMlI5uBkAFtSTfJlU+vJVwhu41uMCGXBJYwqSwcAAAA=')"><source type="image/avif" srcset="./Renders/Penthouse-Oradea/21-480.avif 480w, ./Renders/Penthouse-Oradea/21-1024.avif 1024w, ./Renders/Penthouse-Oradea/21-1600.avif 1600w" sizes="(max-width: 860px) 100vw, (max-width: 1200px) 50vw, 34vw" /><source type="image/webp" srcset="./Renders/Penthouse-Oradea/21-480.webp 480w, ./Renders/Penthouse-Oradea/21-1024.webp 1024w, ./Renders/Penthouse-Oradea/21-1600.webp 1600w" sizes="(max-width: 860px) 100vw, (max-width: 1200px) 50vw, 34vw" /><img decoding="async" src="./Renders/Penthouse-Oradea/21.jpg" alt="Penthouse Oradea" loading="lazy" /></picture>
+      <div class="pc-info"><div class="pc-cat">Interior Design</div><div class="pc-name">Penthouse Oradea</div><div class="pc-loc">Oradea, Romania</div></div>
+      <span class="pc-arrow"><svg viewBox="0 0 24 24"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span>
+    </article>
+    <article class="pc half" data-project="florida-house" aria-label="Open Florida House gallery">
+      <picture style="--lqip:url('data:image/webp;base64,UklGRrIAAABXRUJQVlA4IKYAAADQAwCdASocAA8APu1iqU2ppaQiMAgBMB2JQBOkGQAXC4a7dgxjzwAA/Wkuqx+9olu1x0YaQgjoKcrHO4gqwlfojyjoPfck9EOpyizNdokoAVS23xvi3mBxeBfxqvnJ/iUegI2pedB+1wBckegSDvQXHhf34/7a5PtSnQal0ovAaWJuaIVRQ62fHCH0wOU2PqZ6X1bGAaCl6d1Wl2SqPsqV7QMvZAAA')"><source type="image/avif" srcset="./Renders/Florida-House/01-480.avif 480w, ./Renders/Florida-House/01-1024.avif 1024w, ./Renders/Florida-House/01-1600.avif 1600w" sizes="(max-width: 860px) 100vw, (max-width: 1200px) 50vw, 34vw" /><source type="image/webp" srcset="./Renders/Florida-House/01-480.webp 480w, ./Renders/Florida-House/01-1024.webp 1024w, ./Renders/Florida-House/01-1600.webp 1600w" sizes="(max-width: 860px) 100vw, (max-width: 1200px) 50vw, 34vw" /><img decoding="async" src="./Renders/Florida-House/01.jpg" alt="Florida House" loading="lazy" /></picture>
+      <div class="pc-info"><div class="pc-cat">Architecture</div><div class="pc-name">Florida House</div><div class="pc-loc">Florida, USA</div></div>
+      <span class="pc-arrow"><svg viewBox="0 0 24 24"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span>
+    </article>
+  </div>
+
+  <div class="works-row three reveal d2">
+    <article class="pc" data-project="casa-corbeanca" aria-label="Open Villa Corbeanca gallery">
+      <picture style="--lqip:url('data:image/webp;base64,UklGRoIAAABXRUJQVlA4IHYAAADwAwCdASocAA8APu1qrU8ppiQiMAgBMB2JQBOgBEQVh64vuvfBud+wAP3dVaoxyNdA85rlIamGE23/YFqIMKki1yna9BKG32NltAi1CLeDEGGbjm6Tri6bPqxRQlzOTjIM+xc/tY78NRiNHxap6gYquFwEtAAA')"><source type="image/avif" srcset="./Renders/Casa-Corebeanca/103-480.avif 480w, ./Renders/Casa-Corebeanca/103-1024.avif 1024w, ./Renders/Casa-Corebeanca/103-1600.avif 1600w" sizes="(max-width: 860px) 100vw, (max-width: 1200px) 50vw, 34vw" /><source type="image/webp" srcset="./Renders/Casa-Corebeanca/103-480.webp 480w, ./Renders/Casa-Corebeanca/103-1024.webp 1024w, ./Renders/Casa-Corebeanca/103-1600.webp 1600w" sizes="(max-width: 860px) 100vw, (max-width: 1200px) 50vw, 34vw" /><img decoding="async" src="./Renders/Casa-Corebeanca/103.jpg" alt="Villa Corbeanca" loading="lazy" /></picture>
+      <div class="pc-info"><div class="pc-cat">Architecture · Residential</div><div class="pc-name">Villa Corbeanca</div><div class="pc-loc">Corbeanca, Romania</div></div>
+      <span class="pc-arrow"><svg viewBox="0 0 24 24"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span>
+    </article>
+    <article class="pc" data-project="uav-library" aria-label="Open University Library gallery">
+      <picture style="--lqip:url('data:image/webp;base64,UklGRqYAAABXRUJQVlA4IJoAAACwAwCdASocAA8APu1yrU+pp6QiMAgBMB2JZQC06Gavgd7QaKNIAAD++3wntrJxsZUl0OvrD39TVXjf1aWTU/WQ4LEcgfUPGGFlpmv9RnQ+ufFietsvWatUXf5kAviawC9T9HKoleI6Nn+93Z68XBPK2/W8ypEiVmF6kDB+Uhv9mINxkSh33MX7A1sX+1SSchRBi8FL1XTsGwAA')"><source type="image/avif" srcset="./Renders/UAV-Library/71-480.avif 480w, ./Renders/UAV-Library/71-1024.avif 1024w, ./Renders/UAV-Library/71-1600.avif 1600w" sizes="(max-width: 860px) 100vw, (max-width: 1200px) 50vw, 34vw" /><source type="image/webp" srcset="./Renders/UAV-Library/71-480.webp 480w, ./Renders/UAV-Library/71-1024.webp 1024w, ./Renders/UAV-Library/71-1600.webp 1600w" sizes="(max-width: 860px) 100vw, (max-width: 1200px) 50vw, 34vw" /><img decoding="async" src="./Renders/UAV-Library/71.jpg" alt="University Library" loading="lazy" /></picture>
+      <div class="pc-info"><div class="pc-cat">Architecture · Cultural</div><div class="pc-name">University Library</div><div class="pc-loc">Arad, Romania</div></div>
+      <span class="pc-arrow"><svg viewBox="0 0 24 24"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span>
+    </article>
+    <article class="pc" data-project="boutique-mosilor" aria-label="Open Boutique Moșilor gallery">
+      <picture style="--lqip:url('data:image/webp;base64,UklGRpgAAABXRUJQVlA4IIwAAABwBACdASocAA8APu1kqU2ppaOiMAgBMB2JYwCdACBTYloCkrGPXd6DUelyAAD+GDpE2VdK1yRGhxFKh7j2FUFo4NXZf28w9ywrcRPrQFjyUouuMiRr6+CEe/jBV0Uu2khQo2kuxbMFjKXMYXBsqjpxZEnplkGO+qBsuL6/BWcrClFCtLPoWjiSBWAAAA==')"><source type="image/avif" srcset="./Renders/Boutique-Mosilor/01-scaled-480.avif 480w, ./Renders/Boutique-Mosilor/01-scaled-1024.avif 1024w, ./Renders/Boutique-Mosilor/01-scaled-1600.avif 1600w" sizes="(max-width: 860px) 100vw, (max-width: 1200px) 50vw, 34vw" /><source type="image/webp" srcset="./Renders/Boutique-Mosilor/01-scaled-480.webp 480w, ./Renders/Boutique-Mosilor/01-scaled-1024.webp 1024w, ./Renders/Boutique-Mosilor/01-scaled-1600.webp 1600w" sizes="(max-width: 860px) 100vw, (max-width: 1200px) 50vw, 34vw" /><img decoding="async" src="./Renders/Boutique-Mosilor/01-scaled.jpg" alt="Boutique Moșilor" loading="lazy" /></picture>
+      <div class="pc-info"><div class="pc-cat">Architecture · Residential</div><div class="pc-name">Boutique Moșilor</div><div class="pc-loc">Bucharest, Romania</div></div>
+      <span class="pc-arrow"><svg viewBox="0 0 24 24"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span>
+    </article>
+  </div>
+
+  <div class="works-row two reveal d2">
+    <article class="pc" data-project="event-hall-baia-mare" aria-label="Open Grand Event Hall gallery">
+      <picture style="--lqip:url('data:image/webp;base64,UklGRmIAAABXRUJQVlA4IFYAAACwAwCdASocAA8APu1kqU2ppaQiMAgBMB2JZwAAPFjnGxJ9E5jYQAD+r5slJ89MiuRB2QlWhhqs771YzxUjR+QL2Rh0e/rNqQTcwc79yM2WMXpYBZCkAA==')"><source type="image/avif" srcset="./Renders/Event-Hall-Baia-Mare/01_1-Photo-scaled-480.avif 480w, ./Renders/Event-Hall-Baia-Mare/01_1-Photo-scaled-1024.avif 1024w, ./Renders/Event-Hall-Baia-Mare/01_1-Photo-scaled-1600.avif 1600w" sizes="(max-width: 860px) 100vw, (max-width: 1200px) 50vw, 34vw" /><source type="image/webp" srcset="./Renders/Event-Hall-Baia-Mare/01_1-Photo-scaled-480.webp 480w, ./Renders/Event-Hall-Baia-Mare/01_1-Photo-scaled-1024.webp 1024w, ./Renders/Event-Hall-Baia-Mare/01_1-Photo-scaled-1600.webp 1600w" sizes="(max-width: 860px) 100vw, (max-width: 1200px) 50vw, 34vw" /><img decoding="async" src="./Renders/Event-Hall-Baia-Mare/01_1-Photo-scaled.jpg" alt="Grand Event Hall" loading="lazy" /></picture>
+      <div class="pc-info"><div class="pc-cat">Interior Design · Commercial</div><div class="pc-name">Grand Event Hall</div><div class="pc-loc">Baia Mare, Romania</div></div>
+      <span class="pc-arrow"><svg viewBox="0 0 24 24"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span>
+    </article>
+    <article class="pc" data-project="apartment-in-oradea" aria-label="Open Apartment in Oradea gallery">
+      <picture style="--lqip:url('data:image/webp;base64,UklGRoIAAABXRUJQVlA4IHYAAADwAwCdASocAA8APu1oqk6ppiQiMAgBMB2JZwDCgGMjDDDkwxcAuFgAAP77Mkw/aSn6y+Nc9WqCkrY8X17i6AbyQ++Dee8pAM9nMkTBFnfyDD6NlOHsV6BDJNX/NHlMoSKs6ue3yWbyCwl++xhRn/rK+T+oLAAA')"><source type="image/avif" srcset="./Renders/Apartment-in-Oradea/01-6-scaled-480.avif 480w, ./Renders/Apartment-in-Oradea/01-6-scaled-1024.avif 1024w, ./Renders/Apartment-in-Oradea/01-6-scaled-1600.avif 1600w" sizes="(max-width: 860px) 100vw, (max-width: 1200px) 50vw, 34vw" /><source type="image/webp" srcset="./Renders/Apartment-in-Oradea/01-6-scaled-480.webp 480w, ./Renders/Apartment-in-Oradea/01-6-scaled-1024.webp 1024w, ./Renders/Apartment-in-Oradea/01-6-scaled-1600.webp 1600w" sizes="(max-width: 860px) 100vw, (max-width: 1200px) 50vw, 34vw" /><img decoding="async" src="./Renders/Apartment-in-Oradea/01-6-scaled.jpg" alt="Apartment in Oradea" loading="lazy" /></picture>
+      <div class="pc-info"><div class="pc-cat">Interior Design</div><div class="pc-name">Apartment in Oradea</div><div class="pc-loc">Oradea, Romania</div></div>
+      <span class="pc-arrow"><svg viewBox="0 0 24 24"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span>
+    </article>
+  </div>
+
+  <div style="margin-top:44px;display:flex;justify-content:center;" class="reveal d3">
+    <a href="projects.html" class="link">View the full portfolio <svg viewBox="0 0 24 24"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></a>
+  </div>
+</section>
+
+<!-- FULL BLEED I -->
+<div class="fullbleed reveal">
+  <picture style="--lqip:url('data:image/webp;base64,UklGRpoAAABXRUJQVlA4II4AAADwAwCdASocAA8APu1mq04ppaQiMAgBMB2JYwBTAAWZipy5+7VicaiAAPv3OrEAT8FVzBl7ZthS1IGksya5iX3B4WVy1HaYDheKuL+YI5VMCxr1X/kFTaXJNs+DlTBnot77tL/Oxsdf9hP6sFXh2BJoGX25cNTF9TTt8yPDpJzSuJcOK8/QC0jHHtsgP7AA')"><source type="image/avif" srcset="./Renders/Casa-Corebeanca/120-480.avif 480w, ./Renders/Casa-Corebeanca/120-1024.avif 1024w, ./Renders/Casa-Corebeanca/120-1600.avif 1600w" sizes="100vw" /><source type="image/webp" srcset="./Renders/Casa-Corebeanca/120-480.webp 480w, ./Renders/Casa-Corebeanca/120-1024.webp 1024w, ./Renders/Casa-Corebeanca/120-1600.webp 1600w" sizes="100vw" /><img decoding="async" class="fb-img" data-parallax src="./Renders/Casa-Corebeanca/120.jpg" alt="Villa Corbeanca" loading="lazy" /></picture>
+  <div class="fb-caption">
+    <h3>Every detail,<br /><span class="gold">considered.</span></h3>
+    <p>Proportion, material, light and the art of the considered detail — selected with precision long before a single stone is laid.</p>
+  </div>
+</div>
+
+<!-- STUDIO -->
+<section id="studio">
+  <div class="studio-left reveal">
+    <img class="studio-brand" src="./Logo Variants/Full Mark.png" alt="Draw Clever" />
+    <h2>Architecture that<br />elevates <span class="gold">how you live.</span></h2>
+    <div class="stats">
+      <div class="stat"><div class="n">2014</div><div class="l">Atelier<br />established</div></div>
+      <div class="stat"><div class="n">2</div><div class="l">Ateliers —<br />Romania &amp; Spain</div></div>
+      <div class="stat"><div class="n">3</div><div class="l">Continents<br />served</div></div>
+    </div>
+  </div>
+  <div class="studio-right reveal d2">
+    <div class="studio-body">
+      <p>Draw Clever is a luxury architecture and interior design studio with ateliers in Romania and Spain. We work with discerning clients across Europe, the United States and the Middle East who seek spaces that are not merely beautiful — but deeply intentional.</p>
+      <p>Every project begins with listening. We translate a vision into architecture that tells its story — through proportion, material, light, and the discipline of considered detail.</p>
+    </div>
+    <div class="tags">
+      <span class="tag">House Design</span><span class="tag">Bespoke Interiors</span><span class="tag">Furniture Design</span>
+      <span class="tag">Planning</span><span class="tag">View Design</span><span class="tag">3D Renders</span><span class="tag">Landscaping</span>
+    </div>
+  </div>
+</section>
+
+<!-- DISCIPLINES -->
+<section id="disciplines">
+  <div class="sec-head reveal">
+    <div>
+      <span class="eyebrow">Disciplines</span>
+      <h2>A single<br /><span class="gold">practice.</span></h2>
+    </div>
+    <p class="intro">Architecture, interiors and grounds — authored by one team, from the first sketch to the final handover. We do not refer out.</p>
+  </div>
+  <div class="disc-list reveal d1">
+    <div class="disc"><div class="disc-n">01</div><div><h3 class="disc-name">Architecture</h3><p class="disc-body">Full design from concept through construction drawings, for residences and selected commercial commissions.</p></div></div>
+    <div class="disc"><div class="disc-n">02</div><div><h3 class="disc-name">Interior Design</h3><p class="disc-body">Bespoke spatial planning, material specification, joinery and lighting — authored as one continuous gesture.</p></div></div>
+    <div class="disc"><div class="disc-n">03</div><div><h3 class="disc-name">Visualisation</h3><p class="disc-body">Photoreal renders prepared in-house, so a building can be inhabited on screen long before it is built.</p></div></div>
+    <div class="disc"><div class="disc-n">04</div><div><h3 class="disc-name">Landscape</h3><p class="disc-body">Pools, terraces, gardens and entrance courts — the architecture's quieter half, designed in the same hand.</p></div></div>
+    <div class="disc"><div class="disc-n">05</div><div><h3 class="disc-name">Stewardship</h3><p class="disc-body">Oversight from planning permission to handover. We do not leave the site until the work matches the drawings.</p></div></div>
+  </div>
+  <div style="margin-top:40px;" class="reveal d2"><a href="services.html" class="link">Explore our services <svg viewBox="0 0 24 24"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></a></div>
+</section>
+
+<!-- PHILOSOPHY -->
+<section id="philosophy">
+  <div class="sec-head reveal">
+    <div>
+      <span class="eyebrow">Practice</span>
+      <h2>Four tenets,<br /><span class="gold">quietly held.</span></h2>
+    </div>
+    <p class="intro">Architecture has confused novelty with value. We work in the older tradition — buildings that compose themselves over a lifetime, in materials that age with their inhabitants.</p>
+  </div>
+  <div class="tenets reveal d1">
+    <div class="tenet"><div class="tenet-n">01</div><h3 class="tenet-t">Restraint</h3><p class="tenet-b">The discipline of removing, until what remains is essential and exact.</p></div>
+    <div class="tenet"><div class="tenet-n">02</div><h3 class="tenet-t">Materiality</h3><p class="tenet-b">Honest materials, honestly detailed. Stone, timber and light authored as carefully as the geometry itself.</p></div>
+    <div class="tenet"><div class="tenet-n">03</div><h3 class="tenet-t">Permanence</h3><p class="tenet-b">Buildings designed to be inherited, not refurbished. A century is our minimum horizon.</p></div>
+    <div class="tenet"><div class="tenet-n">04</div><h3 class="tenet-t">Discretion</h3><p class="tenet-b">The work speaks first. We let the architecture introduce the client, never the other way around.</p></div>
+  </div>
+</section>
+
+<!-- FULL BLEED II -->
+<div class="fullbleed reveal">
+  <picture style="--lqip:url('data:image/webp;base64,UklGRqAAAABXRUJQVlA4IJQAAABwBACdASocAA8APu1kqU2ppaQiMAgBMB2JYwCdAywBilLjR3LDwRhxnLvmAADKB/Q4+nRIT7Qm5IRYyv/dSrp6QLdplsK8uPl9kHtlN4a4ZMFLKvmUFmiC/jj4Jmm9sh4ZpufrecSeXzVCe2FPud8cqTxPk0oYfKHWeWaD2cQclnr9isbIg2L+vhLPVnFS+IEvaOAA')"><source type="image/avif" srcset="./Renders/Casa-Marbella/01-scaled-480.avif 480w, ./Renders/Casa-Marbella/01-scaled-1024.avif 1024w, ./Renders/Casa-Marbella/01-scaled-1600.avif 1600w" sizes="100vw" /><source type="image/webp" srcset="./Renders/Casa-Marbella/01-scaled-480.webp 480w, ./Renders/Casa-Marbella/01-scaled-1024.webp 1024w, ./Renders/Casa-Marbella/01-scaled-1600.webp 1600w" sizes="100vw" /><img decoding="async" class="fb-img" data-parallax src="./Renders/Casa-Marbella/01-scaled.jpg" alt="Casa Marbella" loading="lazy" /></picture>
+  <div class="fb-caption">
+    <h3>Casa Marbella,<br /><span class="gold">Andalucía.</span></h3>
+    <p>A Mediterranean villa of glass and stone, set into the hillside above the sea — designed for a life lived between inside and out.</p>
+  </div>
+</div>
+
+<!-- CTA -->
+<section id="cta" class="cta">
+  <span class="eyebrow center reveal">Start a conversation</span>
+  <h2 class="reveal d1">Let's design something <span class="gold">extraordinary.</span></h2>
+  <div class="cta-offices reveal d2">
+    <div class="office">
+      <div class="t">Headquarters — Romania</div>
+      <div class="b"><span class="nm">Miguel</span><br /><a href="tel:+40000000000">+40 (0) 000 000 000</a><br /><a href="mailto:hello@drawclever.com">hello@drawclever.com</a></div>
+    </div>
+    <div class="office">
+      <div class="t">Atelier — Spain</div>
+      <div class="b"><a href="mailto:hello@drawclever.com">hello@drawclever.com</a><br />Marbella, Spain</div>
+    </div>
+  </div>
+  <a href="contact.html" class="btn btn-solid reveal d3" style="font-size:11px;padding:17px 46px;">Begin Your Project</a>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="foot-top">
+    <a href="index.html" aria-label="Draw Clever — home"><img src="./Logo Variants/Word Mark.png" alt="Draw Clever" /></a>
+    <ul class="foot-nav">
+      <li><a href="projects.html">Portfolio</a></li>
+      <li><a href="about-us.html">About</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </div>
+  <div class="foot-bottom">
+    <p>© 2026 Draw Clever — We redefine the luxury life.</p>
+    <ul class="foot-social">
+      <li><a href="https://www.instagram.com/drawclever.design/">Instagram</a></li>
+      <li><a href="https://pinterest.com/drawclever/">Pinterest</a></li>
+      <li><a href="https://x.com/DrawClever">X</a></li>
+    </ul>
+    <a href="#top" class="to-top">Back to top <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/></svg></a>
+  </div>
+</footer>
+
+<script type="module" src="/src/site.js"></script>
+<script type="module" src="/src/lightbox.js"></script>
+</body>
+</html>
