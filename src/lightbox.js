@@ -121,13 +121,72 @@ function srcFor(project, i, jpgOnly) {
 let state = null;          // { slug, project, idx }
 let lastFocused = null;
 
-function show(slug) {
+/* Shared-element open — the clicked card's image travels to the stage.
+   A fixed clone morphs rect-to-rect using paired keyframes (wrapper scale ×
+   image counter-scale, sampled along an ease-out curve) so pixels are never
+   stretched, then hands off to the real stage image once it has faded in.
+   Skipped under reduced motion, without Web Animations, or with no usable rect
+   (those cases keep the plain crossfade open). */
+function flipOpen(card) {
+  if (!card || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  if (!('animate' in Element.prototype)) return;
+  const src = card.querySelector('img');
+  if (!src || !src.currentSrc || !src.naturalWidth) return;
+  const a = src.getBoundingClientRect();
+  if (a.width < 8 || a.height < 8 || a.bottom < 0 || a.top > innerHeight) return;
+
+  document.querySelectorAll('.lb-flip').forEach((el) => el.remove());
+
+  // Destination: the stage box (92vw × 82vh) at the photo's natural aspect.
+  const nar = src.naturalWidth / src.naturalHeight;
+  const maxW = innerWidth * .92, maxH = innerHeight * .82;
+  const dW = Math.min(maxW, maxH * nar), dH = Math.min(maxH, maxW / nar);
+  const dx = (innerWidth - dW) / 2, dy = (innerHeight - dH) / 2;
+
+  const wrap = document.createElement('div');
+  wrap.className = 'lb-flip';
+  wrap.style.cssText = `position:fixed;left:0;top:0;width:${a.width}px;height:${a.height}px;overflow:hidden;z-index:1001;pointer-events:none;transform-origin:0 0;will-change:transform;`;
+  const im = document.createElement('img');
+  im.src = src.currentSrc; im.alt = '';
+  im.style.cssText = 'width:100%;height:100%;object-fit:cover;transform-origin:50% 50%;will-change:transform;';
+  wrap.appendChild(im);
+  document.body.appendChild(wrap);
+
+  const N = 26, DUR = 560, ease = (t) => 1 - Math.pow(1 - t, 5);
+  const wk = [], ik = [];
+  for (let i = 0; i <= N; i++) {
+    const p = ease(i / N);
+    const W = a.width + (dW - a.width) * p, H = a.height + (dH - a.height) * p;
+    const x = a.left + (dx - a.left) * p,   y = a.top + (dy - a.top) * p;
+    const sx = W / a.width, sy = H / a.height, g = Math.max(sx, sy);
+    wk.push({ transform: `translate(${x}px, ${y}px) scale(${sx}, ${sy})` });
+    ik.push({ transform: `scale(${g / sx}, ${g / sy})` });
+  }
+  const anim = wrap.animate(wk, { duration: DUR, easing: 'linear', fill: 'forwards' });
+  im.animate(ik, { duration: DUR, easing: 'linear', fill: 'forwards' });
+
+  // Hand off once the morph is done and the real image is in (capped so the
+  // clone can never get stuck over the gallery).
+  const t0 = performance.now();
+  const handoff = () => {
+    const real = document.querySelector('.lb-img');
+    if ((real && real.classList.contains('is-in')) || performance.now() - t0 > 4000) {
+      wrap.style.transition = 'opacity .24s ease';
+      wrap.style.opacity = '0';
+      setTimeout(() => wrap.remove(), 300);
+    } else requestAnimationFrame(handoff);
+  };
+  anim.finished.then(() => requestAnimationFrame(handoff)).catch(() => wrap.remove());
+}
+
+function show(slug, card) {
   const project = PROJECTS[slug];
   if (!project) { console.warn('[DrawClever] no project for slug:', slug); return; }
   lastFocused = document.activeElement;
   const lb = buildLightbox();
   state = { slug, project, idx: 0 };
   render();
+  flipOpen(card);
   lb.removeAttribute('hidden');
   requestAnimationFrame(() => lb.classList.add('lb-open'));
   document.documentElement.classList.add('lb-locked');
@@ -188,7 +247,7 @@ function preloadNeighbours() {
 function onClickDocument(e) {
   const card = e.target.closest('[data-project]');
   const lbOpen = document.getElementById('lb') && !document.getElementById('lb').hasAttribute('hidden');
-  if (card && !lbOpen) { e.preventDefault(); show(card.dataset.project); return; }
+  if (card && !lbOpen) { e.preventDefault(); show(card.dataset.project, card); return; }
 
   const lb = document.getElementById('lb');
   if (!lb || lb.hasAttribute('hidden')) return;
@@ -219,7 +278,7 @@ function onKey(e) {
 function onCardKey(e) {
   if (e.key !== 'Enter' && e.key !== ' ') return;
   const card = e.target.closest('[data-project]');
-  if (card) { e.preventDefault(); show(card.dataset.project); }
+  if (card) { e.preventDefault(); show(card.dataset.project, card); }
 }
 
 function init() {

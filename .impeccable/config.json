@@ -1,0 +1,14 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "overused-font",
+        "value": "inter",
+        "createdAt": "2026-07-19T21:00:57.818Z",
+        "reason": "User-approved plan keeps the shipped brand font stack (identity preservation)"
+      }
+    ]
+  }
+}

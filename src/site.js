@@ -28,7 +28,11 @@
   setTimeout(reveal, MAX); // failsafe — never hang
 })();
 
-// NAV solidify + scroll progress
+// Modern scroll engine? CSS scroll-driven animations take over the full-bleed
+// cinematography (and the lede scrub) where supported; JS parallax is the fallback.
+const SCROLL_DRIVEN = typeof CSS !== 'undefined' && CSS.supports && CSS.supports('animation-timeline: view()');
+
+// NAV solidify + scroll progress (scaleX, so the bar never triggers layout)
 const nav = document.getElementById('nav');
 const progress = document.getElementById('progress');
 function onScroll() {
@@ -36,7 +40,7 @@ function onScroll() {
   if (nav) nav.classList.toggle('scrolled', y > 40);
   if (progress) {
     const h = document.documentElement.scrollHeight - window.innerHeight;
-    progress.style.width = (h > 0 ? (y / h) * 100 : 0) + '%';
+    progress.style.transform = 'scaleX(' + (h > 0 ? y / h : 0) + ')';
   }
 }
 window.addEventListener('scroll', onScroll, { passive: true });
@@ -59,8 +63,8 @@ document.querySelectorAll('.pc img, .fullbleed .fb-img').forEach((img) => {
   }
 });
 
-// FULL-BLEED parallax
-const parallaxEls = [...document.querySelectorAll('[data-parallax]')];
+// FULL-BLEED parallax (fallback only: scroll-driven CSS owns these where supported)
+const parallaxEls = SCROLL_DRIVEN ? [] : [...document.querySelectorAll('[data-parallax]')];
 if (parallaxEls.length) {
   let ticking = false;
   const run = () => {
@@ -113,6 +117,33 @@ document.querySelectorAll('.acc-q').forEach((btn) => {
     if (!open) item.classList.add('open');
   });
 });
+
+// MANIFESTO WORD-SCRUB — wrap the lede's words so each brightens on its own
+// view() timeline as it scrolls through the fold. Only where scroll-driven
+// animations exist; elsewhere (and under reduced motion) the text is untouched.
+(function () {
+  if (!SCROLL_DRIVEN) return;
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  const lede = document.querySelector('.manifesto-lede p');
+  if (!lede) return;
+  const wrap = (node) => {
+    [...node.childNodes].forEach((n) => {
+      if (n.nodeType === Node.TEXT_NODE) {
+        const frag = document.createDocumentFragment();
+        n.textContent.split(/(\s+)/).forEach((tok) => {
+          if (!tok) return;
+          if (/^\s+$/.test(tok)) { frag.appendChild(document.createTextNode(tok)); return; }
+          const s = document.createElement('span');
+          s.className = 'lede-w';
+          s.textContent = tok;
+          frag.appendChild(s);
+        });
+        node.replaceChild(frag, n);
+      } else if (n.nodeType === Node.ELEMENT_NODE) wrap(n); // descend into .gold accents
+    });
+  };
+  wrap(lede);
+})();
 
 // COUNT-UP — roll .stat .n numbers up when they first enter view.
 // Keeps any prefix/suffix (50+, 5★, 2,000) and figure formatting; fires once.
