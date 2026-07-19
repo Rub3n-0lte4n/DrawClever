@@ -1,14 +1,14 @@
-# Draw Clever — v3
+# Draw Clever Architecture
 
-A complete redesign of the Draw Clever website — a luxury architecture & interior
-design atelier with studios in Romania and Spain.
+The website of Draw Clever — a luxury architecture & interior design atelier
+with studios in Romania and Spain.
 
 > **Design language — "Midnight Couture."** Ink-black canvas, warm-white text, and
 > the brand's own champagne → bronze **gold ramp** sampled straight from the logo.
 > Cinematic, restrained, editorial. Display type is **Playfair Display SC** (the
 > brand serif); UI/body is **Inter**.
 
-> **v3 changes (over v2):** WCAG-AA contrast pass, absolute Open Graph / canonical
+> **Accessibility & SEO:** WCAG-AA contrast, absolute Open Graph / canonical
 > tags + Twitter cards, skip links and an announced contact form, AVIF/WebP imagery
 > via `<picture>` and `image-set()`, `font-display: swap`, and SEO plumbing
 > (`robots.txt`, `sitemap.xml`, JSON-LD).
@@ -44,10 +44,9 @@ Highlights:
 
 ## Live preview
 
-Published via GitHub Pages (auto-deploys on push to `main` through
-`.github/workflows/deploy.yml`):
+Deployed on Vercel (auto-deploys on push to `main`):
 
-**https://rub3n-0lte4n.github.io/DrawClever-v3/**
+**https://drawclever-architecture.vercel.app/**
 
 ## Brand palette (from the logo)
 
@@ -88,7 +87,7 @@ public/
   Renders/<Project>/…       # project photography (+ depth_map_output.png)
   Logo Variants/…           # brand marks
   Fonts/…                   # self-hosted Inter + Playfair Display / Playfair Display SC
-.github/workflows/deploy.yml  # build + publish to GitHub Pages
+vercel.json                # Vite framework preset for Vercel
 ```
 
 ### Add a project

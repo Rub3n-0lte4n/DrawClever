@@ -1,8 +1,8 @@
 {
-  "name": "draw-clever-v2",
+  "name": "draw-clever-architecture",
   "private": true,
   "version": "2.0.0",
-  "description": "Draw Clever v2 — luxury architecture & design studio. Midnight Couture redesign.",
+  "description": "Draw Clever Architecture — luxury architecture & interior design studio.",
   "type": "module",
   "scripts": {
     "dev": "vite",
