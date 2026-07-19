@@ -1,5 +1,5 @@
 /**
- * Draw Clever v2 — shared site behaviour
+ * Draw Clever Architecture — shared site behaviour
  * Loaded on every page: nav solidify + scroll progress, scroll reveals,
  * full-bleed parallax, smooth in-page anchors, mobile drawer, FAQ accordion.
  */

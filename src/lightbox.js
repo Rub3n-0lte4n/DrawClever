@@ -1,5 +1,5 @@
 /**
- * Draw Clever v2 — Project Lightbox
+ * Draw Clever Architecture — Project Lightbox
  *
  * Click any project card (or its arrow) → fullscreen gallery for that project.
  * Keyboard nav (←/→/Esc), focus trap, swipe on touch, neighbour preloading,

@@ -1,7 +1,7 @@
-# Security contact for Draw Clever — https://rub3n-0lte4n.github.io/DrawClever-v3/
+# Security contact for Draw Clever — https://drawclever.com/
 # If you believe you have found a security issue, please email us.
 
 Contact: mailto:hello@drawclever.com
 Expires: 2027-06-07T00:00:00.000Z
 Preferred-Languages: en
-Canonical: https://rub3n-0lte4n.github.io/DrawClever-v3/.well-known/security.txt
+Canonical: https://drawclever.com/.well-known/security.txt
