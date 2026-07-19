@@ -13,8 +13,7 @@
   <link rel="apple-touch-icon" href="/icons/apple-touch-icon.png" />
   <!-- Self-contained: a 404 may be served at any path depth, so it must not
        depend on relatively-resolved external CSS. Asset URLs and links are
-       absolute on the Pages base — update them if a custom domain is added
-       (same caveat as the canonical/OG URLs on the other pages). -->
+       root-relative, which works on any domain Vercel serves this from. -->
   <style>
     @font-face { font-family: 'Playfair Display SC'; src: url('/Fonts/Playfair_Display_SC/PlayfairDisplaySC-Regular.woff2') format('woff2'); font-weight: 400; font-style: normal; font-display: swap; }
     @font-face { font-family: 'Playfair Display SC'; src: url('/Fonts/Playfair_Display_SC/PlayfairDisplaySC-Italic.woff2') format('woff2'); font-weight: 400; font-style: italic; font-display: swap; }
@@ -63,10 +62,10 @@
   <p>The page you're looking for has moved, or never existed. Let's return you to something beautifully designed.</p>
   <a href="/" class="btn">Back to Home</a>
   <div class="links">
-    <a href="/projects.html">Portfolio</a>
-    <a href="/about-us.html">About</a>
-    <a href="/services.html">Services</a>
-    <a href="/contact.html">Contact</a>
+    <a href="/projects">Portfolio</a>
+    <a href="/about-us">About</a>
+    <a href="/services">Services</a>
+    <a href="/contact">Contact</a>
   </div>
 </body>
 </html>
