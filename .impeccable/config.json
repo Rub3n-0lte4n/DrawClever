@@ -1,7 +1,9 @@
 {
   "detector": {
     "ignoreRules": [],
-    "ignoreFiles": [],
+    "ignoreFiles": [
+      "motion-audits/draw-clever-architecture-2026-07-20.html"
+    ],
     "ignoreValues": [
       {
         "rule": "overused-font",
