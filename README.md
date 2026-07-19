@@ -46,7 +46,7 @@ Highlights:
 
 Deployed on Vercel (auto-deploys on push to `main`):
 
-**https://drawclever-architecture.vercel.app/**
+**https://drawclever.vercel.app/**
 
 ## Brand palette (from the logo)
 
