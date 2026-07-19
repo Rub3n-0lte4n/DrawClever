@@ -17,20 +17,20 @@
   <link rel="preload" as="font" href="./Fonts/Playfair_Display_SC/PlayfairDisplaySC-Regular.woff2" type="font/woff2" crossorigin />
   <link rel="preload" as="font" href="./Fonts/Playfair_Display/PlayfairDisplay-Italic.woff2" type="font/woff2" crossorigin />
   <link rel="preload" as="font" href="./Fonts/Inter/Inter.woff2" type="font/woff2" crossorigin />
-  <link rel="canonical" href="https://drawclever.com/" />
+  <link rel="canonical" href="https://drawclever.vercel.app/" />
   <meta property="og:site_name" content="Draw Clever" />
   <meta property="og:title" content="Draw Clever — We Redefine The Luxury Life" />
   <meta property="og:description" content="Luxury architecture & interior design. Ateliers in Romania and Spain." />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://drawclever.com/" />
-  <meta property="og:image" content="https://drawclever.com/Renders/Casa-Marbella/04-scaled.jpg" />
+  <meta property="og:url" content="https://drawclever.vercel.app/" />
+  <meta property="og:image" content="https://drawclever.vercel.app/Renders/Casa-Marbella/04-scaled.jpg" />
   <meta property="og:image:width" content="2560" />
   <meta property="og:image:height" content="1440" />
   <meta property="og:image:alt" content="Casa Marbella — a Mediterranean villa of glass and stone by Draw Clever" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Draw Clever — We Redefine The Luxury Life" />
   <meta name="twitter:description" content="Luxury architecture & interior design. Ateliers in Romania and Spain." />
-  <meta name="twitter:image" content="https://drawclever.com/Renders/Casa-Marbella/04-scaled.jpg" />
+  <meta name="twitter:image" content="https://drawclever.vercel.app/Renders/Casa-Marbella/04-scaled.jpg" />
 
   <!-- Structured data — studio + both ateliers (phone omitted while placeholder) -->
   <script type="application/ld+json">
@@ -40,9 +40,9 @@
     "name": "Draw Clever",
     "alternateName": "Draw Clever Architecture & Interior Design",
     "description": "Luxury architecture and interior design atelier with studios in Romania and Spain, working across Europe, the United States and the Middle East.",
-    "url": "https://drawclever.com/",
-    "logo": "https://drawclever.com/Logo%20Variants/Word%20Mark.png",
-    "image": "https://drawclever.com/Renders/Casa-Marbella/04-scaled.jpg",
+    "url": "https://drawclever.vercel.app/",
+    "logo": "https://drawclever.vercel.app/Logo%20Variants/Word%20Mark.png",
+    "image": "https://drawclever.vercel.app/Renders/Casa-Marbella/04-scaled.jpg",
     "email": "hello@drawclever.com",
     "foundingDate": "2014",
     "areaServed": ["Europe", "United States", "Middle East"],
@@ -93,7 +93,7 @@
     .hero-title .row:nth-child(1) > span { animation-delay: .5s; } .hero-title .row:nth-child(2) > span { animation-delay: .66s; } .hero-title .row:nth-child(3) > span { animation-delay: .82s; }
     .hero-right { flex-shrink: 0; text-align: right; display: flex; flex-direction: column; align-items: flex-end; gap: 26px; padding-bottom: 8px; opacity: 0; animation: fadeUp .9s ease 1.15s forwards; }
     .hero-desc { font-size: 13.5px; font-weight: 300; line-height: 1.85; color: rgba(243,238,230,.62); max-width: 312px; }
-    .hero-actions { display: flex; gap: 12px; }
+    .hero-actions { display: flex; align-items: center; gap: 28px; }
     .hero-scroll { position: absolute; left: 50%; bottom: 28px; transform: translateX(-50%); z-index: 3; display: flex; flex-direction: column; align-items: center; gap: 10px; font-size: 8.5px; letter-spacing: .3em; text-transform: uppercase; color: rgba(243,238,230,.5); opacity: 0; animation: fadeUp 1s ease 1.5s forwards; }
     .hero-scroll .bar { width: 1px; height: 46px; background: linear-gradient(to bottom, var(--gold), transparent); animation: scrollPulse 2.4s var(--ease) infinite; transform-origin: top; }
     @keyframes scrollPulse { 0% { transform: scaleY(0); opacity: 0; } 40% { transform: scaleY(1); opacity: 1; } 100% { transform: scaleY(1) translateY(46px); opacity: 0; } }
@@ -200,14 +200,14 @@
 
 <!-- NAV -->
 <nav id="nav">
-  <a href="index.html" class="brand" aria-label="Draw Clever — home">
+  <a href="/" class="brand" aria-label="Draw Clever — home">
     <img src="./Logo Variants/Logo Mark.png" alt="Draw Clever" />
   </a>
   <ul class="nav-links">
-    <li><a href="projects.html">Portfolio</a></li>
-    <li><a href="about-us.html">About</a></li>
-    <li><a href="services.html">Services</a></li>
-    <li><a href="contact.html" class="nav-cta">Contact</a></li>
+    <li><a href="/projects">Portfolio</a></li>
+    <li><a href="/about-us">About</a></li>
+    <li><a href="/services">Services</a></li>
+    <li><a href="/contact" class="nav-cta">Contact</a></li>
   </ul>
   <button class="nav-toggle" aria-label="Open menu" aria-controls="drawer" aria-expanded="false"><span></span><span></span><span></span></button>
 </nav>
@@ -216,10 +216,10 @@
 <div class="drawer" id="drawer" aria-hidden="true">
   <div class="drawer-inner">
     <ul class="drawer-links">
-      <li><a href="projects.html">Portfolio</a></li>
-      <li><a href="about-us.html">About</a></li>
-      <li><a href="services.html">Services</a></li>
-      <li><a href="contact.html">Contact</a></li>
+      <li><a href="/projects">Portfolio</a></li>
+      <li><a href="/about-us">About</a></li>
+      <li><a href="/services">Services</a></li>
+      <li><a href="/contact">Contact</a></li>
     </ul>
     <div class="drawer-foot">
       <span class="e">Draw Clever</span>
@@ -249,8 +249,8 @@
     <div class="hero-right">
       <p class="hero-desc">A luxury architecture &amp; interior design atelier — sculpting residences, interiors and grounds from the first sketch to the final handover.</p>
       <div class="hero-actions">
-        <a href="contact.html" class="btn btn-solid">Start a Project</a>
-        <a href="projects.html" class="btn btn-ghost">View Portfolio</a>
+        <a href="/contact" class="btn btn-solid">Start a Project</a>
+        <a href="/projects" class="link">View the portfolio <svg viewBox="0 0 24 24"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></a>
       </div>
     </div>
   </div>
@@ -354,7 +354,7 @@
   </div>
 
   <div style="margin-top:44px;display:flex;justify-content:center;" class="reveal d3">
-    <a href="projects.html" class="link">View the full portfolio <svg viewBox="0 0 24 24"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></a>
+    <a href="/projects" class="link">View the full portfolio <svg viewBox="0 0 24 24"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></a>
   </div>
 </section>
 
@@ -406,7 +406,7 @@
     <div class="disc"><div class="disc-n">04</div><div><h3 class="disc-name">Landscape</h3><p class="disc-body">Pools, terraces, gardens and entrance courts — the architecture's quieter half, designed in the same hand.</p></div></div>
     <div class="disc"><div class="disc-n">05</div><div><h3 class="disc-name">Stewardship</h3><p class="disc-body">Oversight from planning permission to handover. We do not leave the site until the work matches the drawings.</p></div></div>
   </div>
-  <div style="margin-top:40px;" class="reveal d2"><a href="services.html" class="link">Explore our services <svg viewBox="0 0 24 24"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></a></div>
+  <div style="margin-top:40px;" class="reveal d2"><a href="/services" class="link">Explore our services <svg viewBox="0 0 24 24"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></a></div>
 </section>
 
 <!-- PHILOSOPHY -->
@@ -442,25 +442,25 @@
   <div class="cta-offices reveal d2">
     <div class="office">
       <div class="t">Headquarters — Romania</div>
-      <div class="b"><span class="nm">Miguel</span><br /><a href="tel:+40000000000">+40 (0) 000 000 000</a><br /><a href="mailto:hello@drawclever.com">hello@drawclever.com</a></div>
+      <div class="b"><a href="mailto:hello@drawclever.com">hello@drawclever.com</a><br />Bucharest, Romania</div>
     </div>
     <div class="office">
       <div class="t">Atelier — Spain</div>
       <div class="b"><a href="mailto:hello@drawclever.com">hello@drawclever.com</a><br />Marbella, Spain</div>
     </div>
   </div>
-  <a href="contact.html" class="btn btn-solid reveal d3" style="font-size:11px;padding:17px 46px;">Begin Your Project</a>
+  <a href="/contact" class="btn btn-solid reveal d3" style="font-size:11px;padding:17px 46px;">Begin Your Project</a>
 </section>
 
 <!-- FOOTER -->
 <footer>
   <div class="foot-top">
-    <a href="index.html" aria-label="Draw Clever — home"><img src="./Logo Variants/Word Mark.png" alt="Draw Clever" /></a>
+    <a href="/" aria-label="Draw Clever — home"><img src="./Logo Variants/Word Mark.png" alt="Draw Clever" /></a>
     <ul class="foot-nav">
-      <li><a href="projects.html">Portfolio</a></li>
-      <li><a href="about-us.html">About</a></li>
-      <li><a href="services.html">Services</a></li>
-      <li><a href="contact.html">Contact</a></li>
+      <li><a href="/projects">Portfolio</a></li>
+      <li><a href="/about-us">About</a></li>
+      <li><a href="/services">Services</a></li>
+      <li><a href="/contact">Contact</a></li>
     </ul>
   </div>
   <div class="foot-bottom">

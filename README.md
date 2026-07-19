@@ -32,8 +32,7 @@ Shared chrome and design system live in **`src/site.css`** + **`src/site.js`**
 Highlights:
 
 - **Cinematic hero** — a graded full-bleed still with a slow intro zoom and a filmic
-  veil. (A WebGL depth-parallax module remains in `src/hero.js` but is currently
-  unused; the `three` dependency can be dropped if it stays that way.)
+  veil.
 - **Gold-gradient display type** — headline accents use the logo's exact gold ramp
   via `background-clip: text`.
 - **Lightbox galleries** (`src/lightbox.js`) for all 8 projects — keyboard nav,
@@ -47,6 +46,28 @@ Highlights:
 Deployed on Vercel (auto-deploys on push to `main`):
 
 **https://drawclever.vercel.app/**
+
+Page URLs are extensionless (`/about-us`) via Vercel `cleanUrls`; old `.html`
+URLs redirect. `vercel.json` also sets the security and immutable-cache headers.
+
+## Domain handoff (when the client's DNS moves)
+
+The client owns **drawclever.com** (renews 2026-09-05); it currently points at
+their old host, so all absolute URLs here use the vercel.app domain. To go live
+on the real domain:
+
+1. Add the domain to the Vercel project (`vercel domains add drawclever.com`),
+   then point the client's DNS at Vercel as Vercel instructs.
+2. Flip every absolute URL (canonical, OG, JSON-LD, sitemap, robots, security.txt):
+
+   ```bash
+   grep -rl 'drawclever\.vercel\.app' index.html projects.html about-us.html \
+     services.html contact.html public | xargs sed -i '' \
+     's|https://drawclever.vercel.app|https://drawclever.com|g'
+   ```
+
+3. Swap the Web3Forms access key in `contact.html` for one on the client's own
+   account, so enquiries stop routing to the development inbox.
 
 ## Brand palette (from the logo)
 
@@ -72,7 +93,8 @@ npm run preview  # serve the production build
 ```
 
 Built with **Vite**. `base: './'` emits relative asset URLs, so the build runs from
-a domain root, a GitHub Pages project subpath, or straight off disk — no config change.
+a domain root, any subpath, or straight off disk — no config change. Extensionless
+page URLs work in dev and preview via the small `cleanUrls` plugin in `vite.config.js`.
 
 ## Structure
 
@@ -81,7 +103,6 @@ index.html  projects.html  about-us.html  services.html  contact.html  404.html
 src/
   site.css                 # shared design system (chrome, primitives, lightbox)
   site.js                  # shared behaviour (nav, reveals, drawer, parallax, FAQ)
-  hero.js                  # WebGL depth-parallax hero (currently unused)
   lightbox.js              # project gallery lightbox + manifest
 public/
   Renders/<Project>/…       # project photography (+ depth_map_output.png)

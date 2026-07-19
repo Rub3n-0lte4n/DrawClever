@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://drawclever.com/sitemap.xml
+Sitemap: https://drawclever.vercel.app/sitemap.xml
