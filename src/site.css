@@ -269,7 +269,10 @@ footer { background: var(--ink); border-top: 1px solid var(--line); padding: 44p
 .acc-item.open .acc-q { color: var(--gold); }
 .acc-item.open .acc-icon { transform: rotate(45deg); border-color: var(--gold-dim); background: rgba(200,169,106,.08); }
 .acc-a { display: grid; grid-template-rows: 0fr; overflow: hidden; transition: grid-template-rows .5s var(--ease); }
-.acc-a-i { overflow: hidden; min-height: 0; font-size: 13px; font-weight: 300; color: var(--sub); line-height: 1.9; padding-bottom: 28px; }
+/* Bottom gap is an ::after spacer (content), not padding: content compresses to
+   zero with the 0fr track; padding would survive as a visible sliver when closed. */
+.acc-a-i { overflow: hidden; min-height: 0; font-size: 13px; font-weight: 300; color: var(--sub); line-height: 1.9; }
+.acc-a-i::after { content: ''; display: block; height: 28px; }
 .acc-item.open .acc-a { grid-template-rows: 1fr; }
 
 /* ─── LIGHTBOX ─── */
