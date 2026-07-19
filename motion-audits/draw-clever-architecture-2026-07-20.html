@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>draw-clever-architecture motion audit — 2026-07-20</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@400;500;600;700&family=Public+Sans:wght@400;500;600;700&family=Geist+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --ink:        oklch(0.155 0.006 255);
+      --surface:    oklch(0.195 0.007 255);
+      --surface-2:  oklch(0.235 0.008 255);
+      --paper:      oklch(0.945 0.004 255);
+      --paper-dim:  oklch(0.800 0.006 255);
+      --muted:      oklch(0.680 0.008 255);
+      --faint:      oklch(0.505 0.008 255);
+      --line:       oklch(0.95 0.01 255 / 0.09);
+      --line-strong:oklch(0.95 0.01 255 / 0.16);
+      --sev-crit:   oklch(0.655 0.185 25);
+      --sev-imp:    oklch(0.805 0.125 78);
+      --sev-opp:    oklch(0.745 0.135 152);
+      --t-good:     oklch(0.745 0.135 152);
+      --t-mid:      oklch(0.805 0.125 78);
+      --t-slow:     oklch(0.655 0.185 25);
+      --accent:     var(--paper);
+      --accent-soft:var(--paper-dim);
+      --accent-tint:oklch(0.95 0.01 255 / 0.06);
+      --display: "Familjen Grotesk", "Hanken Grotesk", system-ui, sans-serif;
+      --sans: "Public Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+      --mono: "Geist Mono", ui-monospace, "SF Mono", Menlo, monospace;
+    }
+    :root:has(#theme-light:checked) {
+      --ink:        oklch(0.985 0.003 255);
+      --surface:    oklch(0.965 0.004 255);
+      --surface-2:  oklch(0.940 0.005 255);
+      --paper:      oklch(0.180 0.006 255);
+      --paper-dim:  oklch(0.330 0.008 255);
+      --muted:      oklch(0.475 0.010 255);
+      --faint:      oklch(0.640 0.009 255);
+      --line:       oklch(0.180 0.010 255 / 0.12);
+      --line-strong:oklch(0.180 0.010 255 / 0.22);
+      --sev-crit:   oklch(0.560 0.200 25);
+      --sev-imp:    oklch(0.640 0.140 78);
+      --sev-opp:    oklch(0.580 0.140 152);
+      --t-good:     oklch(0.580 0.140 152);
+      --t-mid:      oklch(0.640 0.140 78);
+      --t-slow:     oklch(0.560 0.200 25);
+      --accent-tint:oklch(0.18 0.01 255 / 0.05);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { background: var(--ink); color: var(--paper); font-family: var(--sans); margin: 0; padding: 0 24px 80px; font-size: 15px; line-height: 1.65; }
+    .wrap { max-width: 1060px; margin: 0 auto; }
+    a { color: inherit; }
+    code { font-family: var(--mono); font-size: 0.85em; background: var(--accent-tint); border: 1px solid var(--line); border-radius: 5px; padding: 1px 6px; }
+    .vh { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+    .mono-label { font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--faint); }
+
+    .theme-switch { display: flex; justify-content: flex-end; padding: 22px 0 0; }
+    .theme-switch .seg { display: inline-flex; border: 1px solid var(--line-strong); border-radius: 100px; overflow: hidden; }
+    .theme-switch .seg label { font-family: var(--mono); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); padding: 5px 12px; cursor: pointer; user-select: none; transition: background 0.15s ease, color 0.15s ease; }
+    :root:has(#theme-dark:checked) label[for="theme-dark"],
+    :root:has(#theme-light:checked) label[for="theme-light"] { background: color-mix(in oklch, var(--paper) 12%, transparent); color: var(--paper); }
+
+    header.head { padding: 44px 0 36px; border-bottom: 1px solid var(--line); }
+    .eyebrow { font-family: var(--mono); font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--faint); }
+    h1.title { font-family: var(--display); font-size: clamp(28px, 4.4vw, 44px); font-weight: 700; letter-spacing: -0.02em; line-height: 1.12; margin: 14px 0 12px; }
+    p.lede { color: var(--paper-dim); max-width: 62ch; margin: 0 0 18px; }
+    .meta-row { font-family: var(--mono); font-size: 11.5px; color: var(--muted); margin-bottom: 22px; }
+    .stats { display: flex; flex-wrap: wrap; gap: 10px; }
+    .stats a { display: inline-flex; align-items: baseline; gap: 7px; text-decoration: none; border: 1px solid var(--line-strong); border-radius: 100px; padding: 7px 15px; transition: border-color 0.2s ease; }
+    .stats a:hover { border-color: var(--paper-dim); }
+    .stats .n { font-family: var(--display); font-weight: 700; font-size: 17px; }
+    .stats .l { font-family: var(--mono); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+    .stats .dot { width: 8px; height: 8px; border-radius: 50%; align-self: center; }
+    .dot-crit { background: var(--sev-crit); } .dot-imp { background: var(--sev-imp); } .dot-opp { background: var(--sev-opp); }
+
+    section { padding: 40px 0; border-bottom: 1px solid var(--line); }
+    h2.sec { font-family: var(--display); font-size: 22px; font-weight: 600; letter-spacing: -0.01em; margin: 10px 0 22px; }
+    .assessment p { font-family: var(--display); font-size: clamp(17px, 2.2vw, 21px); line-height: 1.55; font-weight: 400; color: var(--paper); max-width: 58ch; margin: 12px 0 0; }
+
+    table.lens-table { width: 100%; border-collapse: collapse; }
+    .lens-table th { font-family: var(--mono); font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--faint); text-align: left; padding: 8px 14px; border-bottom: 1px solid var(--line-strong); }
+    .lens-table td { padding: 14px; border-bottom: 1px solid var(--line); vertical-align: top; transition: border-color 0.2s ease; }
+    .lens-name { font-weight: 600; white-space: nowrap; }
+    .chip { display: inline-block; font-family: var(--mono); font-size: 9.5px; letter-spacing: 0.1em; text-transform: uppercase; border: 1px solid var(--line-strong); border-radius: 100px; padding: 2px 9px; color: var(--muted); margin-left: 8px; }
+    .verdict { white-space: nowrap; } .verdict .dot { display: inline-block; width: 8px; height: 8px; border-radius: 50%; margin-right: 7px; }
+
+    .timing-grid { display: grid; grid-template-columns: 1fr 300px; gap: 28px; align-items: start; }
+    .timing-fig svg { width: 100%; height: auto; display: block; }
+    .timing-key { font-size: 13px; }
+    .timing-key li { margin-bottom: 7px; list-style: none; }
+    .timing-key ul { padding: 0; margin: 0; }
+    .timing-key .kn { display: inline-block; font-family: var(--mono); font-size: 10.5px; width: 20px; color: var(--faint); }
+    .timing-key .kt { font-family: var(--mono); font-size: 11px; color: var(--muted); }
+    .whats-off { margin-top: 18px; background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 16px 20px; font-size: 13.5px; color: var(--paper-dim); }
+
+    .lens-sec__head { display: flex; align-items: baseline; gap: 6px; flex-wrap: wrap; }
+    .lens-sec__head h3 { font-family: var(--display); font-size: 19px; font-weight: 600; margin: 8px 0; }
+    .lens-sec__verdict { color: var(--paper-dim); font-size: 14px; margin: 2px 0 20px; }
+    .lens-block { margin-bottom: 26px; }
+    .lens-block .mono-label { display: block; margin-bottom: 12px; }
+    ul.lens-list { padding: 0; margin: 0; }
+    ul.lens-list li { list-style: none; padding: 7px 0; font-size: 14px; color: var(--paper-dim); border-bottom: 1px dashed var(--line); }
+    ul.lens-list li:last-child { border-bottom: 0; }
+    ul.lens-list.good li::before { content: "✓  "; color: var(--sev-opp); font-weight: 700; }
+    ul.lens-list.opp li::before { content: "◆  "; color: var(--sev-opp); }
+    ul.lens-list code { white-space: nowrap; }
+    .lens-take { margin-top: 4px; background: var(--accent-tint); border: 1px solid var(--line); border-radius: 10px; padding: 16px 20px; font-size: 14px; color: var(--paper-dim); }
+    .lens-take b { color: var(--paper); }
+
+    .finding-row { display: grid; grid-template-columns: 1fr 380px; gap: 26px; padding: 22px 0; border-bottom: 1px solid var(--line); }
+    .finding-row:last-child { border-bottom: 0; }
+    .find-tags { display: flex; gap: 8px; margin-bottom: 10px; }
+    .sev-chip { font-family: var(--mono); font-size: 9.5px; letter-spacing: 0.12em; text-transform: uppercase; border-radius: 100px; padding: 3px 10px; }
+    .sev-chip.imp { background: color-mix(in oklch, var(--sev-imp) 16%, transparent); color: var(--sev-imp); border: 1px solid color-mix(in oklch, var(--sev-imp) 45%, transparent); }
+    h4.find-title { font-family: var(--display); font-size: 16.5px; font-weight: 600; margin: 0 0 10px; }
+    .find-body p { margin: 0 0 10px; font-size: 13.5px; color: var(--paper-dim); }
+    .find-body .label { display: block; font-family: var(--mono); font-size: 9.5px; letter-spacing: 0.13em; text-transform: uppercase; color: var(--faint); margin-bottom: 2px; }
+    .fix { background: var(--surface); border: 1px solid var(--line); border-radius: 10px; padding: 12px 16px; margin: 12px 0; }
+    .fix p { margin: 0; }
+    .find-loc { font-size: 12px; }
+
+    .demo { position: relative; width: 100%; }
+    .demo__bar { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; margin-bottom: 12px; }
+    .demo__meta { min-width: 0; }
+    .demo__title { display: block; font-size: 13.5px; font-weight: 600; color: var(--paper); line-height: 1.3; }
+    .demo__timing { display: block; font-family: var(--mono); font-size: 11px; color: var(--muted); margin-top: 2px; font-variant-numeric: tabular-nums; }
+    .demo__controls { display: flex; align-items: center; gap: 12px; flex-shrink: 0; }
+    .demo__loop { font-family: var(--mono); font-size: 12px; color: var(--faint); }
+    .seg { display: inline-flex; border: 1px solid var(--line-strong); border-radius: 100px; overflow: hidden; }
+    .seg label { font-family: var(--mono); font-size: 9.5px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); padding: 4px 9px; cursor: pointer; user-select: none; transition: background 0.15s ease, color 0.15s ease; }
+    .demo input[id$="-a"]:checked ~ .demo__bar .seg label[for$="-a"],
+    .demo input[id$="-l"]:checked ~ .demo__bar .seg label[for$="-l"],
+    .demo input[id$="-d"]:checked ~ .demo__bar .seg label[for$="-d"] { background: color-mix(in oklch, var(--paper) 12%, transparent); color: var(--paper); }
+    .demo__stage { --st-bg: var(--surface-2); --st-fg: var(--paper); --st-line: var(--line-strong); --st-dim: color-mix(in oklch, var(--paper) 55%, transparent);
+      background: var(--st-bg); color: var(--st-fg); border: 1px solid var(--line); border-radius: 10px; padding: 32px 24px; min-height: 190px; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+    .demo input[id$="-l"]:checked ~ .demo__stage { --st-bg: oklch(0.985 0.003 255); --st-fg: oklch(0.180 0.006 255); --st-line: oklch(0.180 0.010 255 / 0.18); --st-dim: oklch(0.180 0.010 255 / 0.45); }
+    .demo input[id$="-d"]:checked ~ .demo__stage { --st-bg: oklch(0.180 0.006 255); --st-fg: oklch(0.985 0.003 255); --st-line: oklch(0.985 0.010 255 / 0.18); --st-dim: oklch(0.985 0.010 255 / 0.50); }
+    .ui-card { background: var(--st-bg); border: 1px solid var(--st-line); border-radius: 10px; padding: 14px 16px; min-width: 180px; box-shadow: 0 8px 24px oklch(0 0 0 / 0.12); }
+    .ui-label { font-family: var(--mono); font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--st-dim); }
+    .ui-photo { width: 190px; height: 116px; border-radius: 8px; background: linear-gradient(135deg, color-mix(in oklch, var(--st-fg) 34%, var(--st-bg)), color-mix(in oklch, var(--st-fg) 10%, var(--st-bg)) 55%, color-mix(in oklch, var(--st-fg) 22%, var(--st-bg))); border: 1px solid var(--st-line); }
+    .ui-caption { display: flex; justify-content: space-between; align-items: baseline; margin-top: 8px; font-size: 11.5px; color: var(--st-fg); }
+
+    table.rec { width: 100%; border-collapse: collapse; margin: 12px 0 30px; }
+    .rec th { font-family: var(--mono); font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--faint); text-align: left; padding: 8px 12px; border-bottom: 1px solid var(--line-strong); }
+    .rec td { padding: 11px 12px; font-size: 13.5px; color: var(--paper-dim); border-bottom: 1px solid var(--line); vertical-align: top; }
+    .tier-label { font-family: var(--mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; margin: 26px 0 0; }
+    .tier-label.crit { color: var(--sev-crit); } .tier-label.imp { color: var(--sev-imp); } .tier-label.opp { color: var(--sev-opp); }
+    .lens-empty, .rec .empty { color: var(--faint); font-style: italic; }
+
+    .ref-summary { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 22px 26px; font-size: 14px; color: var(--paper-dim); }
+    .ref-summary b { color: var(--paper); }
+    .ref-lean { display: grid; grid-template-columns: 1fr 1fr; gap: 8px 24px; margin-top: 14px; }
+    .ref-lean div { font-size: 13px; }
+    footer { padding: 26px 0 0; font-family: var(--mono); font-size: 11px; color: var(--faint); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
+
+    @media (max-width: 860px) { .finding-row { grid-template-columns: 1fr; } .timing-grid { grid-template-columns: 1fr; } }
+    @media (max-width: 600px) { .lens-table thead { display: none; } .lens-table tr { display: block; border-bottom: 1px solid var(--line); padding: 10px 0; } .lens-table td { display: block; border: 0; padding: 4px 0; } .ref-lean { grid-template-columns: 1fr; } }
+
+    @media (prefers-reduced-motion: reduce) {
+      .demo__loop { display: none; }
+      [class*="__mt"], [class*="__mt"] * { animation: none !important; transition: none !important; }
+    }
+
+    /* ── Per-finding motion ── */
+    @media (prefers-reduced-motion: no-preference) {
+      /* m1 — differentiated reveal: the image "develops" (settle + brightness), no translate */
+      @keyframes m1 {
+        0%   { opacity: 0; }
+        60%  { opacity: 1; }
+        100% { opacity: 1; }
+      }
+      @keyframes m1i {
+        0%   { transform: scale(1.045); filter: brightness(0.55); }
+        60%  { transform: scale(1);     filter: brightness(1); }
+        100% { transform: scale(1);     filter: brightness(1); }
+      }
+      .demo-1__mt { animation: m1 3s ease infinite; }
+      .demo-1__mt .ui-photo { animation: m1i 3s cubic-bezier(0.16, 1, 0.3, 1) infinite; }
+
+      /* m2 — shared-element lightbox open: thumb travels and grows to the stage */
+      @keyframes m2 {
+        0%   { transform: translate(-56px, 34px) scale(0.42); border-radius: 14px; }
+        60%  { transform: translate(0, 0) scale(1); border-radius: 8px; }
+        100% { transform: translate(0, 0) scale(1); border-radius: 8px; }
+      }
+      .demo-2__mt .ui-photo { animation: m2 3s cubic-bezier(0.16, 1, 0.3, 1) infinite; }
+
+      /* m3 — nav underline as scaleX (compositor) instead of width (layout) */
+      @keyframes m3 {
+        0%   { transform: scaleX(0); }
+        60%  { transform: scaleX(1); }
+        100% { transform: scaleX(1); }
+      }
+      .demo-3__mt .ui-underline { animation: m3 3s cubic-bezier(0.16, 1, 0.3, 1) infinite; transform-origin: 0 50%; }
+
+      /* m4 — badge enters once and rests; no infinite pulse */
+      @keyframes m4 {
+        0%   { opacity: 0; transform: translateY(6px); }
+        60%  { opacity: 1; transform: translateY(0); }
+        100% { opacity: 1; transform: translateY(0); }
+      }
+      .demo-4__mt { animation: m4 3s cubic-bezier(0.16, 1, 0.3, 1) infinite; }
+    }
+  </style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="theme-switch">
+    <input class="vh" type="radio" name="theme" id="theme-dark" checked>
+    <input class="vh" type="radio" name="theme" id="theme-light">
+    <div class="seg">
+      <label for="theme-dark">Dark</label>
+      <label for="theme-light">Light</label>
+    </div>
+  </div>
+
+  <header class="head">
+    <span class="eyebrow">Motion audit · design-motion-principles</span>
+    <h1 class="title">Draw Clever Architecture — a luxury brand site whose motion now matches its restraint</h1>
+    <p class="lede">Multi-page Vite site for a luxury architecture &amp; interior design atelier: ink-black canvas, gold ramp, monumental serif display type, render photography. Motion audited and reworked in the same pass; findings below record what was flagged and the shipped fix.</p>
+    <div class="meta-row">Brand / marketing site · vanilla JS + CSS (no framework) · Vercel</div>
+    <div class="stats">
+      <a href="#rec-crit"><span class="dot dot-crit"></span><span class="n">0</span><span class="l">Critical</span></a>
+      <a href="#rec-imp"><span class="dot dot-imp"></span><span class="n">4</span><span class="l">Important</span></a>
+      <a href="#rec-opp"><span class="dot dot-opp"></span><span class="n">3</span><span class="l">Opportunities</span></a>
+    </div>
+  </header>
+
+  <section class="assessment">
+    <span class="mono-label">Overall</span>
+    <p>The site's motion vocabulary was already unusually strong for a hand-built page — masked line-rise headlines, a FLIP portfolio filter, cross-document view transitions. Its weaknesses were uniformity (one identical fade-up applied to fifty-one blocks), a handful of layout-property animations, and a gallery that opened with no spatial connection to what you clicked. All four Important findings were fixed in this pass; what remains is deliberate, differentiated, and honors reduced motion throughout.</p>
+  </section>
+
+  <section>
+    <span class="mono-label">01 · Lens summary</span>
+    <h2 class="sec">Three lenses, weighted for a luxury brand site</h2>
+    <table class="lens-table">
+      <thead><tr><th>Lens</th><th>Verdict</th><th>One-line read</th></tr></thead>
+      <tbody>
+        <tr><td class="lens-name">Jakub Krehel<span class="chip">Primary</span></td><td class="verdict"><span class="dot" style="background:var(--sev-opp)"></span>Strong</td><td>Polish is real (line-masks, FLIP filter, LQIP blur-up); the uniform reveal was the one production tell, now differentiated by content type.</td></tr>
+        <tr><td class="lens-name">Jhey Tompkins<span class="chip">Secondary</span></td><td class="verdict"><span class="dot" style="background:var(--sev-opp)"></span>Strong</td><td>Two earned delight moments now exist — the word-scrub lede and the develop-through-the-fold interludes — both scroll-scrubbed, both rare.</td></tr>
+        <tr><td class="lens-name">Emil Kowalski<span class="chip">Selective</span></td><td class="verdict"><span class="dot" style="background:var(--sev-imp)"></span>Mixed</td><td>Interaction surfaces are fast and purposeful; the pulsing badge dot and the layout-property transitions were the frequency/perf violations, now removed.</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <span class="mono-label">02 · Where the timings land</span>
+    <h2 class="sec">Duration budget</h2>
+    <div class="timing-grid">
+      <div class="timing-fig">
+        <svg viewBox="0 0 660 260" role="img" aria-label="Animation durations plotted on a 0 to 600 millisecond scale">
+          <style>
+            .zl { font: 10px var(--mono); fill: var(--faint); text-transform: uppercase; letter-spacing: .1em; }
+            .band-good { fill: color-mix(in oklch, var(--t-good) 13%, transparent); }
+            .band-mid  { fill: color-mix(in oklch, var(--t-mid) 13%, transparent); }
+            .band-slow { fill: color-mix(in oklch, var(--t-slow) 13%, transparent); }
+            .ax { stroke: var(--line-strong); }
+            .tick { font: 10px var(--mono); fill: var(--faint); }
+            .pt { fill: var(--paper); }
+            .pt-n { font: 600 10px var(--mono); fill: var(--ink); }
+          </style>
+          <rect class="band-good" x="40" y="30" width="280" height="170"/>
+          <rect class="band-mid"  x="320" y="30" width="187" height="170"/>
+          <rect class="band-slow" x="507" y="30" width="133" height="170"/>
+          <text class="zl" x="44" y="22">Instant · Responsive</text>
+          <text class="zl" x="324" y="22">Deliberate</text>
+          <text class="zl" x="511" y="22">Sluggish</text>
+          <line class="ax" x1="40" y1="200" x2="640" y2="200"/>
+          <text class="tick" x="36" y="218">0</text>
+          <text class="tick" x="128" y="218">100</text>
+          <text class="tick" x="308" y="218">300</text>
+          <text class="tick" x="495" y="218">500</text>
+          <text class="tick" x="612" y="218">600+</text>
+          <circle class="pt" cx="320" cy="66"  r="10"/><text class="pt-n" x="317" y="70">1</text>
+          <circle class="pt" cx="367" cy="96"  r="10"/><text class="pt-n" x="364" y="100">2</text>
+          <circle class="pt" cx="432" cy="126" r="10"/><text class="pt-n" x="429" y="130">3</text>
+          <circle class="pt" cx="507" cy="66"  r="10"/><text class="pt-n" x="504" y="70">4</text>
+          <circle class="pt" cx="516" cy="156" r="10"/><text class="pt-n" x="513" y="160">5</text>
+          <circle class="pt" cx="562" cy="96"  r="10"/><text class="pt-n" x="559" y="100">6</text>
+          <circle class="pt" cx="620" cy="126" r="10"/><text class="pt-n" x="614" y="130">7</text>
+        </svg>
+      </div>
+      <div class="timing-key">
+        <ul>
+          <li><span class="kn">1</span> Button / nav hovers <span class="kt">300–350ms · ease-out</span></li>
+          <li><span class="kn">2</span> Page view transition <span class="kt">320/420ms · ease-out</span></li>
+          <li><span class="kn">3</span> Drawer + accordion <span class="kt">450–500ms · ease-out-expo</span></li>
+          <li><span class="kn">4</span> Reveal crossfade <span class="kt">550ms · ease</span></li>
+          <li><span class="kn">5</span> Lightbox FLIP open <span class="kt">560ms · ease-out-quint</span></li>
+          <li><span class="kn">6</span> Image develop-in <span class="kt">900–1000ms · scrubbed/eased</span></li>
+          <li><span class="kn">7</span> Card image hover zoom <span class="kt">1100ms · ease-out-expo</span></li>
+        </ul>
+      </div>
+    </div>
+    <div class="whats-off"><b>What's off:</b> nothing that isn't chosen. Everything a visitor <em>interacts</em> with resolves under 560ms. The two entries past the 600ms line are image cinematography — the develop-in is scroll-scrubbed (progress-driven, not a wait) and the hover zoom is a slow luxury drift rather than a response the user waits on. For this register that pacing is the brand; in a productivity tool it would be a finding.</div>
+  </section>
+
+  <section>
+    <span class="mono-label">03 · Primary lens</span>
+    <div class="lens-sec__head"><h3>Jakub Krehel — Production Polish</h3><span class="chip">Primary</span></div>
+    <p class="lens-sec__verdict"><span class="dot" style="display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--sev-opp);margin-right:7px"></span>Strong — the polish layer is real, and the two production tells found here are fixed.</p>
+
+    <div class="lens-block">
+      <span class="mono-label">What's working well</span>
+      <ul class="lens-list good">
+        <li>Masked line-rise headlines (<code>src/site.css .rl</code>) — a distinct, on-brand entrance that generalises the hero's choreography instead of repeating a generic fade.</li>
+        <li>Portfolio filter is a true FLIP (<code>projects.html</code>): leaving cards fade, survivors glide to their new grid slots, entrants stagger in — with an instant fallback under reduced motion.</li>
+        <li>LQIP blur-up on every card and interlude (<code>src/site.css .pc picture::before</code>) — images materialize from a real placeholder, never pop from blank.</li>
+        <li>Exits are subtler than enters throughout: the lightbox closes with a quick fade while opening gets the full shared-element morph.</li>
+        <li>Hover states all transition (150–350ms) — nothing snaps.</li>
+      </ul>
+    </div>
+
+    <div class="lens-block">
+      <span class="mono-label">Issues to address</span>
+
+      <div class="finding-row" data-sev="imp">
+        <div class="finding-row__prose">
+          <div class="find-tags"><span class="sev-chip imp">Important · fixed</span></div>
+          <h4 class="find-title">One identical fade-up applied to 51 blocks</h4>
+          <div class="find-body">
+            <p><span class="label">What</span>Every <code>.reveal</code> — prose, forms, image grids, offices, FAQ — shared the same <code>opacity + translateY(26px)</code> entrance. That uniformity is the single most recognisable AI-generated-page fingerprint of 2026.</p>
+            <p><span class="label">Why it matters</span>When everything moves identically, motion stops carrying information. Context should drive the treatment: photography deserves cinema, body copy deserves to just appear.</p>
+            <div class="fix"><p><span class="label">Recommended motion (shipped)</span>Prose now crossfades in place (550ms, no translate). Image cards and full-bleeds "develop": the picture settles from a 1.045 zoom while brightness ramps up — transform/filter only. Headlines keep their masked line-rise.</p></div>
+            <p class="find-loc"><code>src/site.css:88</code> · <code>src/site.js</code></p>
+          </div>
+        </div>
+        <div class="demo">
+          <input class="vh" type="radio" name="st1" id="st1-a" checked>
+          <input class="vh" type="radio" name="st1" id="st1-l">
+          <input class="vh" type="radio" name="st1" id="st1-d">
+          <div class="demo__bar">
+            <div class="demo__meta"><span class="demo__title">Image develops in; no slide</span><span class="demo__timing">550–1000ms · ease-out-quint</span></div>
+            <div class="demo__controls"><div class="seg"><label for="st1-a">Auto</label><label for="st1-l">Light</label><label for="st1-d">Dark</label></div><span class="demo__loop">↻</span></div>
+          </div>
+          <div class="demo__stage">
+            <div class="demo-1__mt">
+              <div style="overflow:hidden;border-radius:8px"><div class="ui-photo"></div></div>
+              <div class="ui-caption"><span>Casa Marbella</span><span class="ui-label">Residential</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="finding-row" data-sev="imp">
+        <div class="finding-row__prose">
+          <div class="find-tags"><span class="sev-chip imp">Important · fixed</span></div>
+          <h4 class="find-title">Gallery opened with no spatial link to the clicked card</h4>
+          <div class="find-body">
+            <p><span class="label">What</span>Clicking a project card faded the lightbox in centered — the card you clicked and the photo that appeared had no visual relationship.</p>
+            <p><span class="label">Why it matters</span>Shared-element continuity is the highest-value motion a gallery can have: it tells the visitor <em>this grew from that</em>, keeps orientation, and reads as craft.</p>
+            <div class="fix"><p><span class="label">Recommended motion (shipped)</span>A fixed clone of the card's image morphs rect-to-rect into the stage (560ms). Wrapper scale and image counter-scale are sampled as paired keyframes so pixels are never stretched; the clone hands off to the full-resolution image once it has faded in. Reduced motion and missing rects keep the plain crossfade.</p></div>
+            <p class="find-loc"><code>src/lightbox.js:127</code></p>
+          </div>
+        </div>
+        <div class="demo">
+          <input class="vh" type="radio" name="st2" id="st2-a" checked>
+          <input class="vh" type="radio" name="st2" id="st2-l">
+          <input class="vh" type="radio" name="st2" id="st2-d">
+          <div class="demo__bar">
+            <div class="demo__meta"><span class="demo__title">Card image travels to the stage</span><span class="demo__timing">560ms · ease-out-quint</span></div>
+            <div class="demo__controls"><div class="seg"><label for="st2-a">Auto</label><label for="st2-l">Light</label><label for="st2-d">Dark</label></div><span class="demo__loop">↻</span></div>
+          </div>
+          <div class="demo__stage">
+            <div class="demo-2__mt"><div class="ui-photo" style="box-shadow: 0 18px 50px oklch(0 0 0 / 0.28)"></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="lens-take"><b>Through Jakub's lens:</b> the site now passes the "remove it and something feels missing" test in both directions — nothing announces itself, and the moments that matter (a gallery opening, a photograph arriving) carry real spatial continuity.</div>
+  </section>
+
+  <section>
+    <span class="mono-label">04 · Secondary lens</span>
+    <div class="lens-sec__head"><h3>Jhey Tompkins — Experimentation &amp; Delight</h3><span class="chip">Secondary</span></div>
+    <p class="lens-sec__verdict"><span class="dot" style="display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--sev-opp);margin-right:7px"></span>Strong — rare, earned moments; modern CSS doing the work.</p>
+
+    <div class="lens-block">
+      <span class="mono-label">What's working well</span>
+      <ul class="lens-list good">
+        <li>The branded loader (gold bar + logo breath) is the site's one deliberately looping element — a single brand signature, not scattered pulses. Kept by design.</li>
+        <li>Cross-document View Transitions (<code>@view-transition</code>) — page changes crossfade natively, no SPA machinery.</li>
+        <li>Film-grain overlay on a fixed, pointer-events-none layer — texture without scroll repaints.</li>
+      </ul>
+    </div>
+
+    <div class="lens-block">
+      <span class="mono-label">Issues to address</span>
+      <p class="lens-empty">No issues found at this severity level.</p>
+    </div>
+
+    <div class="lens-block">
+      <span class="mono-label">Opportunities</span>
+      <ul class="lens-list opp">
+        <li><b>Shipped:</b> manifesto lede brightens word-by-word as it crosses the fold — scroll-scrubbed via <code>animation-timeline: view()</code>, spans injected only where supported, untouched text elsewhere. One narrative moment, once per site. <code>src/site.js</code></li>
+        <li><b>Shipped:</b> full-bleed interludes "develop" through the fold (drift + settle + brightness lift) in scroll-driven CSS, replacing JS parallax on supporting browsers. <code>src/site.css @supports</code></li>
+        <li><b>Future:</b> per-element <code>view-transition-name</code> on the nav brand and footer wordmark would make the logo persist across page navigations — a quiet continuity flourish when browser support broadens.</li>
+      </ul>
+    </div>
+
+    <div class="lens-take"><b>Through Jhey's lens:</b> the playful budget is spent in exactly two places, both scroll-scrubbed and both tied to the brand's cinematic register — which is what makes them feel authored instead of decorated.</div>
+  </section>
+
+  <section>
+    <span class="mono-label">05 · Selective lens</span>
+    <div class="lens-sec__head"><h3>Emil Kowalski — Restraint &amp; Speed</h3><span class="chip">Selective</span></div>
+    <p class="lens-sec__verdict"><span class="dot" style="display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--sev-imp);margin-right:7px"></span>Mixed before the pass — the two violations (an infinite pulse, layout-property motion) are gone.</p>
+
+    <div class="lens-block">
+      <span class="mono-label">What's working well</span>
+      <ul class="lens-list good">
+        <li>Form submit gives instant state feedback ("Sending…", disabled) — no decorative delay on the one high-stakes action.</li>
+        <li>Keyboard flows (lightbox arrows, Escape, focus trap) are instant; no animation gates navigation.</li>
+        <li>Reduced-motion coverage is global and complete — including an explicit disable for timeline-scrubbed animations, which duration overrides alone would not stop.</li>
+      </ul>
+    </div>
+
+    <div class="lens-block">
+      <span class="mono-label">Issues to address</span>
+
+      <div class="finding-row" data-sev="imp">
+        <div class="finding-row__prose">
+          <div class="find-tags"><span class="sev-chip imp">Important · fixed</span></div>
+          <h4 class="find-title">Layout properties animated on six interaction surfaces</h4>
+          <div class="find-body">
+            <p><span class="label">What</span>Progress bar animated <code>width</code>, nav underline grew via <code>width</code>, brand logo shrank via <code>height</code>, burger lines moved via <code>top</code>, links opened <code>gap</code>, the accordion animated <code>max-height</code> (with a 260px clip risk on long answers).</p>
+            <p><span class="label">Why it matters</span>Layout-property animation forces reflow — worst on the progress bar, which updated on every scroll frame. Transform-based equivalents run on the compositor.</p>
+            <div class="fix"><p><span class="label">Recommended motion (shipped)</span><code>scaleX</code> for progress and underline, <code>scale</code> for the brand, <code>translateY</code> for the burger, arrow-only movement for links, and <code>grid-template-rows: 0fr→1fr</code> for the accordion (which also removes the clip risk).</p></div>
+            <p class="find-loc"><code>src/site.css</code> · <code>src/site.js:14</code></p>
+          </div>
+        </div>
+        <div class="demo">
+          <input class="vh" type="radio" name="st3" id="st3-a" checked>
+          <input class="vh" type="radio" name="st3" id="st3-l">
+          <input class="vh" type="radio" name="st3" id="st3-d">
+          <div class="demo__bar">
+            <div class="demo__meta"><span class="demo__title">Underline draws via scaleX</span><span class="demo__timing">350ms · ease-out-expo</span></div>
+            <div class="demo__controls"><div class="seg"><label for="st3-a">Auto</label><label for="st3-l">Light</label><label for="st3-d">Dark</label></div><span class="demo__loop">↻</span></div>
+          </div>
+          <div class="demo__stage">
+            <div class="demo-3__mt" style="text-align:center">
+              <span style="font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--st-fg)">Portfolio</span>
+              <div class="ui-underline" style="height:1.5px;background:var(--st-fg);margin-top:7px"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="finding-row" data-sev="imp">
+        <div class="finding-row__prose">
+          <div class="find-tags"><span class="sev-chip imp">Important · fixed</span></div>
+          <h4 class="find-title">Hero badge dot pulsed forever</h4>
+          <div class="find-body">
+            <p><span class="label">What</span>The "Accepting commissions" dot ran an infinite box-shadow pulse — the canonical AI-slop "live indicator" pattern, flagged on any instance.</p>
+            <p><span class="label">Why it matters</span>An endless pulse begs for attention the hero already has, competes with the title choreography, and burns compositor time for nothing. The badge's information is static; its motion should be too.</p>
+            <div class="fix"><p><span class="label">Recommended motion (shipped)</span>The dot is now still. The badge keeps its one entrance (fade-up with the hero sequence) and then rests.</p></div>
+            <p class="find-loc"><code>index.html:88</code></p>
+          </div>
+        </div>
+        <div class="demo">
+          <input class="vh" type="radio" name="st4" id="st4-a" checked>
+          <input class="vh" type="radio" name="st4" id="st4-l">
+          <input class="vh" type="radio" name="st4" id="st4-d">
+          <div class="demo__bar">
+            <div class="demo__meta"><span class="demo__title">Badge enters once, then rests</span><span class="demo__timing">800ms · ease-out-quint</span></div>
+            <div class="demo__controls"><div class="seg"><label for="st4-a">Auto</label><label for="st4-l">Light</label><label for="st4-d">Dark</label></div><span class="demo__loop">↻</span></div>
+          </div>
+          <div class="demo__stage">
+            <div class="demo-4__mt" style="display:inline-flex;align-items:center;gap:9px;border:1px solid var(--st-line);border-radius:100px;padding:8px 16px 8px 12px">
+              <span style="width:7px;height:7px;border-radius:50%;background:var(--st-fg);opacity:.85"></span>
+              <span class="ui-label" style="color:var(--st-fg)">Accepting commissions</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="lens-take"><b>Through Emil's lens:</b> two exceptions are held open deliberately — the loader's pulse (a once-per-visit brand signature, not a UI status) and the slow hover zoom on gallery cards (a browse affordance in a luxury register, not a high-frequency productivity action). Both would be findings in a tool; here they are the voice.</div>
+  </section>
+
+  <section>
+    <span class="mono-label">06 · Combined recommendations</span>
+    <h2 class="sec">Everything in one place</h2>
+
+    <p class="tier-label crit" id="rec-crit">Critical · must fix — 0</p>
+    <table class="rec"><tbody><tr><td class="empty">No critical findings.</td></tr></tbody></table>
+
+    <p class="tier-label imp" id="rec-imp">Important · should fix — 4 (all fixed this pass)</p>
+    <table class="rec">
+      <thead><tr><th>Issue</th><th>File</th><th>Fix</th></tr></thead>
+      <tbody>
+        <tr><td>Uniform fade-up on all 51 reveal blocks</td><td><code>src/site.css</code></td><td>Prose crossfades in place; images settle + brighten; headlines keep line-rise</td></tr>
+        <tr><td>Lightbox opens without spatial continuity</td><td><code>src/lightbox.js</code></td><td>Shared-element FLIP clone with counter-scale keyframes, crossfade handoff</td></tr>
+        <tr><td>Layout properties animated (width/height/top/gap/max-height)</td><td><code>src/site.css</code>, <code>src/site.js</code></td><td>scaleX/scale/translateY equivalents; accordion to grid-template-rows</td></tr>
+        <tr><td>Infinite pulse on hero badge dot</td><td><code>index.html</code></td><td>Removed; badge enters once with the hero and rests</td></tr>
+      </tbody>
+    </table>
+
+    <p class="tier-label opp" id="rec-opp">Opportunities · could enhance — 3 (2 shipped)</p>
+    <table class="rec">
+      <thead><tr><th>Enhancement</th><th>Where</th><th>Impact</th></tr></thead>
+      <tbody>
+        <tr><td>Word-scrub manifesto lede (shipped)</td><td><code>src/site.js</code> + <code>src/site.css</code></td><td>One narrative scroll moment; progressive enhancement only</td></tr>
+        <tr><td>Scroll-driven full-bleed develop (shipped)</td><td><code>src/site.css @supports</code></td><td>Cinematic interludes without JS scroll work on modern engines</td></tr>
+        <tr><td>view-transition-name on persistent chrome</td><td>nav / footer marks</td><td>Logo continuity across page navigations, when support broadens</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <span class="mono-label">07 · Lens reference summary</span>
+    <div class="ref-summary">
+      <p><b>Lens referenced most: Jakub Krehel — Production Polish.</b> A luxury brand site lives on invisible refinement: the audit's biggest wins (differentiated reveals, the shared-element gallery) are exactly the "context drives the treatment" and "shared layout continuity" judgments Jakub's lens exists for.</p>
+      <div class="ref-lean">
+        <div><b>Lean more Emil:</b> drop the reveal crossfade to ~350ms, still the card hover zoom, and cap the develop-in ramp.</div>
+        <div><b>Lean more Jakub:</b> add a soft blur component to the image develop-in and an icon swap on the form's success state.</div>
+        <div><b>Lean more Jhey:</b> take the view-transition-name opportunity, and let the lightbox counter roll digits on navigation.</div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <span>draw-clever-architecture · motion audit · 2026-07-20</span>
+    <span>0 critical · 4 important (fixed) · 3 opportunities (2 shipped)</span>
+  </footer>
+
+</div>
+</body>
+</html>
