@@ -185,7 +185,9 @@ body.menu-open .drawer-links li:nth-child(1) a { transition-delay: .08s; } body.
 .office .nm { font-family: 'Playfair Display', serif; font-variation-settings: 'opsz' 36, 'wght' 420; font-style: italic; color: var(--text); font-size: 18px; }
 
 /* ─── FULL-BLEED INTERLUDE ─── */
-.fullbleed { position: relative; height: 84vh; min-height: 480px; overflow: hidden; }
+/* overflow: clip (not hidden) — hidden would make this a scroll container and
+   freeze the scroll-driven view() timeline of the image inside it. */
+.fullbleed { position: relative; height: 84vh; min-height: 480px; overflow: hidden; overflow: clip; }
 .fullbleed .fb-img { position: absolute; inset: -8% 0; width: 100%; height: 116%; object-fit: cover; filter: brightness(.6) saturate(.85); will-change: transform; }
 .fullbleed::after { content: ''; position: absolute; inset: 0; background: linear-gradient(to top, rgba(10,9,8,.82), transparent 60%); }
 .fb-caption { position: absolute; inset: auto 0 0 0; z-index: 2; padding: 0 var(--pad) 56px; display: flex; justify-content: space-between; align-items: flex-end; gap: 40px; }
@@ -308,7 +310,10 @@ html.lb-locked, html.lb-locked body { overflow: hidden; }
     from { transform: translateY(4.5%) scale(1.07); filter: brightness(.44) saturate(.78); }
     to   { transform: translateY(-3.5%) scale(1);   filter: brightness(.62) saturate(.88); }
   }
-  .lede-w { animation: ledeIn linear both; animation-timeline: view(); animation-range: cover 6% cover 34%; }
+  /* inline-block: an inline span is fragmentable, so its view() timeline
+     resolves to the whole paragraph and every word gets the same progress;
+     an atomic box gives each word its own. */
+  .lede-w { display: inline-block; animation: ledeIn linear both; animation-timeline: view(); animation-range: cover 6% cover 34%; }
   @keyframes ledeIn { from { opacity: .16; } to { opacity: 1; } }
 }
 
