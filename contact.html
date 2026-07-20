@@ -45,10 +45,10 @@
     #contact { padding: 150px var(--pad); }
     .contact-grid { display: grid; grid-template-columns: 1fr 1.25fr; gap: 96px; align-items: start; }
     .contact-aside { position: sticky; top: 130px; display: flex; flex-direction: column; gap: 40px; }
-    .contact-aside h2 { font-size: clamp(32px, 3.6vw, 54px); line-height: 1.05; letter-spacing: 0; }
+    .contact-aside h2 { font-size: clamp(32px, 3.6vw, 76px); line-height: 1.05; letter-spacing: 0; }
     .contact-offices { display: flex; flex-direction: column; gap: 30px; padding-top: 36px; border-top: 1px solid var(--line); }
     .form-card { background: var(--ink-2); border: 1px solid var(--line); padding: 52px 48px; }
-    .form-card h3 { font-family: 'Playfair Display SC', serif; font-size: 27px; text-transform: none; letter-spacing: .012em; margin-bottom: 32px; }
+    .form-card h3 { font-family: 'Playfair Display SC', serif; font-size: var(--fs-27); text-transform: none; letter-spacing: .012em; margin-bottom: 32px; }
     .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
     .form-grid .full { grid-column: 1 / -1; }
     #form-ok { display: flex; flex-direction: column; gap: 8px; padding: 8px 0 0; }
@@ -97,7 +97,7 @@
   <div class="banner-bg" style="background-image:url('./Renders/Casa-Corebeanca/103.jpg');background-image:-webkit-image-set(url('./Renders/Casa-Corebeanca/103.avif') type('image/avif'),url('./Renders/Casa-Corebeanca/103.webp') type('image/webp'),url('./Renders/Casa-Corebeanca/103.jpg') type('image/jpeg'));background-image:image-set(url('./Renders/Casa-Corebeanca/103.avif') type('image/avif'),url('./Renders/Casa-Corebeanca/103.webp') type('image/webp'),url('./Renders/Casa-Corebeanca/103.jpg') type('image/jpeg'))"></div>
   <div class="banner-inner dc-head">
     <div class="crumbs"><a href="/">Home</a><span class="sep">/</span><span>Contact</span></div>
-    <h1>Let's create<br /><span class="gold">something new.</span></h1>
+    <h1>Tell us about<br />the project.</h1>
     <p class="sub">Tell us about your project. We read every enquiry personally and reply within two business days.</p>
   </div>
 </header>
@@ -107,7 +107,7 @@
   <div class="contact-grid">
     <aside class="contact-aside reveal">
       <div>
-        <h2>One team, across <span class="gold">borders.</span></h2>
+        <h2>One team,<br />two countries.</h2>
       </div>
       <div class="contact-offices">
         <div class="office">
@@ -122,7 +122,7 @@
     </aside>
 
     <div class="form-card reveal d1">
-      <h3>Tell us about your project</h3>
+      <h3>Project details</h3>
       <p class="form-note" style="margin-bottom:28px;">Fields marked <span class="req" aria-hidden="true">*</span> are required.</p>
       <!-- Submits as JSON to Web3Forms (key + handler in the inline script
            below); on any failure it falls back to composing a mailto email. -->
@@ -144,7 +144,7 @@
           </div>
           <div class="field full"><label for="message">Message <span class="req" aria-hidden="true">*</span></label><textarea id="message" name="message" placeholder="Tell us about the site, the vision, the timeline…" required></textarea></div>
           <div class="full" style="display:flex;align-items:center;gap:24px;flex-wrap:wrap;">
-            <button type="submit" class="btn btn-solid" style="font-size:11px;padding:16px 40px;">Send Message</button>
+            <button type="submit" class="btn btn-solid" style="font-size: var(--fs-11);padding:16px 40px;">Send Message</button>
             <p class="form-note">Prefer email? Write to <a href="mailto:hello@drawclever.com" style="color:var(--gold);text-decoration:none;">hello@drawclever.com</a></p>
           </div>
           <div class="full" id="form-ok" role="status" aria-live="polite" tabindex="-1" hidden>
@@ -160,7 +160,7 @@
 <!-- FAQ -->
 <section id="faq">
   <div class="sec-head reveal" style="margin-bottom:36px;">
-    <div><h2 style="font-size:clamp(30px,3.4vw,50px);margin-top:16px;">Before you<br /><span class="gold">begin.</span></h2></div>
+    <div><h2 style="font-size:clamp(30px,3.4vw,70px);margin-top:16px;">Before you<br />begin.</h2></div>
   </div>
   <div class="acc reveal d1">
     <div class="acc-item"><button class="acc-q" type="button">Where are you based?<span class="acc-icon"></span></button><div class="acc-a"><div class="acc-a-i">A headquarters in Bucharest, Romania and a branch in Marbella, Spain, working with clients across Europe, the United States and the Middle East.</div></div></div>

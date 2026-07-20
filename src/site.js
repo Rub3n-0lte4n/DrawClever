@@ -145,42 +145,58 @@ document.querySelectorAll('.acc-q').forEach((btn) => {
   wrap(lede);
 })();
 
-// COUNT-UP — roll .stat .n numbers up when they first enter view.
-// Keeps any prefix/suffix (50+, 5★, 2,000) and figure formatting; fires once.
+// COUNT-UP — roll .stat .n figures up when a stat row first enters view.
+// Only genuine quantities roll. A year has no meaningful intermediate values
+// (2014 counts up through "147"), and a figure under 10 spends most of the
+// roll reading 0 or 1, so both read as broken data rather than as motion.
+// A row animates only when every figure in it qualifies — one rolling number
+// beside three static ones looks like a bug, not a decision. Figures that
+// don't qualify are never written to, so they simply render as authored.
 (function () {
-  const nums = document.querySelectorAll('.stat .n');
-  if (!nums.length) return;
-  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const rows = document.querySelectorAll('.stats');
+  if (!rows.length) return;
+  if (matchMedia('(prefers-reduced-motion: reduce)').matches) return;
   const easeOut = (x) => 1 - Math.pow(1 - x, 3);
-  const obs = new IntersectionObserver((entries) => {
-    entries.forEach((e) => {
-      if (!e.isIntersecting) return;
-      obs.unobserve(e.target);
-      const el = e.target;
-      const m = el.textContent.trim().match(/^(\D*)(\d[\d,]*(?:\.\d+)?)(.*)$/);
-      if (!m) return;                                   // non-numeric (e.g. "—") → leave as-is
-      const pre = m[1], raw = m[2], post = m[3];
-      const grouped = raw.includes(',');
-      const target = parseFloat(raw.replace(/,/g, ''));
-      if (!isFinite(target)) return;
-      const decimals = (raw.split('.')[1] || '').length;
-      const fmt = (v) => {
-        const n = v.toFixed(decimals);
-        const s = grouped ? Number(n).toLocaleString('en-US', { minimumFractionDigits: decimals, maximumFractionDigits: decimals }) : n;
-        return pre + s + post;
-      };
-      if (reduce) { el.textContent = fmt(target); return; }
-      const dur = 1300, t0 = performance.now();
-      el.textContent = fmt(0);
-      const tick = (now) => {
-        const p = Math.min(1, (now - t0) / dur);
-        el.textContent = fmt(target * easeOut(p));
-        if (p < 1) requestAnimationFrame(tick); else el.textContent = fmt(target);
-      };
-      requestAnimationFrame(tick);
-    });
-  }, { threshold: 0.6 });
-  nums.forEach((n) => obs.observe(n));
+
+  // Split "50+" / "5★" / "2,000" / "2014" into prefix, figure and suffix, and
+  // decide whether the figure is something a viewer can watch accumulate.
+  const read = (el) => {
+    const m = el.textContent.trim().match(/^(\D*)(\d[\d,]*(?:\.\d+)?)(.*)$/);
+    if (!m) return null;                                // non-numeric (e.g. "—")
+    const pre = m[1], raw = m[2], post = m[3];
+    const target = parseFloat(raw.replace(/,/g, ''));
+    if (!isFinite(target)) return null;
+    const isYear = !pre && !post && /^\d{4}$/.test(raw) && target >= 1900 && target <= 2100;
+    const grouped = raw.includes(',');
+    const decimals = (raw.split('.')[1] || '').length;
+    const fmt = (v) => {
+      const n = v.toFixed(decimals);
+      const s = grouped ? Number(n).toLocaleString('en-US', { minimumFractionDigits: decimals, maximumFractionDigits: decimals }) : n;
+      return pre + s + post;
+    };
+    return { el, target, fmt, countable: !isYear && target >= 10 };
+  };
+
+  rows.forEach((row) => {
+    const figures = [...row.querySelectorAll('.n')].map(read).filter(Boolean);
+    if (!figures.length || !figures.every((f) => f.countable)) return;
+    const obs = new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
+        if (!e.isIntersecting) return;
+        obs.unobserve(e.target);
+        const dur = 1300, t0 = performance.now();
+        const paint = (v) => figures.forEach((f) => { f.el.textContent = f.fmt(f.target * v); });
+        paint(0);
+        const tick = (now) => {
+          const p = Math.min(1, (now - t0) / dur);
+          paint(easeOut(p));
+          if (p < 1) requestAnimationFrame(tick); else paint(1);
+        };
+        requestAnimationFrame(tick);
+      });
+    }, { threshold: 0.4 });
+    obs.observe(row);
+  });
 })();
 
 // HEADLINE LINE-REVEAL — wrap display headings into masked lines that rise on

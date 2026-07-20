@@ -45,10 +45,10 @@
   <style>
     #portfolio { padding: 110px var(--pad) 150px; }
     .pf-filters { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 48px; }
-    .pf-filter { font-family: 'Inter', sans-serif; font-size: 10px; letter-spacing: .14em; text-transform: uppercase; color: var(--sub); background: transparent; border: 1px solid var(--line-2); border-radius: 100px; padding: 11px 22px; cursor: pointer; transition: color .3s, background .3s, border-color .3s; }
+    .pf-filter { font-family: 'Inter', sans-serif; font-size: var(--fs-10); letter-spacing: .14em; text-transform: uppercase; color: var(--sub); background: transparent; border: 1px solid var(--line-2); border-radius: 100px; padding: 11px 22px; cursor: pointer; transition: color .3s, background .3s, border-color .3s; }
     .pf-filter:hover { color: var(--text); border-color: var(--gold-dim); }
     .pf-filter.active { color: #15110A; background: var(--grad-gold); border-color: transparent; }
-    .pf-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(440px, 1fr)); gap: 8px; align-items: start; }
+    .pf-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(clamp(440px, 30vw, 560px), 1fr)); gap: 8px; align-items: start; }
     .pf-grid .pc picture { flex: 0 0 auto; aspect-ratio: 4 / 3; }
     .pc.hide { display: none; }
     @media (max-width: 680px) { #portfolio { padding-top: 80px; } .pf-grid { grid-template-columns: 1fr; } .pf-grid .pc picture { aspect-ratio: 3 / 2; }
@@ -94,7 +94,7 @@
   <div class="banner-bg" style="background-image:url('./Renders/Casa-Marbella/05-scaled.jpg');background-image:-webkit-image-set(url('./Renders/Casa-Marbella/05-scaled.avif') type('image/avif'),url('./Renders/Casa-Marbella/05-scaled.webp') type('image/webp'),url('./Renders/Casa-Marbella/05-scaled.jpg') type('image/jpeg'));background-image:image-set(url('./Renders/Casa-Marbella/05-scaled.avif') type('image/avif'),url('./Renders/Casa-Marbella/05-scaled.webp') type('image/webp'),url('./Renders/Casa-Marbella/05-scaled.jpg') type('image/jpeg'))"></div>
   <div class="banner-inner dc-head">
     <div class="crumbs"><a href="/">Home</a><span class="sep">/</span><span>Portfolio</span></div>
-    <h1>Every space,<br /><span class="gold">a story.</span></h1>
+    <h1>The full<br />portfolio.</h1>
     <p class="sub">A decade of residences, interiors and commercial spaces, composed across Romania, Spain and beyond. Select any project to enter its gallery.</p>
   </div>
 </header>
@@ -155,8 +155,8 @@
 <!-- CTA -->
 <section class="cta">
   <span class="eyebrow center reveal">Start a conversation</span>
-  <h2 class="reveal d1">Your space, our<br /><span class="gold">next story.</span></h2>
-  <a href="/contact" class="btn btn-solid reveal d2" style="font-size:11px;padding:17px 46px;">Start a Project</a>
+  <h2 class="reveal d1">Where are you<br />building?</h2>
+  <a href="/contact" class="btn btn-solid reveal d2" style="font-size: var(--fs-11);padding:17px 46px;">Start a Project</a>
 </section>
 
 <footer>
