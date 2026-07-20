@@ -45,17 +45,17 @@
   <style>
     #story { padding: 150px var(--pad) 30px; }
     .story-grid { display: grid; grid-template-columns: 1fr 1.1fr; gap: 90px; align-items: start; }
-    .story-grid h2 { font-size: clamp(36px, 4.2vw, 64px); line-height: 1.04; letter-spacing: 0; }
-    .story-grid .body p { font-size: 15px; font-weight: 300; line-height: 1.95; color: var(--sub); margin-bottom: 22px; }
-    .story-grid .sig { font-family: 'Playfair Display', serif; font-style: italic; font-size: 19px; letter-spacing: -.01em; color: var(--text); margin-top: 10px; }
+    .story-grid h2 { font-size: clamp(36px, 4.2vw, 90px); line-height: 1.04; letter-spacing: 0; }
+    .story-grid .body p { font-size: var(--fs-15); font-weight: 300; line-height: 1.95; color: var(--sub); margin-bottom: 22px; }
+    .story-grid .sig { font-family: 'Playfair Display', serif; font-style: italic; font-size: var(--fs-19); letter-spacing: -.01em; color: var(--text); margin-top: 10px; }
     #story .stats { margin-top: 80px; padding-top: 56px; border-top: 1px solid var(--line); }
     #ethos { padding: 176px var(--pad); background: var(--ink-2); border-top: 1px solid var(--line); }
     #ateliers { padding: 176px var(--pad); }
     .ateliers-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 56px; }
     .atelier { background: var(--ink-2); border: 1px solid var(--line); padding: 52px 48px; transition: border-color .4s, background .4s; }
     .atelier:hover { border-color: var(--gold-dim); background: var(--ink-3); }
-    .atelier .place { font-family: 'Playfair Display SC', serif; font-size: 32px; text-transform: none; letter-spacing: .01em; margin-bottom: 18px; }
-    .atelier .place .gold { font-size: 24px; }
+    .atelier .place { font-family: 'Playfair Display SC', serif; font-size: var(--fs-32); text-transform: none; letter-spacing: .01em; margin-bottom: 18px; }
+    .atelier .place .gold { font-size: var(--fs-24); }
     @media (max-width: 860px) { .story-grid { grid-template-columns: 1fr; gap: 36px; } .ateliers-grid { grid-template-columns: 1fr; } }
     @media (max-width: 680px) { #story, #ateliers { padding: 80px 20px; } #ethos { padding: 80px 20px; } .atelier { padding: 38px 28px; }
       .banner-bg { background-image: -webkit-image-set(url('./Renders/Penthouse-Oradea/21-1024.avif') type('image/avif'), url('./Renders/Penthouse-Oradea/21-1024.webp') type('image/webp')) !important; background-image: image-set(url('./Renders/Penthouse-Oradea/21-1024.avif') type('image/avif'), url('./Renders/Penthouse-Oradea/21-1024.webp') type('image/webp')) !important; } }
@@ -109,7 +109,7 @@
 <section id="story">
   <div class="story-grid">
     <div class="reveal">
-      <h2>Architecture that elevates <span class="gold">how you live.</span></h2>
+      <h2>How we came<br />to be here.</h2>
     </div>
     <div class="body reveal d1">
       <p>Draw Clever is a luxury architecture and interior design studio with a presence in Romania and Spain. We work with discerning clients worldwide who seek spaces that are not just beautiful, but deeply intentional.</p>
@@ -129,7 +129,7 @@
 <div class="fullbleed reveal">
   <picture><source type="image/avif" srcset="./Renders/Penthouse-Oradea/27.avif" /><source type="image/webp" srcset="./Renders/Penthouse-Oradea/27.webp" /><img class="fb-img" data-parallax src="./Renders/Penthouse-Oradea/27.jpg" alt="Penthouse Oradea interior" loading="lazy" /></picture>
   <div class="fb-caption">
-    <h3>Penthouse Oradea,<br /><span class="gold">interiors.</span></h3>
+    <h3>A top floor<br />in Oradea.</h3>
     <p>Spatial planning, materials, joinery and light, composed so the architecture and the interior read as one.</p>
   </div>
 </div>
@@ -138,7 +138,7 @@
 <section id="ethos">
   <div class="sec-head reveal">
     <div>
-      <h2>Four tenets,<br /><span class="gold">quietly held.</span></h2>
+      <h2>What we<br />hold to.</h2>
     </div>
     <p class="intro">We work in the older tradition: buildings that compose themselves over a lifetime, in materials that age with their inhabitants.</p>
   </div>
@@ -154,7 +154,7 @@
 <section id="ateliers">
   <div class="sec-head reveal">
     <div>
-      <h2>Two ateliers,<br /><span class="gold">one team.</span></h2>
+      <h2>Two ateliers,<br />one team.</h2>
     </div>
     <p class="intro">A headquarters in Romania and a branch in Spain: a single practice working in close concert across borders.</p>
   </div>
@@ -175,8 +175,8 @@
 <!-- CTA -->
 <section class="cta">
   <span class="eyebrow center reveal">Start a conversation</span>
-  <h2 class="reveal d1">Let's design something <span class="gold">extraordinary.</span></h2>
-  <a href="/contact" class="btn btn-solid reveal d2" style="font-size:11px;padding:17px 46px;">Start a Project</a>
+  <h2 class="reveal d1">We would like<br />to meet you.</h2>
+  <a href="/contact" class="btn btn-solid reveal d2" style="font-size: var(--fs-11);padding:17px 46px;">Start a Project</a>
 </section>
 
 <footer>

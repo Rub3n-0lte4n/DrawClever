@@ -47,11 +47,11 @@
     .svc-list { border-top: 1px solid var(--line); margin-top: 8px; }
     .svc { text-decoration: none; color: inherit; display: grid; grid-template-columns: 96px 1fr auto; gap: 48px; align-items: center; padding: 46px 0; border-bottom: 1px solid var(--line); transition: padding-left .45s var(--ease); }
     .svc:hover { padding-left: 14px; }
-    .svc-n { font-family: 'Inter', sans-serif; font-weight: 500; font-size: 12px; letter-spacing: .2em; color: var(--gold-dim); font-feature-settings: 'tnum' 1; transition: color .35s; }
+    .svc-n { font-family: 'Inter', sans-serif; font-weight: 500; font-size: var(--fs-12); letter-spacing: .2em; color: var(--gold-dim); font-feature-settings: 'tnum' 1; transition: color .35s; }
     .svc:hover .svc-n { color: var(--gold); }
-    .svc-main h2 { font-family: 'Playfair Display SC', serif; font-style: normal; font-size: clamp(26px, 2.8vw, 40px); line-height: 1.04; text-transform: none; letter-spacing: .01em; margin-bottom: 14px; transition: color .35s; }
+    .svc-main h2 { font-family: 'Playfair Display SC', serif; font-style: normal; font-size: clamp(26px, 19.43px + 1.429vw, 56px); line-height: 1.04; text-transform: none; letter-spacing: .01em; margin-bottom: 14px; transition: color .35s; }
     .svc:hover .svc-main h2 { color: var(--gold); }
-    .svc-desc { font-size: 13.5px; font-weight: 300; line-height: 1.85; color: var(--muted); max-width: 62ch; }
+    .svc-desc { font-size: var(--fs-13-5); font-weight: 300; line-height: 1.85; color: var(--muted); max-width: 62ch; }
     .svc-go { width: 52px; height: 52px; border-radius: 50%; border: 1px solid var(--line-2); display: flex; align-items: center; justify-content: center; transition: border-color .35s, background .35s, transform .4s var(--ease); flex-shrink: 0; }
     .svc-go svg { width: 16px; height: 16px; stroke: var(--sub); fill: none; stroke-width: 1.4; transition: stroke .35s; }
     .svc:hover .svc-go { border-color: var(--gold-dim); background: rgba(200,169,106,.1); transform: rotate(0); }
@@ -104,8 +104,8 @@
   <div class="banner-bg" style="background-image:url('./Renders/Apartment-in-Oradea/01-6-scaled.jpg');background-image:-webkit-image-set(url('./Renders/Apartment-in-Oradea/01-6-scaled.avif') type('image/avif'),url('./Renders/Apartment-in-Oradea/01-6-scaled.webp') type('image/webp'),url('./Renders/Apartment-in-Oradea/01-6-scaled.jpg') type('image/jpeg'));background-image:image-set(url('./Renders/Apartment-in-Oradea/01-6-scaled.avif') type('image/avif'),url('./Renders/Apartment-in-Oradea/01-6-scaled.webp') type('image/webp'),url('./Renders/Apartment-in-Oradea/01-6-scaled.jpg') type('image/jpeg'))"></div>
   <div class="banner-inner dc-head">
     <div class="crumbs"><a href="/">Home</a><span class="sep">/</span><span>Services</span></div>
-    <h1>A complete<br /><span class="gold">studio.</span></h1>
-    <p class="sub">Architecture, interiors, visualisation, landscape and management: five disciplines, one team, from the first sketch to the final key.</p>
+    <h1>What the<br />studio does.</h1>
+    <p class="sub">Architecture, interiors, visualisation, landscape and management. Five disciplines, one team, no work handed out.</p>
   </div>
 </header>
 
@@ -144,7 +144,7 @@
 <section id="process">
   <div class="sec-head reveal">
     <div>
-      <h2>From first sketch<br />to <span class="gold">final key.</span></h2>
+      <h2>How a project<br />moves.</h2>
     </div>
     <p class="intro">One continuous engagement: no hand-offs, no referrals out. The same team carries your project from the first conversation to the moment you hold the keys.</p>
   </div>
@@ -158,9 +158,9 @@
 
 <!-- CTA -->
 <section class="cta">
-  <span class="eyebrow center reveal">Begin</span>
-  <h2 class="reveal d1">Ready to start something <span class="gold">remarkable?</span></h2>
-  <a href="/contact" class="btn btn-solid reveal d2" style="font-size:11px;padding:17px 46px;">Start a Project</a>
+  <span class="eyebrow center reveal">Next steps</span>
+  <h2 class="reveal d1">Shall we<br />begin?</h2>
+  <a href="/contact" class="btn btn-solid reveal d2" style="font-size: var(--fs-11);padding:17px 46px;">Start a Project</a>
 </section>
 
 <footer>
