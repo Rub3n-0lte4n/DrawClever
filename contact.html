@@ -48,7 +48,7 @@
     .contact-aside h2 { font-size: clamp(32px, 3.6vw, 76px); line-height: 1.05; letter-spacing: 0; }
     .contact-offices { display: flex; flex-direction: column; gap: 30px; padding-top: 36px; border-top: 1px solid var(--line); }
     .form-card { background: var(--ink-2); border: 1px solid var(--line); padding: 52px 48px; }
-    .form-card h3 { font-family: 'Playfair Display SC', serif; font-size: var(--fs-27); text-transform: none; letter-spacing: .012em; margin-bottom: 32px; }
+    .form-card h3 { font-family: 'Playfair Display SC', serif; font-size: var(--t-d-lg); text-transform: none; letter-spacing: .012em; margin-bottom: 32px; }
     .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
     .form-grid .full { grid-column: 1 / -1; }
     #form-ok { display: flex; flex-direction: column; gap: 8px; padding: 8px 0 0; }
@@ -59,7 +59,7 @@
   </style>
 </head>
 <body>
-<a class="skip-link" href="#main">Skip to content</a>
+<a class="skip-link btn btn-solid" href="#main">Skip to content</a>
 <div id="dc-loader" aria-hidden="true"><img class="dc-mark" src="./Logo Variants/Logo Mark.png" alt="" /><span class="dc-bar"></span></div>
 
 <div class="grain" aria-hidden="true"></div>
@@ -71,7 +71,7 @@
     <li><a href="/projects">Portfolio</a></li>
     <li><a href="/about-us">About</a></li>
     <li><a href="/services">Services</a></li>
-    <li><a href="/contact" class="nav-cta">Contact</a></li>
+    <li><a href="/contact" class="btn btn-quiet">Contact</a></li>
   </ul>
   <button class="nav-toggle" aria-label="Open menu" aria-controls="drawer" aria-expanded="false"><span></span><span></span><span></span></button>
 </nav>
@@ -144,7 +144,7 @@
           </div>
           <div class="field full"><label for="message">Message <span class="req" aria-hidden="true">*</span></label><textarea id="message" name="message" placeholder="Tell us about the site, the vision, the timeline…" required></textarea></div>
           <div class="full" style="display:flex;align-items:center;gap:24px;flex-wrap:wrap;">
-            <button type="submit" class="btn btn-solid" style="font-size: var(--fs-11);padding:16px 40px;">Send Message</button>
+            <button type="submit" class="btn btn-solid btn-lg">Send Message</button>
             <p class="form-note">Prefer email? Write to <a href="mailto:hello@drawclever.com" style="color:var(--gold);text-decoration:none;">hello@drawclever.com</a></p>
           </div>
           <div class="full" id="form-ok" role="status" aria-live="polite" tabindex="-1" hidden>

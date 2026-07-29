@@ -46,23 +46,23 @@
     #story { padding: 150px var(--pad) 30px; }
     .story-grid { display: grid; grid-template-columns: 1fr 1.1fr; gap: 90px; align-items: start; }
     .story-grid h2 { font-size: clamp(36px, 4.2vw, 90px); line-height: 1.04; letter-spacing: 0; }
-    .story-grid .body p { font-size: var(--fs-15); font-weight: 300; line-height: 1.95; color: var(--sub); margin-bottom: 22px; }
-    .story-grid .sig { font-family: 'Playfair Display', serif; font-style: italic; font-size: var(--fs-19); letter-spacing: -.01em; color: var(--text); margin-top: 10px; }
+    .story-grid .body p { font-size: var(--t-body-lg); font-weight: 400; line-height: 1.8; color: var(--sub); max-width: 62ch; margin-bottom: 22px; }
+    .story-grid .sig { font-family: 'Playfair Display', serif; font-style: italic; font-size: var(--t-d-sm); letter-spacing: -.01em; color: var(--text); margin-top: 10px; }
     #story .stats { margin-top: 80px; padding-top: 56px; border-top: 1px solid var(--line); }
     #ethos { padding: 176px var(--pad); background: var(--ink-2); border-top: 1px solid var(--line); }
     #ateliers { padding: 176px var(--pad); }
     .ateliers-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 56px; }
     .atelier { background: var(--ink-2); border: 1px solid var(--line); padding: 52px 48px; transition: border-color .4s, background .4s; }
     .atelier:hover { border-color: var(--gold-dim); background: var(--ink-3); }
-    .atelier .place { font-family: 'Playfair Display SC', serif; font-size: var(--fs-32); text-transform: none; letter-spacing: .01em; margin-bottom: 18px; }
-    .atelier .place .gold { font-size: var(--fs-24); }
+    .atelier .place { font-family: 'Playfair Display SC', serif; font-size: var(--t-d-xl); text-transform: none; letter-spacing: .01em; margin-bottom: 18px; }
+    .atelier .place .gold { font-size: .74em; }
     @media (max-width: 860px) { .story-grid { grid-template-columns: 1fr; gap: 36px; } .ateliers-grid { grid-template-columns: 1fr; } }
     @media (max-width: 680px) { #story, #ateliers { padding: 80px 20px; } #ethos { padding: 80px 20px; } .atelier { padding: 38px 28px; }
       .banner-bg { background-image: -webkit-image-set(url('./Renders/Penthouse-Oradea/21-1024.avif') type('image/avif'), url('./Renders/Penthouse-Oradea/21-1024.webp') type('image/webp')) !important; background-image: image-set(url('./Renders/Penthouse-Oradea/21-1024.avif') type('image/avif'), url('./Renders/Penthouse-Oradea/21-1024.webp') type('image/webp')) !important; } }
   </style>
 </head>
 <body>
-<a class="skip-link" href="#main">Skip to content</a>
+<a class="skip-link btn btn-solid" href="#main">Skip to content</a>
 <div id="dc-loader" aria-hidden="true"><img class="dc-mark" src="./Logo Variants/Logo Mark.png" alt="" /><span class="dc-bar"></span></div>
 
 <div class="grain" aria-hidden="true"></div>
@@ -74,7 +74,7 @@
     <li><a href="/projects">Portfolio</a></li>
     <li><a href="/about-us" class="active">About</a></li>
     <li><a href="/services">Services</a></li>
-    <li><a href="/contact" class="nav-cta">Contact</a></li>
+    <li><a href="/contact" class="btn btn-quiet">Contact</a></li>
   </ul>
   <button class="nav-toggle" aria-label="Open menu" aria-controls="drawer" aria-expanded="false"><span></span><span></span><span></span></button>
 </nav>
@@ -176,7 +176,7 @@
 <section class="cta">
   <span class="eyebrow center reveal">Start a conversation</span>
   <h2 class="reveal d1">We would like<br />to meet you.</h2>
-  <a href="/contact" class="btn btn-solid reveal d2" style="font-size: var(--fs-11);padding:17px 46px;">Start a Project</a>
+  <a href="/contact" class="btn btn-solid btn-lg reveal d2">Start a Project</a>
 </section>
 
 <footer>

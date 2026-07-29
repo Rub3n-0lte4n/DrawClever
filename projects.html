@@ -45,9 +45,6 @@
   <style>
     #portfolio { padding: 110px var(--pad) 150px; }
     .pf-filters { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 48px; }
-    .pf-filter { font-family: 'Inter', sans-serif; font-size: var(--fs-10); letter-spacing: .14em; text-transform: uppercase; color: var(--sub); background: transparent; border: 1px solid var(--line-2); border-radius: 100px; padding: 11px 22px; cursor: pointer; transition: color .3s, background .3s, border-color .3s; }
-    .pf-filter:hover { color: var(--text); border-color: var(--gold-dim); }
-    .pf-filter.active { color: #15110A; background: var(--grad-gold); border-color: transparent; }
     .pf-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(clamp(440px, 30vw, 560px), 1fr)); gap: 8px; align-items: start; }
     .pf-grid .pc picture { flex: 0 0 auto; aspect-ratio: 4 / 3; }
     .pc.hide { display: none; }
@@ -56,7 +53,7 @@
   </style>
 </head>
 <body>
-<a class="skip-link" href="#main">Skip to content</a>
+<a class="skip-link btn btn-solid" href="#main">Skip to content</a>
 <div id="dc-loader" aria-hidden="true"><img class="dc-mark" src="./Logo Variants/Logo Mark.png" alt="" /><span class="dc-bar"></span></div>
 
 <div class="grain" aria-hidden="true"></div>
@@ -68,7 +65,7 @@
     <li><a href="/projects" class="active">Portfolio</a></li>
     <li><a href="/about-us">About</a></li>
     <li><a href="/services">Services</a></li>
-    <li><a href="/contact" class="nav-cta">Contact</a></li>
+    <li><a href="/contact" class="btn btn-quiet">Contact</a></li>
   </ul>
   <button class="nav-toggle" aria-label="Open menu" aria-controls="drawer" aria-expanded="false"><span></span><span></span><span></span></button>
 </nav>
@@ -102,11 +99,11 @@
 <!-- PORTFOLIO GRID -->
 <section id="portfolio">
   <div class="pf-filters reveal">
-    <button class="pf-filter active" data-filter="all">All</button>
-    <button class="pf-filter" data-filter="architecture">Architecture</button>
-    <button class="pf-filter" data-filter="interior">Interior Design</button>
-    <button class="pf-filter" data-filter="residential">Residential</button>
-    <button class="pf-filter" data-filter="commercial">Commercial</button>
+    <button class="pf-filter btn btn-sm active" data-filter="all">All</button>
+    <button class="pf-filter btn btn-sm" data-filter="architecture">Architecture</button>
+    <button class="pf-filter btn btn-sm" data-filter="interior">Interior Design</button>
+    <button class="pf-filter btn btn-sm" data-filter="residential">Residential</button>
+    <button class="pf-filter btn btn-sm" data-filter="commercial">Commercial</button>
   </div>
   <div class="pf-grid reveal d1">
     <article class="pc" data-project="casa-marbella" data-cat="architecture residential" aria-label="Open Casa Marbella gallery">
@@ -156,7 +153,7 @@
 <section class="cta">
   <span class="eyebrow center reveal">Start a conversation</span>
   <h2 class="reveal d1">Where are you<br />building?</h2>
-  <a href="/contact" class="btn btn-solid reveal d2" style="font-size: var(--fs-11);padding:17px 46px;">Start a Project</a>
+  <a href="/contact" class="btn btn-solid btn-lg reveal d2">Start a Project</a>
 </section>
 
 <footer>
