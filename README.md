@@ -50,6 +50,80 @@ Deployed on Vercel (auto-deploys on push to `main`):
 Page URLs are extensionless (`/about-us`) via Vercel `cleanUrls`; old `.html`
 URLs redirect. `vercel.json` also sets the security and immutable-cache headers.
 
+## Security
+
+Every security header is served from **`vercel.json`** — there is no `<meta>` CSP.
+A meta tag cannot carry `frame-ancestors`, does not cover non-HTML responses, and
+is only enforced once the parser reaches it. The header covers 404 responses too.
+
+### The CSP runs without `'unsafe-inline'`
+
+`script-src` is `'self'` plus a **SHA-256 hash per inline script**. That is the
+whole point of the policy: with `'unsafe-inline'`, any injected `<script>` runs
+and the CSP buys nothing.
+
+Only the pre-paint loader bootstrap is still inline (it has to set a class on
+`<html>` before first paint, and an external file would cost a blocking request
+on the critical path). Everything else lives in `src/` and is covered by `'self'`
+once Vite bundles it.
+
+**If you add or edit an inline `<script>`, the CSP must be updated or the browser
+will silently refuse to run it.**
+
+```bash
+npm run verify:csp           # check — recomputes hashes from the HTML
+npm run verify:csp -- --fix  # rewrite vercel.json with the correct hashes
+```
+
+This runs automatically as `prebuild`, so a drifted policy fails the Vercel build
+rather than shipping a page whose script is blocked. It also fails if
+`'unsafe-inline'` reappears in `script-src`, or if anyone re-adds a `<meta>` CSP.
+
+Adding a **new page-specific script**: put it in `src/`, load it with
+`<script type="module" src="/src/your-file.js">`, and Vite bundles it into
+`/assets/` where `'self'` already covers it. No hash needed.
+
+### Contact form
+
+The Web3Forms access key in `src/contact-form.js` is public by design, so the
+honeypot and `maxlength` caps only shape well-behaved traffic. Anything posting
+directly to `api.web3forms.com` skips them entirely. Abuse has to be held off at
+the provider:
+
+1. In **app.web3forms.com → Settings**, set **Allowed Domains** to the live host.
+   This rejects submissions whose `Origin` is not the site, which is what stops
+   the key being reused from someone else's page.
+2. Leave the provider's spam filtering on. Add hCaptcha or Turnstile there only
+   if spam actually becomes a problem — either one needs a third-party script,
+   which means reopening `script-src` and `frame-src` in the CSP.
+
+### Dependencies
+
+```bash
+npm audit                    # production surface (this is a static site — none)
+npm audit --include=dev      # full build-toolchain surface
+```
+
+One low-severity advisory is knowingly left open: **esbuild GHSA-g7r4-m6w7-qqqr**
+(CVSS 2.5), an arbitrary file read in the esbuild *dev server* **on Windows**.
+The fix is esbuild 0.28, outside the `^0.27.0` range Vite 7 pins, so taking it
+means either forcing an out-of-range transitive dependency or a Vite major bump.
+Neither is justified: esbuild never runs in production here, builds run on
+Vercel's Linux runners, and local development is on macOS. Revisit at the next
+Vite major. `postcss` is pinned via `overrides` to keep the patched floor for
+GHSA-r28c-9q8g-f849 (CVSS 7.5) even on a clean `npm install`.
+
+### Known and accepted
+
+- **`style-src` keeps `'unsafe-inline'`.** The pages use inline `style=`
+  attributes throughout and the motion code sets styles from JS. CSS-only
+  injection is a far weaker vector than script injection, and hashing style
+  attributes is not workable with dynamic values. Removing it means moving every
+  inline style into `site.css` first.
+- **`Access-Control-Allow-Origin: *`** is Vercel's platform default for static
+  assets. Nothing here is origin-protected, there are no cookies and no
+  credentialed endpoints, so there is nothing for a cross-origin read to reach.
+
 ## Domain handoff (when the client's DNS moves)
 
 The client owns **drawclever.com** (renews 2026-09-05); it currently points at
@@ -66,8 +140,24 @@ on the real domain:
      's|https://drawclever.vercel.app|https://drawclever.com|g'
    ```
 
-3. Swap the Web3Forms access key in `contact.html` for one on the client's own
-   account, so enquiries stop routing to the development inbox.
+3. Swap the Web3Forms access key in `src/contact-form.js` for one on the client's
+   own account, so enquiries stop routing to the development inbox — then set
+   **Allowed Domains** on that new account to `drawclever.com`.
+
+4. **Check `Strict-Transport-Security` before the DNS cutover.** `vercel.json`
+   sends `max-age=63072000; includeSubDomains`, which forces HTTPS on *every*
+   subdomain of `drawclever.com` for two years, and browsers cache that. The
+   client has held the domain since 2018 and their old host is still on
+   `185.151.30.142`, so confirm nothing (webmail, a legacy subdomain, an MX-
+   adjacent host) is still served over plain HTTP. If anything is, drop
+   `includeSubDomains` until it is fixed — it cannot be taken back early. The
+   header deliberately omits `preload`; do not add it without the client's
+   agreement, since removal from the preload list takes months.
+
+5. Point `public/.well-known/security.txt` at the new domain and confirm the
+   `Contact:` mailbox actually receives mail. It currently advertises
+   `hello@drawclever.com`, which is not yet a real inbox — a security report
+   sent there would bounce. Refresh `Expires:` while you are in the file.
 
 ## Brand palette (from the logo)
 
@@ -87,9 +177,10 @@ The signature gradient is `--grad-gold` in `index.html`.
 
 ```bash
 npm install
-npm run dev      # http://localhost:5174
-npm run build    # → dist/
-npm run preview  # serve the production build
+npm run dev         # http://localhost:5174
+npm run build       # → dist/  (runs verify:csp first)
+npm run preview     # serve the production build
+npm run verify:csp  # check the CSP still matches the inline scripts
 ```
 
 Built with **Vite**. `base: './'` emits relative asset URLs, so the build runs from
@@ -104,11 +195,16 @@ src/
   site.css                 # shared design system (chrome, primitives, lightbox)
   site.js                  # shared behaviour (nav, reveals, drawer, parallax, FAQ)
   lightbox.js              # project gallery lightbox + manifest
+  contact-form.js          # contact enquiry submission (contact.html only)
+  projects-filter.js       # portfolio category filter (projects.html only)
+scripts/
+  verify-csp.mjs           # CSP ↔ inline-script hash check, runs as prebuild
 public/
+  .well-known/security.txt # security contact
   Renders/<Project>/…       # project photography (+ depth_map_output.png)
   Logo Variants/…           # brand marks
   Fonts/…                   # self-hosted Inter + Playfair Display / Playfair Display SC
-vercel.json                # Vite framework preset for Vercel
+vercel.json                # Vite preset, cleanUrls, security headers + CSP, cache policy
 ```
 
 ### Add a project
