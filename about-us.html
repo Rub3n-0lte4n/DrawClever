@@ -14,6 +14,7 @@
   <link rel="preload" as="image" href="./Renders/Penthouse-Oradea/21.avif" type="image/avif" media="(min-width: 681px)" />
   <link rel="preload" as="image" href="./Renders/Penthouse-Oradea/21-1024.avif" type="image/avif" media="(max-width: 680px)" />
   <link rel="preload" as="font" href="./Fonts/Playfair_Display_SC/PlayfairDisplaySC-Regular.woff2" type="font/woff2" crossorigin />
+  <link rel="preload" as="font" href="./Fonts/Playfair_Display_SC/PlayfairDisplaySC-Italic.woff2" type="font/woff2" crossorigin />
   <link rel="preload" as="font" href="./Fonts/Inter/Inter.woff2" type="font/woff2" crossorigin />
   <link rel="canonical" href="https://drawclever.vercel.app/about-us" />
   <meta property="og:site_name" content="Draw Clever" />
@@ -38,6 +39,13 @@
     @font-face { font-family: 'Playfair Display SC'; src: url('./Fonts/Playfair_Display_SC/PlayfairDisplaySC-BoldItalic.woff2') format('woff2'); font-weight: 700; font-style: italic; font-display: swap; }
     @font-face { font-family: 'Playfair Display'; src: url('./Fonts/Playfair_Display/PlayfairDisplay.woff2') format('woff2-variations'), url('./Fonts/Playfair_Display/PlayfairDisplay.woff2') format('woff2'); font-weight: 100 900; font-style: normal; font-display: swap; }
     @font-face { font-family: 'Playfair Display'; src: url('./Fonts/Playfair_Display/PlayfairDisplay-Italic.woff2') format('woff2-variations'), url('./Fonts/Playfair_Display/PlayfairDisplay-Italic.woff2') format('woff2'); font-weight: 100 900; font-style: italic; font-display: swap; }
+    /* Metric-matched fallback. Playfair Display SC is ~21% wider and much
+       taller than Times, so the swap re-laid out the hero and moved it 110px
+       up. These overrides make the fallback occupy the real font's box, so the
+       swap becomes a repaint instead of a re-layout. Measured with canvas
+       TextMetrics against Times New Roman 400; see README. */
+    @font-face { font-family: 'Playfair SC Fallback'; src: local('Times New Roman'), local('Times'); size-adjust: 120.68%; ascent-override: 89.49%; descent-override: 20.72%; line-gap-override: 0%; }
+    @font-face { font-family: 'Playfair SC Fallback'; src: local('Times New Roman Italic'), local('Times Italic'), local('Times New Roman'); font-style: italic; size-adjust: 138.12%; ascent-override: 78.19%; descent-override: 18.10%; line-gap-override: 0%; }
   </style>
   <link rel="stylesheet" href="/src/site.css" />
   <script>(function(){var h=document.documentElement,first=true;try{first=!sessionStorage.getItem("dcv");sessionStorage.setItem("dcv","1");}catch(e){}h.classList.add(first?"dc-loading":"dc-ready");})();</script>

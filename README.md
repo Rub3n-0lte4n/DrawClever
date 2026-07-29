@@ -124,6 +124,42 @@ GHSA-r28c-9q8g-f849 (CVSS 7.5) even on a clean `npm install`.
   assets. Nothing here is origin-protected, there are no cookies and no
   credentialed endpoints, so there is nothing for a cross-origin read to reach.
 
+## Fonts and layout stability
+
+The display face is doing heavy lifting at 135px+, and Playfair Display SC is
+**~21% wider and much taller than Times**. With `font-display: swap` that made
+the swap a re-layout, not a repaint: the hero grew 365px → 609px and moved
+110px up. Measured CLS was **0.1273**, over Google's 0.1 threshold.
+
+Each page therefore declares a metric-matched fallback:
+
+```css
+@font-face { font-family: 'Playfair SC Fallback'; src: local('Times New Roman'), local('Times');
+             size-adjust: 120.68%; ascent-override: 89.49%; descent-override: 20.72%; line-gap-override: 0%; }
+```
+
+and every `'Playfair Display SC'` stack lists it before `serif`. There is a
+second face for `font-style: italic` with its own numbers — the hero's
+`<em class="gold">Luxury</em>` needs it, and fixing only the roman actually made
+CLS **worse** (0.1273 → 0.1709), because a wider roman fallback widens the gap
+the italic still has to close. Both faces matter. `PlayfairDisplaySC-Italic` is
+also preloaded on the two pages whose headlines use `.gold`.
+
+Result: **CLS 0.0000** on all five pages, measured over three runs on a
+throttled connection (150ms latency, 1.5Mbps) so the fonts land well after
+first paint.
+
+Recomputing the numbers, should the fonts ever change:
+
+```
+size-adjust      = realAvgWidth / fallbackAvgWidth
+ascent-override  = realAscent  / unitsPerEm / sizeAdjust
+descent-override = realDescent / unitsPerEm / sizeAdjust
+```
+
+measured with canvas `TextMetrics` (`width`, `fontBoundingBoxAscent`,
+`fontBoundingBoxDescent`) on both fonts at the same pixel size.
+
 ## Domain handoff (when the client's DNS moves)
 
 The client owns **drawclever.com** (renews 2026-09-05); it currently points at

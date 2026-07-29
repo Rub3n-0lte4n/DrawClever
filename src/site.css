@@ -124,10 +124,10 @@ a { color: inherit; }
 
 /* Headlines & headers use Playfair Display SC (small-caps); mixed-case content keeps
    tall capitals + small caps for lowercase — refined, not flat all-caps. */
-h1, h2, h3, h4 { font-family: 'Playfair Display SC', 'Times New Roman', serif; font-weight: 400; letter-spacing: .012em; text-transform: none; text-wrap: balance; }
+h1, h2, h3, h4 { font-family: 'Playfair Display SC', 'Playfair SC Fallback', 'Times New Roman', serif; font-weight: 400; letter-spacing: .012em; text-transform: none; text-wrap: balance; }
 p { text-wrap: pretty; }
 .display { letter-spacing: 0; }
-.gold { font-family: 'Playfair Display SC', serif; color: var(--champ); font-style: italic; }
+.gold { font-family: 'Playfair Display SC', 'Playfair SC Fallback', serif; color: var(--champ); font-style: italic; }
 .gold-solid { color: var(--gold); }
 .wrap { max-width: 1500px; margin: 0 auto; padding-left: var(--pad); padding-right: var(--pad); }
 
@@ -242,7 +242,7 @@ body.menu-open { overflow: hidden; }
 body.menu-open nav, body.menu-open nav.scrolled { background: transparent !important; backdrop-filter: none !important; -webkit-backdrop-filter: none !important; border-color: transparent !important; }
 .drawer-inner { padding: 120px 28px 44px; width: 100%; min-height: 100svh; display: flex; flex-direction: column; gap: 44px; }
 .drawer-links { list-style: none; display: flex; flex-direction: column; gap: 4px; }
-.drawer-links a { font-family: 'Playfair Display SC', serif; font-size: 44px; line-height: 1.04; letter-spacing: .01em; text-transform: none; color: var(--text); text-decoration: none; padding: 10px 0; display: block; opacity: 0; transform: translateY(16px); transition: color .3s, opacity .5s ease, transform .5s var(--ease); }
+.drawer-links a { font-family: 'Playfair Display SC', 'Playfair SC Fallback', serif; font-size: 44px; line-height: 1.04; letter-spacing: .01em; text-transform: none; color: var(--text); text-decoration: none; padding: 10px 0; display: block; opacity: 0; transform: translateY(16px); transition: color .3s, opacity .5s ease, transform .5s var(--ease); }
 body.menu-open .drawer-links a { opacity: 1; transform: none; }
 body.menu-open .drawer-links li:nth-child(1) a { transition-delay: .08s; } body.menu-open .drawer-links li:nth-child(2) a { transition-delay: .14s; } body.menu-open .drawer-links li:nth-child(3) a { transition-delay: .20s; } body.menu-open .drawer-links li:nth-child(4) a { transition-delay: .26s; }
 .drawer-links a:hover, .drawer-links a.active { color: var(--gold); }
@@ -312,7 +312,7 @@ body.menu-open .drawer-links li:nth-child(1) a { transition-delay: .08s; } body.
 @media (scripting: none) { .pc img, .fullbleed .fb-img { opacity: 1 !important; } }
 .pc-info { position: relative; flex: 0 0 auto; display: flex; flex-direction: column; align-items: flex-start; padding: 22px 78px 24px 28px; background: var(--ink-2); border-top: 1px solid var(--line); }
 .pc-cat { font-size: var(--t-micro); font-weight: 500; letter-spacing: .16em; text-transform: uppercase; color: var(--gold); margin-bottom: 9px; }
-.pc-name { font-family: 'Playfair Display SC', serif; font-size: clamp(19px, 1.8vw, 37px); line-height: 1.12; letter-spacing: .01em; text-transform: none; transition: color .35s; }
+.pc-name { font-family: 'Playfair Display SC', 'Playfair SC Fallback', serif; font-size: clamp(19px, 1.8vw, 37px); line-height: 1.12; letter-spacing: .01em; text-transform: none; transition: color .35s; }
 .pc:hover .pc-name, .pc:focus-visible .pc-name { color: var(--gold); }
 .pc-loc { font-size: var(--t-caption); color: var(--muted); margin-top: 6px; letter-spacing: .04em; }
 .pc-arrow { position: absolute; right: 26px; bottom: 26px; width: 40px; height: 40px; border-radius: 50%; border: 1px solid rgba(200,169,106,.4); display: flex; align-items: center; justify-content: center; transition: transform .4s var(--ease), background var(--dur-ui), border-color var(--dur-ui); }
@@ -325,7 +325,7 @@ body.menu-open .drawer-links li:nth-child(1) a { transition-delay: .08s; } body.
 .tenets:hover .tenet { opacity: .34; }
 .tenets .tenet:hover { opacity: 1; background: var(--ink-3); }
 .tenet-n { font-family: 'Inter', sans-serif; font-weight: 500; font-size: var(--t-ui); letter-spacing: .22em; color: var(--amber); margin-bottom: 38px; }
-.tenet-t { font-family: 'Playfair Display SC', serif; font-size: var(--t-d-lg); letter-spacing: .015em; text-transform: none; margin-bottom: 16px; }
+.tenet-t { font-family: 'Playfair Display SC', 'Playfair SC Fallback', serif; font-size: var(--t-d-lg); letter-spacing: .015em; text-transform: none; margin-bottom: 16px; }
 .tenet-b { font-size: var(--t-body-sm); font-weight: 400; line-height: 1.8; color: var(--muted); }
 
 /* ─── CTA BAND ─── */
@@ -357,7 +357,7 @@ footer { background: var(--ink); border-top: 1px solid var(--line); padding: 44p
 .field select { -webkit-appearance: none; appearance: none; cursor: pointer; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%237A6235' stroke-width='1.4'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 4px center; }
 .field select option { background: var(--ink-2); color: var(--text); }
 .form-note { font-size: var(--t-caption); color: var(--muted); line-height: 1.7; }
-.form-ok { font-family: 'Playfair Display SC', serif; font-size: var(--t-d-lg); letter-spacing: .015em; text-transform: none; color: var(--gold); }
+.form-ok { font-family: 'Playfair Display SC', 'Playfair SC Fallback', serif; font-size: var(--t-d-lg); letter-spacing: .015em; text-transform: none; color: var(--gold); }
 
 /* ─── ACCORDION (FAQ) ─── */
 .acc { border-top: 1px solid var(--line); }
@@ -395,7 +395,7 @@ html.lb-locked, html.lb-locked body { overflow: hidden; }
 .lb-caption { position: absolute; left: 28px; right: 28px; bottom: 22px; display: flex; justify-content: space-between; align-items: flex-end; pointer-events: none; }
 .lb-meta { display: flex; flex-direction: column; gap: 4px; }
 .lb-cat { font-size: var(--t-micro); letter-spacing: .2em; text-transform: uppercase; color: var(--gold); }
-.lb-title { font-family: 'Playfair Display SC', serif; font-size: var(--t-d-md); letter-spacing: .015em; text-transform: none; }
+.lb-title { font-family: 'Playfair Display SC', 'Playfair SC Fallback', serif; font-size: var(--t-d-md); letter-spacing: .015em; text-transform: none; }
 .lb-loc { font-size: var(--t-label); letter-spacing: .14em; text-transform: uppercase; color: var(--muted); }
 .lb-counter { font-size: var(--t-label); letter-spacing: .18em; text-transform: uppercase; color: var(--sub); }
 
