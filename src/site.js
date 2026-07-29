@@ -35,13 +35,26 @@ const SCROLL_DRIVEN = typeof CSS !== 'undefined' && CSS.supports && CSS.supports
 // NAV solidify + scroll progress (scaleX, so the bar never triggers layout)
 const nav = document.getElementById('nav');
 const progress = document.getElementById('progress');
+
+// Reading scrollHeight forces a synchronous layout. Doing it inside the scroll
+// handler cost ~1.5ms on every event — around a tenth of a 16.7ms frame, paid
+// continuously while scrolling — so the scrollable distance is cached and
+// remeasured only when the document can actually have changed size (the
+// accordion, the portfolio filter and the drawer all resize it).
+let scrollRange = 0;
+const measure = () => { scrollRange = document.documentElement.scrollHeight - window.innerHeight; };
+measure();
+window.addEventListener('resize', measure, { passive: true });
+if (typeof ResizeObserver !== 'undefined') new ResizeObserver(measure).observe(document.documentElement);
+
+let wasScrolled = null;
 function onScroll() {
   const y = window.scrollY;
-  if (nav) nav.classList.toggle('scrolled', y > 40);
-  if (progress) {
-    const h = document.documentElement.scrollHeight - window.innerHeight;
-    progress.style.transform = 'scaleX(' + (h > 0 ? y / h : 0) + ')';
-  }
+  const scrolled = y > 40;
+  // Only touch the class list on an actual change; toggling it every event
+  // invalidates style for the whole nav subtree for nothing.
+  if (nav && scrolled !== wasScrolled) { nav.classList.toggle('scrolled', scrolled); wasScrolled = scrolled; }
+  if (progress) progress.style.transform = 'scaleX(' + (scrollRange > 0 ? y / scrollRange : 0) + ')';
 }
 window.addEventListener('scroll', onScroll, { passive: true });
 onScroll();
