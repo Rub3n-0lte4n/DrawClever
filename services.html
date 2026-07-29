@@ -47,11 +47,11 @@
     .svc-list { border-top: 1px solid var(--line); margin-top: 8px; }
     .svc { text-decoration: none; color: inherit; display: grid; grid-template-columns: 96px 1fr auto; gap: 48px; align-items: center; padding: 46px 0; border-bottom: 1px solid var(--line); transition: padding-left .45s var(--ease); }
     .svc:hover { padding-left: 14px; }
-    .svc-n { font-family: 'Inter', sans-serif; font-weight: 500; font-size: var(--fs-12); letter-spacing: .2em; color: var(--gold-dim); font-feature-settings: 'tnum' 1; transition: color .35s; }
+    .svc-n { font-family: 'Inter', sans-serif; font-weight: 500; font-size: var(--t-ui); letter-spacing: .16em; color: var(--amber); font-feature-settings: 'tnum' 1; transition: color .35s; }
     .svc:hover .svc-n { color: var(--gold); }
     .svc-main h2 { font-family: 'Playfair Display SC', serif; font-style: normal; font-size: clamp(26px, 19.43px + 1.429vw, 56px); line-height: 1.04; text-transform: none; letter-spacing: .01em; margin-bottom: 14px; transition: color .35s; }
     .svc:hover .svc-main h2 { color: var(--gold); }
-    .svc-desc { font-size: var(--fs-13-5); font-weight: 300; line-height: 1.85; color: var(--muted); max-width: 62ch; }
+    .svc-desc { font-size: var(--t-body); font-weight: 400; line-height: 1.85; color: var(--muted); max-width: 62ch; }
     .svc-go { width: 52px; height: 52px; border-radius: 50%; border: 1px solid var(--line-2); display: flex; align-items: center; justify-content: center; transition: border-color .35s, background .35s, transform .4s var(--ease); flex-shrink: 0; }
     .svc-go svg { width: 16px; height: 16px; stroke: var(--sub); fill: none; stroke-width: 1.4; transition: stroke .35s; }
     .svc:hover .svc-go { border-color: var(--gold-dim); background: rgba(200,169,106,.1); transform: rotate(0); }
@@ -66,7 +66,7 @@
   </style>
 </head>
 <body>
-<a class="skip-link" href="#main">Skip to content</a>
+<a class="skip-link btn btn-solid" href="#main">Skip to content</a>
 <div id="dc-loader" aria-hidden="true"><img class="dc-mark" src="./Logo Variants/Logo Mark.png" alt="" /><span class="dc-bar"></span></div>
 
 <div class="grain" aria-hidden="true"></div>
@@ -78,7 +78,7 @@
     <li><a href="/projects">Portfolio</a></li>
     <li><a href="/about-us">About</a></li>
     <li><a href="/services" class="active">Services</a></li>
-    <li><a href="/contact" class="nav-cta">Contact</a></li>
+    <li><a href="/contact" class="btn btn-quiet">Contact</a></li>
   </ul>
   <button class="nav-toggle" aria-label="Open menu" aria-controls="drawer" aria-expanded="false"><span></span><span></span><span></span></button>
 </nav>
@@ -160,7 +160,7 @@
 <section class="cta">
   <span class="eyebrow center reveal">Next steps</span>
   <h2 class="reveal d1">Shall we<br />begin?</h2>
-  <a href="/contact" class="btn btn-solid reveal d2" style="font-size: var(--fs-11);padding:17px 46px;">Start a Project</a>
+  <a href="/contact" class="btn btn-solid btn-lg reveal d2">Start a Project</a>
 </section>
 
 <footer>
