@@ -81,13 +81,18 @@ if (parallaxEls.length) {
   run();
 }
 
-// SMOOTH in-page anchors (cross-page links navigate normally)
+// SMOOTH in-page anchors (cross-page links navigate normally). The `behavior`
+// option overrides the stylesheet's scroll-behavior, so reduced motion has to
+// be honoured here too — the CSS opt-in alone would not stop these. Read at
+// click time so changing the OS setting takes effect without a reload.
+const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)');
 document.querySelectorAll('a[href^="#"]').forEach((a) => {
   a.addEventListener('click', (e) => {
     const id = a.getAttribute('href');
-    if (id === '#' || id === '#top') { e.preventDefault(); window.scrollTo({ top: 0, behavior: 'smooth' }); return; }
+    const behavior = reduceMotion.matches ? 'auto' : 'smooth';
+    if (id === '#' || id === '#top') { e.preventDefault(); window.scrollTo({ top: 0, behavior }); return; }
     const t = document.querySelector(id);
-    if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth' }); }
+    if (t) { e.preventDefault(); t.scrollIntoView({ behavior }); }
   });
 });
 
