@@ -66,7 +66,12 @@
   --pad: clamp(64px, 4.444vw, 112px);
 }
 
-html { scroll-behavior: smooth; }
+/* Opt in rather than override later: the reduce block below cannot switch this
+   off with a duration, and a smooth page-length scroll is exactly the motion
+   that triggers vestibular symptoms (WCAG 2.3.3). */
+@media (prefers-reduced-motion: no-preference) {
+  html { scroll-behavior: smooth; }
+}
 
 /* ─── SKIP LINK — first focusable element; visible only on keyboard focus ─── */
 .skip-link { position: fixed; top: 12px; left: 12px; z-index: 9600; transform: translateY(-180%); }
@@ -225,8 +230,14 @@ body.menu-open .nav-toggle span:nth-child(2) { opacity: 0; }
 body.menu-open .nav-toggle span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
 
 /* ─── DRAWER ─── */
-.drawer { position: fixed; inset: 0; z-index: 150; background: rgba(10,9,8,.97); -webkit-backdrop-filter: blur(26px); backdrop-filter: blur(26px); opacity: 0; pointer-events: none; transition: opacity .45s ease; display: flex; align-items: flex-end; overflow-y: auto; }
-body.menu-open .drawer { opacity: 1; pointer-events: auto; }
+/* `visibility` — not just opacity — is what takes the closed drawer's eight
+   links out of the tab order. Without it they stay focusable behind the page,
+   and the aria-hidden the drawer carries while closed then sits on focusable
+   content, which is an ARIA violation on top of the phantom tab stops.
+   Transitioning visibility rather than delaying it keeps the fade-out visible:
+   while either end of the transition is `visible`, so is every step of it. */
+.drawer { position: fixed; inset: 0; z-index: 150; background: rgba(10,9,8,.97); -webkit-backdrop-filter: blur(26px); backdrop-filter: blur(26px); opacity: 0; visibility: hidden; pointer-events: none; transition: opacity .45s ease, visibility .45s ease; display: flex; align-items: flex-end; overflow-y: auto; }
+body.menu-open .drawer { opacity: 1; visibility: visible; pointer-events: auto; }
 body.menu-open { overflow: hidden; }
 body.menu-open nav, body.menu-open nav.scrolled { background: transparent !important; backdrop-filter: none !important; -webkit-backdrop-filter: none !important; border-color: transparent !important; }
 .drawer-inner { padding: 120px 28px 44px; width: 100%; min-height: 100svh; display: flex; flex-direction: column; gap: 44px; }
