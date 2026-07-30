@@ -2,7 +2,10 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- viewport-fit=cover lets the page paint into the notch and the home-indicator
+       area; every edge that matters then pays the inset back with env() in
+       src/site.css (gutters, footer, drawer, lightbox rail). -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <meta name="referrer" content="strict-origin-when-cross-origin" />
   <title>Portfolio · Draw Clever</title>
   <meta name="description" content="The Draw Clever portfolio: luxury residences, interiors and commercial spaces across Romania, Spain and beyond. Every space, a story." />

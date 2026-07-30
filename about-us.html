@@ -2,7 +2,10 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- viewport-fit=cover lets the page paint into the notch and the home-indicator
+       area; every edge that matters then pays the inset back with env() in
+       src/site.css (gutters, footer, drawer, lightbox rail). -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <meta name="referrer" content="strict-origin-when-cross-origin" />
   <title>About · Draw Clever</title>
   <meta name="description" content="Draw Clever is a luxury architecture and interior design studio with ateliers in Romania and Spain. Architecture that elevates how you live." />
@@ -60,7 +63,7 @@
     #ateliers { padding: 176px var(--pad); }
     .ateliers-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 56px; }
     .atelier { background: var(--ink-2); border: 1px solid var(--line); padding: 52px 48px; transition: border-color .4s, background .4s; }
-    .atelier:hover { border-color: var(--gold-dim); background: var(--ink-3); }
+    @media (hover: hover) and (pointer: fine) { .atelier:hover { border-color: var(--gold-dim); background: var(--ink-3); } }
     .atelier .place { font-family: 'Playfair Display SC', serif; font-size: var(--t-d-xl); text-transform: none; letter-spacing: .01em; margin-bottom: 18px; }
     .atelier .place .gold { font-size: .74em; }
     @media (max-width: 860px) { .story-grid { grid-template-columns: 1fr; gap: 36px; } .ateliers-grid { grid-template-columns: 1fr; } }
