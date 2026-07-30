@@ -2,7 +2,10 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- viewport-fit=cover lets the page paint into the notch and the home-indicator
+       area; every edge that matters then pays the inset back with env() in
+       src/site.css (gutters, footer, drawer, lightbox rail). -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <meta name="referrer" content="strict-origin-when-cross-origin" />
   <title>Draw Clever · Luxury Architecture & Interior Design</title>
   <meta name="description" content="Draw Clever is a luxury architecture and interior design studio with ateliers in Romania and Spain. We redefine the luxury life, from the first sketch to the final handover." />
@@ -89,9 +92,18 @@
       background-image: -webkit-image-set(url('./Renders/Casa-Marbella/04-scaled.avif') type('image/avif'), url('./Renders/Casa-Marbella/04-scaled.webp') type('image/webp'), url('./Renders/Casa-Marbella/04-scaled.jpg') type('image/jpeg'));
       background-image: image-set(url('./Renders/Casa-Marbella/04-scaled.avif') type('image/avif'), url('./Renders/Casa-Marbella/04-scaled.webp') type('image/webp'), url('./Renders/Casa-Marbella/04-scaled.jpg') type('image/jpeg'));
       filter: brightness(.62) saturate(.88) contrast(1.04); transform: scale(1.08); animation: heroZoom 18s var(--ease) forwards; }
-    .hero-veil { position: absolute; inset: 0; z-index: 2; pointer-events: none; background: linear-gradient(to bottom, rgba(10,9,8,.5) 0%, transparent 28%, transparent 48%, rgba(10,9,8,.96) 100%), radial-gradient(120% 80% at 50% 40%, transparent 40%, rgba(10,9,8,.5) 100%); }
+    /* The veil is what makes the copy readable over the render, and it was tuned
+       for one composition: the desktop hero, where the text sits low in a tall
+       frame. Measured against the real composite (screenshot → canvas → worst
+       row, not an average) the description came out at 2.7:1 on a 320px phone
+       and 3.3:1 in landscape, against a 4.5:1 floor, because those layouts put
+       the copy over the lit building instead of below it.
+       Adding a mid stop rather than a media query per geometry: the ramp now
+       carries the whole lower half wherever the text lands, which also means a
+       future hero image cannot quietly break it. */
+    .hero-veil { position: absolute; inset: 0; z-index: 2; pointer-events: none; background: linear-gradient(to bottom, rgba(10,9,8,.5) 0%, transparent 26%, rgba(10,9,8,.26) 46%, rgba(10,9,8,.74) 74%, rgba(10,9,8,.97) 100%), radial-gradient(120% 80% at 50% 40%, transparent 40%, rgba(10,9,8,.5) 100%); }
     .hero-body { position: relative; z-index: 3; padding: 0 var(--pad) 76px; display: flex; justify-content: space-between; align-items: flex-end; gap: 48px; }
-    .hero-badge { display: inline-flex; align-items: center; gap: 9px; border: 1px solid rgba(243,238,230,.16); border-radius: 100px; padding: 7px 15px 7px 11px; font-size: var(--t-label); letter-spacing: .12em; text-transform: uppercase; color: rgba(243,238,230,.7); margin-bottom: 28px; backdrop-filter: blur(8px); width: fit-content; opacity: 0; animation: fadeUp .8s ease .3s forwards; }
+    .hero-badge { display: inline-flex; align-items: center; gap: 9px; border: 1px solid rgba(243,238,230,.16); border-radius: 100px; padding: 7px 15px 7px 11px; font-size: var(--t-label); letter-spacing: .12em; text-transform: uppercase; color: rgba(243,238,230,.86); margin-bottom: 28px; backdrop-filter: blur(8px); width: fit-content; opacity: 0; animation: fadeUp .8s ease .3s forwards; }
     .badge-dot { width: 7px; height: 7px; border-radius: 50%; background: #6FCF8E; }
     .hero-title { font-size: clamp(58px, 9.4vw, 215px); line-height: .9; letter-spacing: 0; }
     .hero-title .row { display: block; overflow: hidden; }
@@ -111,7 +123,10 @@
     /* MARQUEE */
     .marquee { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); background: var(--ink-2); padding: 22px 0; overflow: hidden; }
     .marquee-track { display: flex; width: max-content; animation: marquee 38s linear infinite; }
-    .marquee:hover .marquee-track { animation-play-state: paused; }
+    /* Pause on approach is a pointer courtesy. On touch there is no way to stop
+       hovering, so a single tap used to pause the marquee for the rest of the
+       visit. */
+    @media (hover: hover) and (pointer: fine) { .marquee:hover .marquee-track { animation-play-state: paused; } }
     .marquee-item { display: flex; align-items: center; gap: 34px; padding: 0 34px; font-family: 'Playfair Display', serif; font-variation-settings: 'opsz' 40, 'wght' 380; font-style: italic; font-size: var(--t-d-md); letter-spacing: -.01em; color: var(--sub); white-space: nowrap; }
     .marquee-item .star { color: var(--gold-dim); font-style: normal; font-family: 'Inter', sans-serif; font-weight: 300; font-size: .72em; }
     @keyframes marquee { to { transform: translateX(-50%); } }
@@ -149,10 +164,10 @@
     #disciplines { padding: 188px var(--pad); }
     .disc-list { border-top: 1px solid var(--line); display: grid; grid-template-columns: 1fr 1fr; column-gap: 90px; }
     .disc { padding: 38px 0 34px; border-bottom: 1px solid var(--line); display: grid; grid-template-columns: 44px 1fr; gap: 24px; align-items: baseline; transition: padding-left .45s var(--ease); }
-    .disc:hover { padding-left: 14px; }
+    @media (hover: hover) and (pointer: fine) { .disc:hover { padding-left: 14px; } }
     .disc-n { font-family: 'Inter', sans-serif; font-weight: 500; font-size: var(--t-ui); letter-spacing: .12em; color: var(--amber); font-feature-settings: 'tnum' 1; }
     .disc-name { font-family: 'Playfair Display SC', serif; font-style: normal; font-size: clamp(25px, 2.5vw, 52px); line-height: 1.06; text-transform: none; letter-spacing: .01em; margin-bottom: 14px; transition: color .35s; }
-    .disc:hover .disc-name { color: var(--gold); }
+    @media (hover: hover) and (pointer: fine) { .disc:hover .disc-name { color: var(--gold); } }
     .disc-body { font-size: var(--t-body); font-weight: 400; line-height: 1.85; color: var(--muted); max-width: 46ch; }
 
     /* PHILOSOPHY */
@@ -178,7 +193,7 @@
       /* HERO: let it grow on short screens (no clipping), reserve nav clearance
          via padding-top, and shrink the oversized title so it can't push the
          badge up under the fixed nav. */
-      nav { padding: 15px 20px; }
+      nav { --nav-pt: 15px; }
       #hero { height: auto; min-height: 100svh; }
       .hero-title { font-size: clamp(38px, 11vw, 58px); }
       .hero-badge { margin-bottom: 18px; }
@@ -192,6 +207,52 @@
         background-image: -webkit-image-set(url('./Renders/Casa-Marbella/04-scaled-1024.avif') type('image/avif'), url('./Renders/Casa-Marbella/04-scaled-1024.webp') type('image/webp')) !important;
         background-image: image-set(url('./Renders/Casa-Marbella/04-scaled-1024.avif') type('image/avif'), url('./Renders/Casa-Marbella/04-scaled-1024.webp') type('image/webp')) !important;
       }
+    }
+
+    /* SHORT PORTRAIT SCREEN — an iPhone SE is 568px tall, and the hero content
+       came to 628px there, putting the CTA and the portfolio link just under the
+       fold on the one page whose whole job is to send you onward. The type keeps
+       its scale; the clearance and the gaps give the 60px back. */
+    @media (max-height: 640px) and (orientation: portrait) {
+      /* With the whole hero packed into 568px the copy sits higher in the frame,
+         right across the lit building, and the shared ramp above still left the
+         description at 3.96:1. Closing it earlier is the only geometry-specific
+         override the veil needs. */
+      .hero-veil { background: linear-gradient(to bottom, rgba(10,9,8,.5) 0%, transparent 22%, rgba(10,9,8,.34) 42%, rgba(10,9,8,.78) 70%, rgba(10,9,8,.97) 100%), radial-gradient(120% 80% at 50% 40%, transparent 40%, rgba(10,9,8,.5) 100%); }
+      .hero-body { padding-top: 94px; padding-bottom: 34px; gap: 16px; }
+      .hero-title { font-size: clamp(36px, 10.4vw, 52px); }
+      .hero-badge { margin-bottom: 12px; }
+      .hero-right { gap: 18px; }
+    }
+
+    /* HERO IN LANDSCAPE — a phone turned sideways.
+       844px wide clears every max-width breakpoint above, so a 390px-tall screen
+       was served the desktop hero: measured 660px tall in a 390px viewport, with
+       "WE REDEFINE" the only thing on screen and the CTA about 270px below the
+       fold. Height is the constraint, so height is what this asks about.
+       The display type still leads — it just leads at a scale the screen has. */
+    @media (max-height: 560px) and (orientation: landscape) {
+      #hero { height: auto; min-height: 100svh; }
+      .hero-body { padding: 68px var(--pad) 26px; gap: 26px; align-items: flex-end; }
+      .hero-title { font-size: clamp(30px, 5.6vw, 54px); }
+      /* The badge is the first thing to go: it is a status note, and a short
+         screen should spend its pixels on the headline and the way out of it. */
+      .hero-badge { display: none; }
+      .hero-desc { line-height: 1.62; max-width: clamp(240px, 30vw, 340px); }
+      .hero-right { gap: 16px; padding-bottom: 0; }
+      .hero-scroll { display: none; }
+      .marquee { padding: 14px 0; } .marquee-item { font-size: var(--t-body-lg); gap: 24px; padding: 0 24px; }
+      #manifesto, #works, #studio, #disciplines, #philosophy { padding-top: 68px; padding-bottom: 68px; }
+      .manifesto-lede { font-size: clamp(24px, 3.6vw, 38px); }
+      .manifesto-foot { margin-top: 28px; padding-top: 22px; }
+      .disc { padding: 26px 0 24px; }
+      /* Landscape has width to spend, so the work goes back to two-up instead of
+         inheriting the phone's single column, where a card capped at 536px was
+         taller than the whole 390px screen. */
+      .works-main, .works-row.two { grid-template-columns: 1fr 1fr; }
+      .pc.feature, .pc.half { grid-column: span 1; grid-row: auto; }
+      .pc.feature, .pc.half, .works-row.two .pc { min-height: 0; max-height: none; aspect-ratio: 1 / 1; }
+      #studio { gap: 40px; }
     }
   </style>
 </head>

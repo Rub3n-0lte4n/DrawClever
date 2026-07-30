@@ -2,7 +2,10 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- viewport-fit=cover lets the page paint into the notch and the home-indicator
+       area; every edge that matters then pays the inset back with env() in
+       src/site.css (gutters, footer, drawer, lightbox rail). -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <meta name="referrer" content="strict-origin-when-cross-origin" />
   <title>Not Found · Draw Clever</title>
   <meta name="robots" content="noindex" />
@@ -41,19 +44,37 @@
     @keyframes vt-out { to { opacity: 0; } }
     @keyframes vt-in { from { opacity: 0; } }
     @media (prefers-reduced-motion: reduce) { ::view-transition-old(root), ::view-transition-new(root) { animation: none !important; } }
-    body { background: var(--ink); color: var(--text); font-family: 'Inter', sans-serif; font-weight: 400; min-height: 100svh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 40px; -webkit-font-smoothing: antialiased; overflow: hidden; }
+    html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; -webkit-tap-highlight-color: transparent; }
+    /* overflow was `hidden`, which assumed the content always fits. On a phone in
+       landscape it does not: a 219px numeral plus the mark, heading, paragraph,
+       button and links overran a 390px screen, and `hidden` then clipped the way
+       out of the page with no way to scroll to it. Only the x axis is locked now,
+       and the box centres by min-height rather than by clipping. */
+    body { background: var(--ink); color: var(--text); font-family: 'Inter', sans-serif; font-weight: 400; min-height: 100svh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: max(40px, env(safe-area-inset-top, 0px)) max(40px, env(safe-area-inset-right, 0px)) max(40px, env(safe-area-inset-bottom, 0px)) max(40px, env(safe-area-inset-left, 0px)); -webkit-font-smoothing: antialiased; overflow-x: hidden; }
     .mark { height: 46px; margin-bottom: 56px; mix-blend-mode: screen; opacity: .9; }
     .code { font-family: 'Playfair Display SC', 'Playfair SC Fallback', serif; font-size: clamp(110px, 26vw, 320px); line-height: .82; letter-spacing: -.01em; color: var(--champ); }
     h1 { font-family: 'Playfair Display SC', 'Playfair SC Fallback', serif; font-weight: 400; text-transform: none; font-size: clamp(24px, 3.2vw, 38px); letter-spacing: .012em; margin: 28px 0 16px; }
     h1 .i { font-style: italic; color: var(--champ); }
     p { font-size: var(--t-body); color: var(--sub); line-height: 1.8; max-width: 44ch; margin-bottom: 40px; }
     .btn { font-size: var(--t-ui); font-weight: 500; letter-spacing: .14em; text-transform: uppercase; text-decoration: none; padding: 15px 34px; min-height: 44px; border-radius: 100px; background: var(--grad-gold); color: #15110A; display: inline-flex; align-items: center; justify-content: center; cursor: pointer; transition: transform var(--dur-ui) var(--ease), box-shadow var(--dur-ui); }
-    .btn:hover { transform: translateY(-2px); box-shadow: 0 14px 40px rgba(200,169,106,.28); }
+    /* Hover is a pointer capability — see the note in src/site.css. Left ungated,
+       a tap on a touch screen left this button lifted and glowing for good. */
+    @media (hover: hover) and (pointer: fine) { .btn:hover { transform: translateY(-2px); box-shadow: 0 14px 40px rgba(200,169,106,.28); } }
     .btn:active { transform: translateY(0) scale(.985); transition-duration: var(--dur-press); }
     .btn:focus-visible, .links a:focus-visible { outline: 2px solid var(--text); outline-offset: 3px; border-radius: 100px; }
     .links { margin-top: 30px; display: flex; gap: 22px; flex-wrap: wrap; justify-content: center; }
     .links a { font-size: var(--t-ui); letter-spacing: .12em; text-transform: uppercase; color: var(--muted); text-decoration: none; min-height: 44px; display: inline-flex; align-items: center; transition: color var(--dur-ui); }
-    .links a:hover { color: #C8A96A; }
+    @media (hover: hover) and (pointer: fine) { .links a:hover { color: #C8A96A; } }
+    .links a:active { color: #C8A96A; }
+    /* A phone in landscape: 844px wide clears every width breakpoint, so a 390px
+       screen was handed a 219px numeral and everything below it fell off. */
+    @media (max-height: 560px) and (orientation: landscape) {
+      .mark { height: 32px; margin-bottom: 20px; }
+      .code { font-size: clamp(64px, 13vw, 120px); }
+      h1 { margin: 12px 0 8px; }
+      p { margin-bottom: 20px; line-height: 1.6; }
+      .links { margin-top: 14px; }
+    }
     #dc-loader { position: fixed; inset: 0; z-index: 9500; background: var(--ink); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 30px; opacity: 0; visibility: hidden; pointer-events: none; transition: opacity .7s var(--ease), visibility .7s; }
     html.dc-loading { overflow: hidden; }
     html.dc-loading #dc-loader { opacity: 1; visibility: visible; pointer-events: auto; }

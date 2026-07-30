@@ -2,7 +2,10 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- viewport-fit=cover lets the page paint into the notch and the home-indicator
+       area; every edge that matters then pays the inset back with env() in
+       src/site.css (gutters, footer, drawer, lightbox rail). -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <meta name="referrer" content="strict-origin-when-cross-origin" />
   <title>Services · Draw Clever</title>
   <meta name="description" content="Architecture, interior design, 3D visualisation, landscaping and project management: a complete studio, authored by one team from concept to handover." />
@@ -51,22 +54,40 @@
   <style>
     #services { padding: 176px var(--pad); }
     .svc-list { border-top: 1px solid var(--line); margin-top: 8px; }
-    .svc { text-decoration: none; color: inherit; display: grid; grid-template-columns: 96px 1fr auto; gap: 48px; align-items: center; padding: 46px 0; border-bottom: 1px solid var(--line); transition: padding-left .45s var(--ease); }
-    .svc:hover { padding-left: 14px; }
+    .svc { text-decoration: none; color: inherit; display: grid; grid-template-columns: 96px 1fr auto; gap: 48px; align-items: center; padding: 46px 0; border-bottom: 1px solid var(--line); transition: padding-left .45s var(--ease), background .3s; }
     .svc-n { font-family: 'Inter', sans-serif; font-weight: 500; font-size: var(--t-ui); letter-spacing: .16em; color: var(--amber); font-feature-settings: 'tnum' 1; transition: color .35s; }
-    .svc:hover .svc-n { color: var(--gold); }
     .svc-main h2 { font-family: 'Playfair Display SC', serif; font-style: normal; font-size: clamp(26px, 19.43px + 1.429vw, 56px); line-height: 1.04; text-transform: none; letter-spacing: .01em; margin-bottom: 14px; transition: color .35s; }
-    .svc:hover .svc-main h2 { color: var(--gold); }
     .svc-desc { font-size: var(--t-body); font-weight: 400; line-height: 1.85; color: var(--muted); max-width: 62ch; }
     .svc-go { width: 52px; height: 52px; border-radius: 50%; border: 1px solid var(--line-2); display: flex; align-items: center; justify-content: center; transition: border-color .35s, background .35s, transform .4s var(--ease); flex-shrink: 0; }
     .svc-go svg { width: 16px; height: 16px; stroke: var(--sub); fill: none; stroke-width: 1.4; transition: stroke .35s; }
-    .svc:hover .svc-go { border-color: var(--gold-dim); background: rgba(200,169,106,.1); transform: rotate(0); }
-    .svc:hover .svc-go svg { stroke: var(--gold); }
+    /* Hover is a pointer capability, declared as one — see the note in
+       src/site.css. On touch these all used to stick after a tap. */
+    @media (hover: hover) and (pointer: fine) {
+      .svc:hover { padding-left: 14px; }
+      .svc:hover .svc-n { color: var(--gold); }
+      .svc:hover .svc-main h2 { color: var(--gold); }
+      .svc:hover .svc-go { border-color: var(--gold-dim); background: rgba(200,169,106,.1); transform: rotate(0); }
+      .svc:hover .svc-go svg { stroke: var(--gold); }
+    }
+    /* A press tints the whole row rather than nudging it: the row is the target,
+       and padding-left is a layout property that has no business animating under
+       a finger. */
+    .svc:active { background: var(--tap-tint); transition-duration: var(--dur-press); }
+    .svc:active .svc-main h2, .svc:active .svc-n { color: var(--gold); }
+    .svc:active .svc-go { border-color: var(--gold); background: rgba(200,169,106,.18); }
+    .svc:active .svc-go svg { stroke: var(--gold); }
     #process { padding: 176px var(--pad); background: var(--ink-2); border-top: 1px solid var(--line); }
     @media (max-width: 780px) {
       #services, #process { padding: 80px 20px; }
-      .svc { grid-template-columns: 64px 1fr; gap: 20px 22px; align-items: start; padding: 34px 0; }
-      .svc-go { display: none; }
+      /* The arrow used to be display:none here, which took away the one standing
+         signal that these rows are links — and on touch there is no hover left to
+         replace it. So it stays, smaller, sharing the top line with the numeral:
+         `01 ·············· ↗`, then the heading and the description beneath. */
+      .svc { grid-template-columns: 1fr auto; gap: 16px 20px; align-items: center; padding: 30px 0; }
+      .svc-n { grid-area: 1 / 1 / 2 / 2; }
+      .svc-go { grid-area: 1 / 2 / 2 / 3; width: 40px; height: 40px; border-color: rgba(200,169,106,.5); }
+      .svc-go svg { width: 14px; height: 14px; stroke: var(--gold); }
+      .svc-main { grid-area: 2 / 1 / 3 / 3; }
       .banner-bg { background-image: -webkit-image-set(url('./Renders/Apartment-in-Oradea/01-6-scaled-1024.avif') type('image/avif'), url('./Renders/Apartment-in-Oradea/01-6-scaled-1024.webp') type('image/webp')) !important; background-image: image-set(url('./Renders/Apartment-in-Oradea/01-6-scaled-1024.avif') type('image/avif'), url('./Renders/Apartment-in-Oradea/01-6-scaled-1024.webp') type('image/webp')) !important; }
     }
   </style>

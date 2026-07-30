@@ -69,35 +69,145 @@ function buildLightbox() {
   const lb = document.createElement('div');
   lb.id = 'lb'; lb.className = 'lb'; lb.setAttribute('hidden', '');
   lb.setAttribute('aria-modal', 'true'); lb.setAttribute('role', 'dialog'); lb.setAttribute('aria-label', 'Project gallery');
+  // The stage comes before the controls so the controls paint above it: a zoomed
+  // image is bigger than its frame, and in the old order it buried the arrows.
+  // prev / counter / next share a .lb-rail wrapper. On a desktop the rail is
+  // `display: contents`, so it generates no box and those three keep resolving
+  // their absolute positions against .lb exactly as before; on a phone the rail
+  // becomes the flex row that puts them on one line under the caption.
   lb.innerHTML = `
+    <figure class="lb-stage"><img class="lb-img" alt="" decoding="async" /></figure>
     <button class="lb-close" type="button" aria-label="Close gallery">
       <svg viewBox="0 0 24 24" aria-hidden="true"><line x1="6" y1="6" x2="18" y2="18"/><line x1="18" y1="6" x2="6" y2="18"/></svg>
     </button>
-    <button class="lb-prev" type="button" aria-label="Previous photo">
-      <svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="15 6 9 12 15 18"/></svg>
-    </button>
-    <button class="lb-next" type="button" aria-label="Next photo">
-      <svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
-    </button>
-    <figure class="lb-stage"><img class="lb-img" alt="" decoding="async" /></figure>
     <div class="lb-caption">
       <div class="lb-meta"><span class="lb-cat"></span><span class="lb-title"></span><span class="lb-loc"></span></div>
+    </div>
+    <div class="lb-rail">
+      <button class="lb-prev" type="button" aria-label="Previous photo">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="15 6 9 12 15 18"/></svg>
+      </button>
       <span class="lb-counter"></span>
-    </div>`;
+      <button class="lb-next" type="button" aria-label="Next photo">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
+      </button>
+    </div>
+    <span class="lb-zoom-hint" aria-hidden="true">Pinch or double-tap to zoom</span>`;
   document.body.appendChild(lb);
-
-  // Swipe navigation (touch/pen): a horizontal drag ≥ 45px steps the gallery.
-  const stage = lb.querySelector('.lb-stage');
-  let sx = null, sy = null;
-  stage.addEventListener('pointerdown', (e) => { if (e.pointerType !== 'mouse') { sx = e.clientX; sy = e.clientY; } });
-  stage.addEventListener('pointerup', (e) => {
-    if (sx === null) return;
-    const dx = e.clientX - sx, dy = e.clientY - sy;
-    sx = sy = null;
-    if (Math.abs(dx) >= 45 && Math.abs(dx) > Math.abs(dy)) step(dx < 0 ? +1 : -1);
-  });
-  stage.addEventListener('pointercancel', () => { sx = sy = null; });
+  bindGestures(lb.querySelector('.lb-stage'));
   return lb;
+}
+
+/* ────────────── ZOOM + SWIPE (touch) ──────────────
+ * A landscape render on a portrait phone is width-bound: it can never be more
+ * than about a fifth of the screen, so looking closer has to be possible.
+ * Double-tap zooms toward the tapped point, pinch scales continuously, and a
+ * one-finger drag pans while zoomed. Swipe-to-step is suppressed the moment the
+ * image is zoomed, or the two gestures would fight over the same drag.
+ */
+const MAX_SCALE = 2.6;
+let zoom = { s: 1, x: 0, y: 0 };
+const pointers = new Map();
+let pinch = null;          // { d, s } starting distance + scale
+let pan = null;            // { x, y, ox, oy }
+let lastTap = 0;
+
+function applyZoom(stage) {
+  const img = stage.querySelector('.lb-img');
+  const on = zoom.s > 1.01;
+  if (on) {
+    // Clamp the pan so the image can never be dragged off its own frame. Measure
+    // with offsetWidth, not getBoundingClientRect: the rect already has the
+    // current transform baked in, so it would be stale against the new scale.
+    const maxX = Math.max(0, img.offsetWidth * (zoom.s - 1) / 2);
+    const maxY = Math.max(0, img.offsetHeight * (zoom.s - 1) / 2);
+    zoom.x = Math.max(-maxX, Math.min(maxX, zoom.x));
+    zoom.y = Math.max(-maxY, Math.min(maxY, zoom.y));
+  } else {
+    zoom.x = zoom.y = 0;
+  }
+  stage.classList.toggle('is-zoomed', on);
+  img.style.transform = on ? `translate(${zoom.x}px, ${zoom.y}px) scale(${zoom.s})` : '';
+}
+
+function resetZoom() {
+  const stage = document.querySelector('.lb-stage');
+  zoom = { s: 1, x: 0, y: 0 };
+  pinch = pan = null;
+  pointers.clear();
+  if (stage) { stage.classList.remove('is-zoomed', 'is-pinching'); const im = stage.querySelector('.lb-img'); if (im) im.style.transform = ''; }
+}
+
+function bindGestures(stage) {
+  const dist = () => {
+    const [a, b] = [...pointers.values()];
+    return Math.hypot(a.x - b.x, a.y - b.y);
+  };
+
+  stage.addEventListener('pointerdown', (e) => {
+    if (e.pointerType === 'mouse') return;
+    pointers.set(e.pointerId, { x: e.clientX, y: e.clientY, t: performance.now() });
+    if (pointers.size === 2) {
+      pinch = { d: dist(), s: zoom.s };
+      pan = null;
+      stage.classList.add('is-pinching');
+    } else if (pointers.size === 1) {
+      pan = { x: e.clientX, y: e.clientY, ox: zoom.x, oy: zoom.y };
+    }
+  });
+
+  stage.addEventListener('pointermove', (e) => {
+    if (!pointers.has(e.pointerId)) return;
+    pointers.set(e.pointerId, { ...pointers.get(e.pointerId), x: e.clientX, y: e.clientY });
+    if (pinch && pointers.size === 2) {
+      const d = dist();
+      if (pinch.d > 0) {
+        zoom.s = Math.max(1, Math.min(MAX_SCALE, pinch.s * (d / pinch.d)));
+        applyZoom(stage);
+      }
+      e.preventDefault();
+    } else if (pan && zoom.s > 1.01 && pointers.size === 1) {
+      zoom.x = pan.ox + (e.clientX - pan.x);
+      zoom.y = pan.oy + (e.clientY - pan.y);
+      applyZoom(stage);
+      e.preventDefault();
+    }
+  }, { passive: false });   // preventDefault has to be allowed to land
+
+  const release = (e) => {
+    const start = pointers.get(e.pointerId);
+    pointers.delete(e.pointerId);
+    if (pointers.size < 2) { pinch = null; stage.classList.remove('is-pinching'); }
+
+    if (!start || e.type === 'pointercancel') { if (!pointers.size) pan = null; return; }
+    const dx = e.clientX - start.x, dy = e.clientY - start.y;
+    const moved = Math.hypot(dx, dy);
+
+    // Double-tap toggles zoom, aimed at the point that was tapped.
+    if (moved < 12 && performance.now() - start.t < 320) {
+      const now = performance.now();
+      if (now - lastTap < 320) {
+        lastTap = 0;
+        if (zoom.s > 1.01) { zoom = { s: 1, x: 0, y: 0 }; }
+        else {
+          const r = stage.getBoundingClientRect();
+          const s = 2.2;
+          zoom = { s, x: (r.left + r.width / 2 - e.clientX) * (s - 1), y: (r.top + r.height / 2 - e.clientY) * (s - 1) };
+        }
+        applyZoom(stage);
+        if (!pointers.size) pan = null;
+        return;
+      }
+      lastTap = now;
+    }
+
+    // Swipe steps the gallery — but only at rest. While zoomed the same drag is
+    // a pan, and stepping on it would yank the image out from under the finger.
+    if (zoom.s <= 1.01 && Math.abs(dx) >= 45 && Math.abs(dx) > Math.abs(dy)) step(dx < 0 ? +1 : -1);
+    if (!pointers.size) pan = null;
+  };
+  stage.addEventListener('pointerup', release);
+  stage.addEventListener('pointercancel', release);
 }
 
 /* ────────────── IMAGE SOURCES ────────────── */
@@ -137,11 +247,46 @@ function flipOpen(card) {
 
   document.querySelectorAll('.lb-flip').forEach((el) => el.remove());
 
-  // Destination: the stage box (92vw × 82vh) at the photo's natural aspect.
+  // Destination: the stage box, at the photo's natural aspect.
+  // The caps used to be hardcoded as 92vw × 82vh centred in the viewport, which
+  // is no longer where the stage lands: on a portrait phone the frame is a
+  // centred column of image + caption + rail, so the image sits at the TOP of a
+  // centred group rather than in the middle of the screen. Rather than restate
+  // any of that here, the caps are read back off the stylesheet (--lb-stage-h is
+  // registered as <length>, so getComputedStyle resolves its dvh to pixels) and
+  // the vertical offset is measured from the caption and rail, which are already
+  // laid out by the time this runs. Nothing to keep in sync by hand.
   const nar = src.naturalWidth / src.naturalHeight;
-  const maxW = innerWidth * .92, maxH = innerHeight * .82;
+  const lb = document.getElementById('lb');
+  const stage = lb && lb.querySelector('.lb-stage');
+  const lbCS = lb && getComputedStyle(lb);
+  let maxW = innerWidth * .92, maxH = innerHeight * .82, band = 0;
+  if (stage && lbCS) {
+    const h = parseFloat(lbCS.getPropertyValue('--lb-stage-h'));
+    const w = parseFloat(getComputedStyle(stage).maxWidth);
+    // Guard the fallback: an engine without @property hands back "56dvh", which
+    // parses to 56 — aim at the old constants rather than at nothing.
+    if (h > 40) maxH = h;
+    if (w > 40) maxW = w;
+    band = parseFloat(lbCS.paddingBottom) || 0;
+    if (lbCS.flexDirection === 'column') {
+      // Centring a group of (image + everything under it) inside the content box
+      // puts the image's top exactly where centring the image alone inside a box
+      // shortened by TWICE that everything would put it. Summing the in-flow
+      // siblings rather than naming them means adding one later cannot break the
+      // aim. Absolutely positioned children (the close button) are not in the
+      // column and are skipped.
+      const gap = parseFloat(lbCS.rowGap) || 0;
+      let below = 0;
+      for (const el of lb.children) {
+        if (el === stage || getComputedStyle(el).position !== 'static') continue;
+        below += el.getBoundingClientRect().height + gap;
+      }
+      band += 2 * below;
+    }
+  }
   const dW = Math.min(maxW, maxH * nar), dH = Math.min(maxH, maxW / nar);
-  const dx = (innerWidth - dW) / 2, dy = (innerHeight - dH) / 2;
+  const dx = (innerWidth - dW) / 2, dy = (innerHeight - band - dH) / 2;
 
   const wrap = document.createElement('div');
   wrap.className = 'lb-flip';
@@ -185,9 +330,14 @@ function show(slug, card) {
   lastFocused = document.activeElement;
   const lb = buildLightbox();
   state = { slug, project, idx: 0 };
+  resetZoom();
   render();
-  flipOpen(card);
+  // Un-hide BEFORE the flip: the stage has to be laid out for flipOpen to read
+  // its resolved max-width back off the stylesheet. The clone rides above the
+  // dialog (z-index 1001 over 1000), so the backdrop fading in underneath it is
+  // exactly what should happen.
   lb.removeAttribute('hidden');
+  flipOpen(card);
   requestAnimationFrame(() => lb.classList.add('lb-open'));
   document.documentElement.classList.add('lb-locked');
   lb.querySelector('.lb-close').focus();
@@ -198,6 +348,7 @@ function close() {
   if (!lb) return;
   lb.classList.remove('lb-open');
   document.documentElement.classList.remove('lb-locked');
+  resetZoom();
   state = null;
   setTimeout(() => lb.setAttribute('hidden', ''), 320);
   if (lastFocused && lastFocused.focus) lastFocused.focus();
@@ -207,6 +358,7 @@ function step(delta) {
   if (!state) return;
   const n = state.project.images.length;
   state.idx = (state.idx + delta + n) % n;
+  resetZoom();   // a new photo starts at rest, never inheriting the last pan
   render();
   preloadNeighbours();
 }
