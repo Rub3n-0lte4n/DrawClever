@@ -35,29 +35,44 @@
   <meta name="twitter:description" content="Luxury architecture & interior design. Ateliers in Romania and Spain." />
   <meta name="twitter:image" content="https://drawclever.vercel.app/Renders/Casa-Marbella/04-scaled.jpg" />
 
-  <!-- Structured data: studio + both ateliers (phone omitted until the client provides one) -->
+  <!-- Structured data: studio + both ateliers (phone omitted until the client provides one).
+       ProfessionalService carries a stable @id so every inner page can reference this same
+       entity instead of duplicating it. -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "ProfessionalService",
-    "name": "Draw Clever",
-    "alternateName": "Draw Clever Architecture & Interior Design",
-    "description": "Luxury architecture and interior design atelier with studios in Romania and Spain, working across Europe, the United States and the Middle East.",
-    "url": "https://drawclever.vercel.app/",
-    "logo": "https://drawclever.vercel.app/Logo%20Variants/Word%20Mark.png",
-    "image": "https://drawclever.vercel.app/Renders/Casa-Marbella/04-scaled.jpg",
-    "email": "hello@drawclever.com",
-    "foundingDate": "2014",
-    "areaServed": ["Europe", "United States", "Middle East"],
-    "knowsAbout": ["Architecture", "Interior Design", "3D Visualisation", "Landscape Design"],
-    "sameAs": [
-      "https://www.instagram.com/drawclever.design/",
-      "https://pinterest.com/drawclever/",
-      "https://x.com/DrawClever"
-    ],
-    "address": [
-      { "@type": "PostalAddress", "addressLocality": "Bucharest", "addressCountry": "RO" },
-      { "@type": "PostalAddress", "addressLocality": "Marbella", "addressCountry": "ES" }
+    "@graph": [
+      {
+        "@type": "ProfessionalService",
+        "@id": "https://drawclever.vercel.app/#organization",
+        "name": "Draw Clever",
+        "alternateName": "Draw Clever Architecture & Interior Design",
+        "description": "Luxury architecture and interior design atelier with studios in Romania and Spain, working across Europe, the United States and the Middle East.",
+        "url": "https://drawclever.vercel.app/",
+        "logo": "https://drawclever.vercel.app/Logo%20Variants/Word%20Mark.png",
+        "image": "https://drawclever.vercel.app/Renders/Casa-Marbella/04-scaled.jpg",
+        "email": "hello@drawclever.com",
+        "foundingDate": "2014",
+        "areaServed": ["Europe", "United States", "Middle East"],
+        "knowsAbout": ["Architecture", "Interior Design", "3D Visualisation", "Landscape Design"],
+        "sameAs": [
+          "https://www.instagram.com/drawclever.design/",
+          "https://pinterest.com/drawclever/",
+          "https://x.com/DrawClever"
+        ],
+        "address": [
+          { "@type": "PostalAddress", "addressLocality": "Bucharest", "addressCountry": "RO" },
+          { "@type": "PostalAddress", "addressLocality": "Marbella", "addressCountry": "ES" }
+        ]
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://drawclever.vercel.app/#website",
+        "url": "https://drawclever.vercel.app/",
+        "name": "Draw Clever",
+        "inLanguage": "en",
+        "publisher": { "@id": "https://drawclever.vercel.app/#organization" }
+      }
     ]
   }
   </script>

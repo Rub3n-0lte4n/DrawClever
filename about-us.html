@@ -33,6 +33,33 @@
   <meta name="twitter:title" content="About · Draw Clever" />
   <meta name="twitter:description" content="A luxury architecture and interior design studio with ateliers in Romania and Spain." />
   <meta name="twitter:image" content="https://drawclever.vercel.app/Renders/Casa-Marbella/04-scaled.jpg" />
+
+  <!-- Structured data: this page references the studio entity defined on the homepage
+       by @id rather than duplicating it, plus a BreadcrumbList mirroring the visible .crumbs. -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://drawclever.vercel.app/" },
+          { "@type": "ListItem", "position": 2, "name": "About", "item": "https://drawclever.vercel.app/about-us" }
+        ]
+      },
+      {
+        "@type": "AboutPage",
+        "@id": "https://drawclever.vercel.app/about-us#webpage",
+        "url": "https://drawclever.vercel.app/about-us",
+        "name": "About · Draw Clever",
+        "description": "Draw Clever is a luxury architecture and interior design studio with ateliers in Romania and Spain. Architecture that elevates how you live.",
+        "isPartOf": { "@id": "https://drawclever.vercel.app/#website" },
+        "about": { "@id": "https://drawclever.vercel.app/#organization" },
+        "mainEntity": { "@id": "https://drawclever.vercel.app/#organization" }
+      }
+    ]
+  }
+  </script>
   <style>
     @font-face { font-family: 'Inter'; src: url('./Fonts/Inter/Inter.woff2') format('woff2-variations'), url('./Fonts/Inter/Inter.woff2') format('woff2'); font-weight: 100 900; font-style: normal; font-display: swap; }
     @font-face { font-family: 'Inter'; src: url('./Fonts/Inter/Inter-Italic.woff2') format('woff2-variations'), url('./Fonts/Inter/Inter-Italic.woff2') format('woff2'); font-weight: 100 900; font-style: italic; font-display: swap; }
