@@ -1,0 +1,27 @@
+# Draw Clever
+
+> Draw Clever is a luxury architecture and interior design atelier with studios in Bucharest, Romania and Marbella, Spain. The studio works with clients across Europe, the United States and the Middle East, authoring architecture, interiors and grounds as one continuous engagement from the first sketch to the final handover.
+
+Founded 2014. Two studios: Bucharest, Romania (headquarters) and Marbella, Spain (branch). Five service lines: Architecture, Interior Design, 3D Visualisation, Landscaping and Project Management, delivered in-house by one team rather than referred out to subcontractors. The portfolio is mostly residential work, with some commercial and cultural commissions. Projects are concentrated in Romania, with additional work in Spain and the United States.
+
+## Pages
+
+- [Home](https://drawclever.vercel.app/): Studio overview, philosophy, selected work and studio stats.
+- [Services](https://drawclever.vercel.app/services): The five service lines in detail and the four-stage project process (listen, design, visualise, deliver).
+- [Portfolio](https://drawclever.vercel.app/projects): The full project list, filterable by discipline and type, with location and category for each.
+- [About](https://drawclever.vercel.app/about-us): Studio history, the ethos the studio designs by, and the two ateliers.
+- [Contact](https://drawclever.vercel.app/contact): Project enquiry form and answers to common questions about how the studio works.
+
+## Facts
+
+- Founded: 2014
+- Studios: Bucharest, Romania (headquarters) and Marbella, Spain (branch)
+- Areas served: Europe, United States, Middle East
+- Services: Architecture, Interior Design, 3D Visualisation, Landscaping, Project Management
+- All five services are delivered by one in-house team; none are subcontracted out
+- Contact: enquiry form at https://drawclever.vercel.app/contact, or hello@drawclever.com
+
+## Optional
+
+- [llms-full.txt](https://drawclever.vercel.app/llms-full.txt): The full text of all six pages in one plain-text file, for tools that read a single document instead of crawling the site.
+- [Sitemap](https://drawclever.vercel.app/sitemap.xml): All indexable page URLs.

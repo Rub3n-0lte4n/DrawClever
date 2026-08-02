@@ -250,6 +250,57 @@ vercel.json                # Vite preset, cleanUrls, security headers + CSP, cac
 3. Add a card (with `data-project` + `data-cat`) to the grid in `projects.html`
    and/or the Selected Works grid in `index.html`.
 
+## AI search & agent-readable files
+
+Two files at the site root give AI assistants and answer engines (ChatGPT,
+Perplexity, Claude, Gemini) a direct, self-contained summary of the studio
+instead of asking them to parse rendered HTML, inline styles and lightbox
+markup:
+
+- **`public/llms.txt`** → served at `/llms.txt`. Short summary, page
+  links and a compact facts list, following the [llms.txt](https://llmstxt.org)
+  convention.
+- **`public/llms-full.txt`** → served at `/llms-full.txt`. The text
+  content of all six pages in one plain-text document: hero copy, the five
+  disciplines/services, the philosophy tenets, studio stats, the full project
+  table with location and category, and the contact FAQ.
+
+Both are plain mirrors of what the live pages already say. Nothing in them
+goes beyond a published page, and neither invents a fact the site doesn't
+already state (no phone number, no named contact, no address beyond city and
+country, no awards, no client names, no project budgets or completion dates
+per the client's standing instruction on all other site copy).
+
+**Why these exist and what they don't do.** Google's own guidance is that AI
+Overviews need no special files at all, they're driven by normal Search
+ranking. `llms.txt` and `llms-full.txt` are for the other engines
+(ChatGPT, Perplexity, Claude), which do read plain-text context files when
+present and reward self-contained, extractable passages. This is a
+reasonable, low-cost bet, not a guaranteed ranking lever; treat it the same
+way as the JSON-LD in `index.html`, additive and unproven rather than load-bearing.
+
+**Keeping them in sync.** These two files are hand-maintained, not generated.
+When page copy changes, such as a new project added to the portfolio or a
+service line getting reworded, update `llms-full.txt` to match, and update
+`llms.txt` too if the change affects its summary or fact list. A stale
+machine-readable file that contradicts the live page is worse than no file.
+
+**Domain handoff.** Both files live in `public/`, so the existing `grep -rl
+... public | xargs sed -i ''` command in "Domain handoff" above already
+rewrites their `drawclever.vercel.app` references when the client's domain
+goes live. No separate step needed.
+
+**Considered and not done.** An `/okf/` (Open Knowledge Format) bundle was
+considered and skipped for now: Google's own OKF guidance treats sites under
+about ten pages as not worth the overhead, and this site has six. The
+`llms.txt`/`llms-full.txt` pair covers the same ground at a fraction of the
+maintenance cost. Revisit if the site grows past roughly ten pages or once
+an AI engine confirms it actually reads OKF bundles, neither is true today.
+A `/pricing.md` file (a pattern some AI-SEO guidance recommends for agents
+comparing vendors) was also skipped: this is a bespoke architecture studio
+with quoted, per-project pricing, not published rate cards, so there is no
+structured pricing to publish without inventing figures the client never gave.
+
 ---
 
 © 2026 Draw Clever — *We redefine the luxury life.*
