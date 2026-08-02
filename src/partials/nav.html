@@ -1,0 +1,10 @@
+<nav id="nav" aria-label="Primary">
+  <a href="/" class="brand" aria-label="Draw Clever, home"><img src="./Logo Variants/logo-mark-384.png" alt="Draw Clever" width="384" height="252" /></a>
+  <ul class="nav-links">
+    <li><a href="/projects"{{#if active=projects}} class="active" aria-current="page"{{/if}}>Portfolio</a></li>
+    <li><a href="/about-us"{{#if active=about-us}} class="active" aria-current="page"{{/if}}>About</a></li>
+    <li><a href="/services"{{#if active=services}} class="active" aria-current="page"{{/if}}>Services</a></li>
+    <li><a href="/contact" class="btn btn-quiet"{{#if active=contact}} aria-current="page"{{/if}}>Contact</a></li>
+  </ul>
+  <button class="nav-toggle" aria-label="Open menu" aria-controls="drawer" aria-expanded="false"><span></span><span></span><span></span></button>
+</nav>
