@@ -463,7 +463,12 @@ footer { background: var(--ink); border-top: 1px solid var(--line); padding: 44p
 .field textarea { resize: vertical; min-height: 120px; }
 .field input::placeholder, .field textarea::placeholder { color: var(--muted); }
 .field input:focus, .field select:focus, .field textarea:focus { border-bottom-color: var(--gold); }
-.field select { -webkit-appearance: none; appearance: none; cursor: pointer; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%237A6235' stroke-width='1.4'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 4px center; }
+/* border-radius: 0 is not redundant. WebKit keeps its UA `border-radius: 5px` on
+   a <select> even under `appearance: none` (measured 5px in Safari 26.5, 0px in
+   both Chrome and Firefox), which rounded the ends of this field's 1px underline
+   while the text input and the textarea beside it stayed square. Stating it
+   levels the three controls in WebKit and is a no-op everywhere else. */
+.field select { -webkit-appearance: none; appearance: none; border-radius: 0; cursor: pointer; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%237A6235' stroke-width='1.4'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 4px center; }
 .field select option { background: var(--ink-2); color: var(--text); }
 .form-note { font-size: var(--t-caption); color: var(--muted); line-height: 1.7; }
 .form-ok { font-family: 'Playfair Display SC', 'Playfair SC Fallback', serif; font-size: var(--t-d-lg); letter-spacing: .015em; text-transform: none; color: var(--gold); }
@@ -519,7 +524,13 @@ html.lb-locked, html.lb-locked body { overflow: hidden; }
 .lb-stage::before { content: ''; position: absolute; top: 50%; left: 50%; width: 34px; height: 34px; margin: -17px 0 0 -17px; border-radius: 50%; border: 2px solid rgba(243,238,230,.14); border-top-color: var(--gold); opacity: 0; transition: opacity .25s ease .2s; pointer-events: none; z-index: 1; }
 .lb-stage.lb-loading::before { opacity: 1; animation: lbSpin .9s linear infinite; }
 @keyframes lbSpin { to { transform: rotate(360deg); } }
-.lb-img { display: block; max-width: 92vw; max-height: var(--lb-stage-h); width: auto; height: auto; object-fit: contain; box-shadow: 0 40px 120px rgba(0,0,0,.6); opacity: 0; transform: scale(.985); transition: opacity .5s var(--ease), transform .6s var(--ease); -webkit-user-drag: none; user-select: none; }
+/* -webkit-user-select alongside the unprefixed one: WebKit has no unprefixed
+   `user-select` (measured in Safari 26.5 — CSS.supports('user-select','none')
+   is false and the computed value stays `text`), so the plain declaration was a
+   no-op there and a long press could start selecting the render instead of
+   zooming it. Chrome and Firefox already compute `none` from either spelling,
+   so the pair changes nothing outside WebKit. */
+.lb-img { display: block; max-width: 92vw; max-height: var(--lb-stage-h); width: auto; height: auto; object-fit: contain; box-shadow: 0 40px 120px rgba(0,0,0,.6); opacity: 0; transform: scale(.985); transition: opacity .5s var(--ease), transform .6s var(--ease); -webkit-user-drag: none; -webkit-user-select: none; user-select: none; }
 .lb-img.is-in { opacity: 1; transform: none; }
 /* display: contents — the rail generates no box, so prev / counter / next keep
    resolving their absolute positions against .lb and the desktop frame is
