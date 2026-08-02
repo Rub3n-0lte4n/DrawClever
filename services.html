@@ -143,23 +143,7 @@
     ]
   }
   </script>
-  <style>
-    @font-face { font-family: 'Inter'; src: url('./Fonts/Inter/Inter.woff2') format('woff2-variations'), url('./Fonts/Inter/Inter.woff2') format('woff2'); font-weight: 100 900; font-style: normal; font-display: swap; }
-    @font-face { font-family: 'Inter'; src: url('./Fonts/Inter/Inter-Italic.woff2') format('woff2-variations'), url('./Fonts/Inter/Inter-Italic.woff2') format('woff2'); font-weight: 100 900; font-style: italic; font-display: swap; }
-    @font-face { font-family: 'Playfair Display SC'; src: url('./Fonts/Playfair_Display_SC/PlayfairDisplaySC-Regular.woff2') format('woff2'); font-weight: 400; font-style: normal; font-display: swap; }
-    @font-face { font-family: 'Playfair Display SC'; src: url('./Fonts/Playfair_Display_SC/PlayfairDisplaySC-Italic.woff2') format('woff2'); font-weight: 400; font-style: italic; font-display: swap; }
-    @font-face { font-family: 'Playfair Display SC'; src: url('./Fonts/Playfair_Display_SC/PlayfairDisplaySC-Bold.woff2') format('woff2'); font-weight: 700; font-style: normal; font-display: swap; }
-    @font-face { font-family: 'Playfair Display SC'; src: url('./Fonts/Playfair_Display_SC/PlayfairDisplaySC-BoldItalic.woff2') format('woff2'); font-weight: 700; font-style: italic; font-display: swap; }
-    @font-face { font-family: 'Playfair Display'; src: url('./Fonts/Playfair_Display/PlayfairDisplay.woff2') format('woff2-variations'), url('./Fonts/Playfair_Display/PlayfairDisplay.woff2') format('woff2'); font-weight: 100 900; font-style: normal; font-display: swap; }
-    @font-face { font-family: 'Playfair Display'; src: url('./Fonts/Playfair_Display/PlayfairDisplay-Italic.woff2') format('woff2-variations'), url('./Fonts/Playfair_Display/PlayfairDisplay-Italic.woff2') format('woff2'); font-weight: 100 900; font-style: italic; font-display: swap; }
-    /* Metric-matched fallback. Playfair Display SC is ~21% wider and much
-       taller than Times, so the swap re-laid out the hero and moved it 110px
-       up. These overrides make the fallback occupy the real font's box, so the
-       swap becomes a repaint instead of a re-layout. Measured with canvas
-       TextMetrics against Times New Roman 400; see README. */
-    @font-face { font-family: 'Playfair SC Fallback'; src: local('Times New Roman'), local('Times'); size-adjust: 120.68%; ascent-override: 89.49%; descent-override: 20.72%; line-gap-override: 0%; }
-    @font-face { font-family: 'Playfair SC Fallback'; src: local('Times New Roman Italic'), local('Times Italic'), local('Times New Roman'); font-style: italic; size-adjust: 138.12%; ascent-override: 78.19%; descent-override: 18.10%; line-gap-override: 0%; }
-  </style>
+  <!-- @include fonts.html -->
   <link rel="stylesheet" href="/src/site.css" />
   <script>(function(){var h=document.documentElement,first=true;try{first=!sessionStorage.getItem("dcv");sessionStorage.setItem("dcv","1");}catch(e){}h.classList.add(first?"dc-loading":"dc-ready");})();</script>
   <style>
@@ -205,37 +189,14 @@
 </head>
 <body>
 <a class="skip-link btn btn-solid" href="#main">Skip to content</a>
-<div id="dc-loader" aria-hidden="true"><img class="dc-mark" src="./Logo Variants/logo-mark-384.png" alt="" width="384" height="252" /><span class="dc-bar"></span></div>
+<!-- @include loader.html -->
 
 <div class="grain" aria-hidden="true"></div>
 <div class="progress" id="progress" aria-hidden="true"></div>
 
-<nav id="nav">
-  <a href="/" class="brand" aria-label="Draw Clever, home"><img src="./Logo Variants/logo-mark-384.png" alt="Draw Clever" width="384" height="252" /></a>
-  <ul class="nav-links">
-    <li><a href="/projects">Portfolio</a></li>
-    <li><a href="/about-us">About</a></li>
-    <li><a href="/services" class="active">Services</a></li>
-    <li><a href="/contact" class="btn btn-quiet">Contact</a></li>
-  </ul>
-  <button class="nav-toggle" aria-label="Open menu" aria-controls="drawer" aria-expanded="false"><span></span><span></span><span></span></button>
-</nav>
+<!-- @include nav.html active="services" -->
 
-<div class="drawer" id="drawer" role="dialog" aria-modal="true" aria-label="Menu" aria-hidden="true">
-  <div class="drawer-inner">
-    <ul class="drawer-links">
-      <li><a href="/projects">Portfolio</a></li>
-      <li><a href="/about-us">About</a></li>
-      <li><a href="/services" class="active">Services</a></li>
-      <li><a href="/contact">Contact</a></li>
-    </ul>
-    <div class="drawer-foot">
-      <span class="e">Draw Clever</span>
-      <p class="l">Romania &middot; Spain<br /><a href="mailto:hello@drawclever.com">hello@drawclever.com</a></p>
-      <ul class="drawer-social"><li><a href="https://www.instagram.com/drawclever.design/">Instagram</a></li><li><a href="https://pinterest.com/drawclever/">Pinterest</a></li><li><a href="https://x.com/DrawClever">X</a></li></ul>
-    </div>
-  </div>
-</div>
+<!-- @include drawer.html active="services" -->
 
 <main id="main" tabindex="-1">
 
@@ -304,17 +265,7 @@
 </section>
 
 </main>
-<footer>
-  <div class="foot-top">
-    <a href="/" aria-label="Draw Clever, home"><img src="./Logo Variants/word-mark-720.png" alt="Draw Clever" width="720" height="102" loading="lazy" decoding="async" /></a>
-    <ul class="foot-nav"><li><a href="/projects">Portfolio</a></li><li><a href="/about-us">About</a></li><li><a href="/services">Services</a></li><li><a href="/contact">Contact</a></li></ul>
-  </div>
-  <div class="foot-bottom">
-    <p>© 2026 Draw Clever. We redefine the luxury life.</p>
-    <ul class="foot-social"><li><a href="https://www.instagram.com/drawclever.design/">Instagram</a></li><li><a href="https://pinterest.com/drawclever/">Pinterest</a></li><li><a href="https://x.com/DrawClever">X</a></li></ul>
-    <a href="#top" class="to-top">Back to top <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/></svg></a>
-  </div>
-</footer>
+<!-- @include footer.html active="services" -->
 
 <script type="module" src="/src/site.js"></script>
 <script type="module" src="/src/analytics.js"></script>
