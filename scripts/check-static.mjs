@@ -119,7 +119,14 @@ for (const [file, html] of Object.entries(pages)) {
     let err;
     try { parsed = JSON.parse(m[1]); } catch (e) { err = e.message; }
     report.check(`${file}: JSON-LD block ${i + 1} parses`, !err, err);
-    if (parsed) report.check(`${file}: JSON-LD block ${i + 1} has @context and @type`, !!parsed['@context'] && !!parsed['@type']);
+    // A block may be a single typed entity or a @graph of them. The @graph form
+    // is what lets the inner pages reference the studio by @id instead of
+    // restating it, so @type lives on each node rather than at the top level.
+    if (parsed) {
+      const nodes = Array.isArray(parsed['@graph']) ? parsed['@graph'] : [parsed];
+      const typed = nodes.length > 0 && nodes.every((n) => !!n['@type']);
+      report.check(`${file}: JSON-LD block ${i + 1} has @context and a @type on every node`, !!parsed['@context'] && typed);
+    }
   });
 }
 
