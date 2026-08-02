@@ -1,33 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- The five indexable pages. 404.html is noindex and intentionally absent.
+     URLs are extensionless to match Vercel cleanUrls and each page's canonical;
+     .html paths 308-redirect and must never appear here.
+     <changefreq> and <priority> are omitted on purpose: Google ignores both,
+     and a stale "yearly" on an actively edited page is worse than no signal. -->
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://drawclever.vercel.app/</loc>
-    <lastmod>2026-07-19</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>1.0</priority>
+    <lastmod>2026-08-02</lastmod>
   </url>
   <url>
     <loc>https://drawclever.vercel.app/projects</loc>
-    <lastmod>2026-07-19</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.9</priority>
+    <lastmod>2026-08-02</lastmod>
   </url>
   <url>
     <loc>https://drawclever.vercel.app/about-us</loc>
-    <lastmod>2026-07-19</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.7</priority>
+    <lastmod>2026-08-02</lastmod>
   </url>
   <url>
     <loc>https://drawclever.vercel.app/services</loc>
-    <lastmod>2026-07-19</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.7</priority>
+    <lastmod>2026-08-02</lastmod>
   </url>
   <url>
     <loc>https://drawclever.vercel.app/contact</loc>
-    <lastmod>2026-07-19</lastmod>
-    <changefreq>yearly</changefreq>
-    <priority>0.6</priority>
+    <lastmod>2026-08-02</lastmod>
   </url>
 </urlset>
