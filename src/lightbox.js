@@ -314,11 +314,20 @@ function flipOpen(card) {
   const lbCS = lb && getComputedStyle(lb);
   let maxW = innerWidth * .92, maxH = innerHeight * .82, band = 0;
   if (stage && lbCS) {
-    const h = parseFloat(lbCS.getPropertyValue('--lb-stage-h'));
+    // Guard the fallback by the UNIT, not by the magnitude. An engine without
+    // @property hands a custom property back exactly as specified, so this reads
+    // "82dvh" (or "56dvh" on a phone) and parseFloat turns that into 82 — a
+    // number that sails straight past a bare `> 40` check and then aims the
+    // morph at an 82 PIXEL stage. Registration as <length> is precisely what
+    // makes the computed value an absolute length, so the unit is the thing to
+    // test. Measured: Safari 26.5, Chrome and Firefox 153 all return px here,
+    // and an unregistered property returns "82dvh" in all three.
+    // max-width is a real property and always resolves to px, so it only needs
+    // the magnitude check.
+    const hRaw = lbCS.getPropertyValue('--lb-stage-h').trim();
+    const h = /px$/.test(hRaw) ? parseFloat(hRaw) : NaN;
     const w = parseFloat(getComputedStyle(stage).maxWidth);
-    // Guard the fallback: an engine without @property hands back "56dvh", which
-    // parses to 56 — aim at the old constants rather than at nothing.
-    if (h > 40) maxH = h;
+    if (h > 40) maxH = h;   // NaN fails this, falling back to innerHeight * .82
     if (w > 40) maxW = w;
     band = parseFloat(lbCS.paddingBottom) || 0;
     if (lbCS.flexDirection === 'column') {
