@@ -10,6 +10,14 @@
     "build": "vite build",
     "preview": "vite preview",
     "verify:csp": "node scripts/verify-csp.mjs",
+    "verify:headers": "node scripts/verify-headers.mjs",
+    "check:static": "node scripts/check-static.mjs",
+    "audit:tap": "node scripts/audit.mjs",
+    "audit:type": "node scripts/verify.mjs",
+    "audit:contrast": "node scripts/contrast.mjs",
+    "audit:perf": "node scripts/perf3.mjs",
+    "audit:mobile": "node scripts/audit.mjs && node scripts/verify.mjs && node scripts/contrast.mjs && node scripts/perf3.mjs",
+    "verify:all": "npm run check:static && npm run verify:headers && npm run audit:mobile",
     "audit": "npm audit --omit=dev --audit-level=moderate"
   },
   "devDependencies": {
