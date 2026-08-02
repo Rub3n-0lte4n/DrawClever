@@ -1,3 +1,6 @@
+# Everything is crawlable. /404 is deliberately NOT disallowed: it carries
+# <meta name="robots" content="noindex">, and a Disallow would stop crawlers
+# reading that tag, which is the only thing keeping it out of the index.
 User-agent: *
 Allow: /
 
