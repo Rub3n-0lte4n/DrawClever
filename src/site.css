@@ -610,6 +610,18 @@ html.lb-locked, html.lb-locked body { overflow: hidden; }
 @media (pointer: coarse) {
   .btn { min-height: 46px; }
   .brand { min-height: 44px; }
+  /* The primary nav is only on screen above 860px, so on a touch device it is a
+     tablet in landscape, and it was the one control row the coarse floors never
+     reached: 28px tall against a 44px requirement. min-height alone does nothing
+     here because these links are `display: inline`, which has no height to set.
+     inline-flex gives them a box; the row does not get taller, because .btn
+     above already stands 46px in the same row and sets the height.
+     The ::after underline is positioned against that box, so growing it would
+     push the underline away from the text. Its offset is re-stated to hold the
+     measured 13px gap: slack below the text goes 6px -> 14px, so the underline
+     moves from 7px below the box to 1px inside it. Same rhythm, bigger target. */
+  .nav-links a:not(.btn) { display: inline-flex; align-items: center; min-height: 44px; }
+  .nav-links a:not(.btn)::after { bottom: 1px; }
   .crumbs { align-items: center; }
   /* .foot-top > a is the footer wordmark, which measured 211x30 — the logo's own
      height was the whole target. */
