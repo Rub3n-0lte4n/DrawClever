@@ -105,36 +105,81 @@ document.querySelectorAll('a[href^="#"]').forEach((a) => {
     const behavior = reduceMotion.matches ? 'auto' : 'smooth';
     if (id === '#' || id === '#top') { e.preventDefault(); window.scrollTo({ top: 0, behavior }); return; }
     const t = document.querySelector(id);
-    if (t) { e.preventDefault(); t.scrollIntoView({ behavior }); }
+    if (!t) return;
+    e.preventDefault();
+    t.scrollIntoView({ behavior });
+    // preventDefault() also cancels the fragment navigation, and the fragment
+    // navigation is what moves focus to the target. Without this the skip link
+    // scrolled the page and left focus where it was, so the next Tab went
+    // straight back into the nav it had just skipped: a skip link that skips
+    // nothing (WCAG 2.4.1). preventScroll because scrollIntoView already
+    // decided how to travel, and reduced motion may have asked it not to.
+    if (t.tabIndex >= 0 || t.hasAttribute('tabindex')) t.focus({ preventScroll: true });
   });
 });
 
-// MOBILE DRAWER
+// MOBILE DRAWER — a modal overlay (role="dialog" aria-modal="true" in the markup)
 (function () {
   const t = document.querySelector('.nav-toggle');
   const d = document.getElementById('drawer');
   if (!t || !d) return;
+  const isOpen = () => document.body.classList.contains('menu-open');
+  // The drawer paints edge to edge at z-index 150 over an opaque backdrop, with
+  // the toggle above it at 200. Every other tab stop on the page is therefore
+  // BEHIND the sheet, and WCAG 2.2's 2.4.11 says a focused control may not be
+  // entirely hidden by author content — so while the drawer is open, focus stays
+  // in it. The toggle is part of the loop because it is the visible close.
+  const loop = () => [t, ...d.querySelectorAll('a[href]')];
   const set = (open) => {
+    const was = isOpen();
     document.body.classList.toggle('menu-open', open);
     t.setAttribute('aria-expanded', open);
     t.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
     d.setAttribute('aria-hidden', !open);
+    if (open && !was) {
+      // The drawer is `visibility: hidden` when closed, and a hidden element
+      // cannot take focus — wait for the style to land before reaching for it.
+      requestAnimationFrame(() => { const a = isOpen() && d.querySelector('a[href]'); if (a) a.focus(); });
+    } else if (!open && was && d.contains(document.activeElement)) {
+      t.focus();   // never drop focus to the body on close
+    }
   };
-  t.addEventListener('click', () => set(!document.body.classList.contains('menu-open')));
+  t.addEventListener('click', () => set(!isOpen()));
   d.querySelectorAll('a').forEach((a) => a.addEventListener('click', () => set(false)));
-  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') set(false); });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') return set(false);
+    if (e.key !== 'Tab' || !isOpen()) return;
+    const f = loop(), first = f[0], last = f[f.length - 1];
+    if (!f.includes(document.activeElement)) { e.preventDefault(); first.focus(); }
+    else if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+    else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+  });
   window.addEventListener('resize', () => { if (window.innerWidth > 860) set(false); });
 })();
 
 // FAQ ACCORDION (single-open)
-document.querySelectorAll('.acc-q').forEach((btn) => {
-  btn.addEventListener('click', () => {
+(function () {
+  const qs = [...document.querySelectorAll('.acc-q')];
+  if (!qs.length) return;
+  // A closed panel is a 0fr grid row under `overflow: hidden`. That hides it on
+  // screen but leaves every answer in the accessibility tree, so a screen reader
+  // read all four whatever aria-expanded claimed. Syncing aria-hidden next to
+  // the class is what actually closes them.
+  const sync = () => qs.forEach((btn) => {
+    const open = btn.closest('.acc-item').classList.contains('open');
+    btn.setAttribute('aria-expanded', String(open));
+    const panel = document.getElementById(btn.getAttribute('aria-controls'));
+    if (panel) panel.setAttribute('aria-hidden', String(!open));
+  });
+  qs.forEach((btn) => btn.addEventListener('click', () => {
     const item = btn.closest('.acc-item');
     const open = item.classList.contains('open');
     document.querySelectorAll('.acc-item.open').forEach((el) => el.classList.remove('open'));
     if (!open) item.classList.add('open');
-  });
-});
+    sync();
+  }));
+  sync();
+})();
 
 // MANIFESTO WORD-SCRUB — wrap the lede's words so each brightens on its own
 // view() timeline as it scrolls through the fold. Only where scroll-driven

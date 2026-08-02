@@ -62,10 +62,24 @@
     });
   }
 
+  /* Pressing a pill rewrites the grid without moving focus, so to a screen
+     reader nothing happened at all: the pill's own aria-pressed says which
+     filter is on, and this polite status says what it did to the grid. Counted
+     from the filter rather than from the animation, so it is right immediately
+     whether or not the FLIP path runs. */
+  const status = document.createElement('p');
+  status.setAttribute('role', 'status');
+  status.setAttribute('aria-live', 'polite');
+  status.style.cssText = 'position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap;border:0';
+  grid.parentNode.insertBefore(status, grid);
+
   pills.forEach((p) => p.addEventListener('click', () => {
     if (busy || p.classList.contains('active')) return;
-    pills.forEach((x) => x.classList.remove('active'));
+    pills.forEach((x) => { x.classList.remove('active'); x.setAttribute('aria-pressed', 'false'); });
     p.classList.add('active');
+    p.setAttribute('aria-pressed', 'true');
+    const shown = cards.filter((c) => wants(c, p.dataset.filter)).length;
+    status.textContent = `${shown} of ${cards.length} projects shown`;
     apply(p.dataset.filter);
   }));
 })();
