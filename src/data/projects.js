@@ -111,7 +111,11 @@ export const PROJECTS = {
   },
   'uav-library': {
     title: 'University Library', location: 'Arad, Romania', cat: 'Architecture · Cultural',
-    folder: 'Renders/UAV-Library', tags: 'architecture commercial',
+    // The card reads "Architecture · Cultural" but this filtered as commercial,
+    // because there was no Cultural pill and a university library is not
+    // commercial in any other sense. The pill now exists, so the tag matches
+    // the label a visitor can actually see.
+    folder: 'Renders/UAV-Library', tags: 'architecture cultural',
     portfolio: { cover: '74.jpg', cls: 'pc', sizes: '(max-width: 980px) 100vw, (max-width: 1470px) 47vw, 31vw',
                  aria: 'University Library, architecture and cultural, Arad, Romania. Open gallery',
                  lqip: 'UklGRowAAABXRUJQVlA4IIAAAAAQBACdASocAA8ALrV2u12jqampiYC0SygFR6IiPfpgy6hUErTIoq7IAAD+9XGNoIkyr1f0lNhniHkEneOwF/p7a2dLnv57nptUXSkLuApzcHx62fSBOaaL/k1xiUfGKyR4OUZ0bA+fXM7emFMsoX3dWYmX4aXNa518aODyt0agAA==' },
