@@ -51,6 +51,10 @@
        out of the page with no way to scroll to it. Only the x axis is locked now,
        and the box centres by min-height rather than by clipping. */
     body { background: var(--ink); color: var(--text); font-family: 'Inter', sans-serif; font-weight: 400; min-height: 100svh; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: max(40px, env(safe-area-inset-top, 0px)) max(40px, env(safe-area-inset-right, 0px)) max(40px, env(safe-area-inset-bottom, 0px)) max(40px, env(safe-area-inset-left, 0px)); -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+    /* ACCESSIBILITY: the page content now sits in a main element so a screen
+       reader has a landmark to jump to. It inherits the centring body used to do
+       itself, so the rendered box is unchanged. */
+    main { width: 100%; flex: 1 1 auto; display: flex; flex-direction: column; align-items: center; justify-content: center; }
     .mark { height: 46px; margin-bottom: 56px; mix-blend-mode: screen; opacity: .9; }
     .code { font-family: 'Playfair Display SC', 'Playfair SC Fallback', serif; font-size: clamp(110px, 26vw, 320px); line-height: .82; letter-spacing: -.01em; color: var(--champ); }
     h1 { font-family: 'Playfair Display SC', 'Playfair SC Fallback', serif; font-weight: 400; text-transform: none; font-size: clamp(24px, 3.2vw, 38px); letter-spacing: .012em; margin: 28px 0 16px; }
@@ -91,17 +95,19 @@
 </head>
 <body>
   <div id="dc-loader" aria-hidden="true"><img class="dc-mark" src="/Logo Variants/Logo Mark.png" alt="" /><span class="dc-bar"></span></div>
-  <img class="mark" src="/Logo Variants/Logo Mark.png" alt="Draw Clever" />
-  <div class="code">404</div>
-  <h1>This space hasn't<br />been <span class="i">built</span> yet.</h1>
-  <p>This page has moved, or it never existed. The rest of the site is still standing.</p>
-  <a href="/" class="btn">Back to Home</a>
-  <div class="links">
-    <a href="/projects">Portfolio</a>
-    <a href="/about-us">About</a>
-    <a href="/services">Services</a>
-    <a href="/contact">Contact</a>
-  </div>
+  <main>
+    <img class="mark" src="/Logo Variants/Logo Mark.png" alt="Draw Clever" />
+    <div class="code">404</div>
+    <h1>This space hasn't<br />been <span class="i">built</span> yet.</h1>
+    <p>This page has moved, or it never existed. The rest of the site is still standing.</p>
+    <a href="/" class="btn">Back to Home</a>
+    <div class="links" role="navigation" aria-label="Elsewhere on this site">
+      <a href="/projects">Portfolio</a>
+      <a href="/about-us">About</a>
+      <a href="/services">Services</a>
+      <a href="/contact">Contact</a>
+    </div>
+  </main>
 <script type="module" src="/src/analytics.js"></script>
 </body>
 </html>

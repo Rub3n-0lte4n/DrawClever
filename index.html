@@ -277,14 +277,14 @@
   </style>
 </head>
 <body>
-<a class="skip-link btn btn-solid" href="#hero">Skip to content</a>
+<a class="skip-link btn btn-solid" href="#main">Skip to content</a>
 <div id="dc-loader" aria-hidden="true"><img class="dc-mark" src="./Logo Variants/Logo Mark.png" alt="" /><span class="dc-bar"></span></div>
 
 <div class="grain" aria-hidden="true"></div>
 <div class="progress" id="progress" aria-hidden="true"></div>
 
 <!-- NAV -->
-<nav id="nav">
+<nav id="nav" aria-label="Primary">
   <a href="/" class="brand" aria-label="Draw Clever, home">
     <img src="./Logo Variants/Logo Mark.png" alt="Draw Clever" />
   </a>
@@ -298,7 +298,7 @@
 </nav>
 
 <!-- DRAWER -->
-<div class="drawer" id="drawer" aria-hidden="true">
+<div class="drawer" id="drawer" role="dialog" aria-modal="true" aria-label="Menu" aria-hidden="true">
   <div class="drawer-inner">
     <ul class="drawer-links">
       <li><a href="/projects">Portfolio</a></li>
@@ -318,8 +318,10 @@
   </div>
 </div>
 
+<main id="main" tabindex="-1">
+
 <!-- HERO -->
-<section id="hero" tabindex="-1">
+<section id="hero">
   <div class="hero-bg"></div>
   <div class="hero-veil"></div>
   <div class="hero-body">
@@ -335,7 +337,7 @@
       <p class="hero-desc">A luxury architecture &amp; interior design atelier, drawing the house and the ground it stands on, from the first sketch to the final handover.</p>
       <div class="hero-actions">
         <a href="/contact" class="btn btn-solid btn-lg">Start a Project</a>
-        <a href="/projects" class="link">View the portfolio <svg viewBox="0 0 24 24"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></a>
+        <a href="/projects" class="link">View the portfolio <svg viewBox="0 0 24 24" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></a>
       </div>
     </div>
   </div>
@@ -366,7 +368,7 @@
 <section id="manifesto">
   <div class="manifesto-grid">
     <div class="manifesto-side reveal">
-      <img class="mark" src="./Logo Variants/Logo Mark.png" alt="Draw Clever" />
+      <img class="mark" src="./Logo Variants/Logo Mark.png" alt="" />
       <p>An atelier of architecture &amp; interiors. We work from Bucharest and Marbella, across Europe and as far as the United States and the Middle East.</p>
     </div>
     <div class="manifesto-lede reveal d1">
@@ -389,44 +391,44 @@
   </div>
 
   <div class="works-main reveal d1">
-    <article class="pc feature" data-project="casa-marbella" aria-label="Open Casa Marbella gallery">
-      <picture style="--lqip:url('data:image/webp;base64,UklGRp4AAABXRUJQVlA4IJIAAADQBACdASocAA8APu1iqU2ppaQiMAgBMB2JQBOmUAnABRkK55KQAvg/hLmD6vDbAADKKE0Qs+RiVkOP15r7jql3caRZVOMRvomH9x3qASDkfg5zvmDDrXPc3eLtRUBUHlwswkR8JmK3TTq2RdW+8VL5Xq4Ejou+Jg69K7Q9lHeCQidY5vQyENOS0vpIuFaK7a4AAA==')"><source type="image/avif" srcset="./Renders/Casa-Marbella/07-scaled-480.avif 480w, ./Renders/Casa-Marbella/07-scaled-1024.avif 1024w, ./Renders/Casa-Marbella/07-scaled-1600.avif 1600w" sizes="(max-width: 860px) 100vw, 53vw" /><source type="image/webp" srcset="./Renders/Casa-Marbella/07-scaled-480.webp 480w, ./Renders/Casa-Marbella/07-scaled-1024.webp 1024w, ./Renders/Casa-Marbella/07-scaled-1600.webp 1600w" sizes="(max-width: 860px) 100vw, 53vw" /><img decoding="async" src="./Renders/Casa-Marbella/07-scaled.jpg" alt="Casa Marbella" loading="lazy" /></picture>
+    <div class="pc feature" data-project="casa-marbella" aria-label="Casa Marbella, architecture and residential, Marbella, Spain. Open gallery">
+      <picture style="--lqip:url('data:image/webp;base64,UklGRp4AAABXRUJQVlA4IJIAAADQBACdASocAA8APu1iqU2ppaQiMAgBMB2JQBOmUAnABRkK55KQAvg/hLmD6vDbAADKKE0Qs+RiVkOP15r7jql3caRZVOMRvomH9x3qASDkfg5zvmDDrXPc3eLtRUBUHlwswkR8JmK3TTq2RdW+8VL5Xq4Ejou+Jg69K7Q9lHeCQidY5vQyENOS0vpIuFaK7a4AAA==')"><source type="image/avif" srcset="./Renders/Casa-Marbella/07-scaled-480.avif 480w, ./Renders/Casa-Marbella/07-scaled-1024.avif 1024w, ./Renders/Casa-Marbella/07-scaled-1600.avif 1600w" sizes="(max-width: 860px) 100vw, 53vw" /><source type="image/webp" srcset="./Renders/Casa-Marbella/07-scaled-480.webp 480w, ./Renders/Casa-Marbella/07-scaled-1024.webp 1024w, ./Renders/Casa-Marbella/07-scaled-1600.webp 1600w" sizes="(max-width: 860px) 100vw, 53vw" /><img decoding="async" src="./Renders/Casa-Marbella/07-scaled.jpg" alt="A white villa of stacked glazed volumes above a mosaic-tiled infinity pool, with an open-air kitchen and a long dining counter on the stone terrace below." loading="lazy" /></picture>
       <div class="pc-info"><div class="pc-cat">Architecture · Residential</div><div class="pc-name">Casa Marbella</div><div class="pc-loc">Marbella, Spain</div></div>
-      <span class="pc-arrow"><svg viewBox="0 0 24 24"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span>
-    </article>
-    <article class="pc half" data-project="penthouse-oradea" aria-label="Open Penthouse Oradea gallery">
-      <picture style="--lqip:url('data:image/webp;base64,UklGRqIAAABXRUJQVlA4IJYAAAAQBACdASocAA8APu1kqk4ppaQiMAgBMB2JYwCsACIFpQmxZlGu+ueBwAD92N3RiqzqjimuqiardGhUXidB2GLO398KmZGEA5s7qOk+G2RznpgJYpIFS3Z8cI/k2pU6j6BvbFfXIsGP67ntZ7Lm1FKDpu0yEHhduMlI5uBkAFtSTfJlU+vJVwhu41uMCGXBJYwqSwcAAAA=')"><source type="image/avif" srcset="./Renders/Penthouse-Oradea/21-480.avif 480w, ./Renders/Penthouse-Oradea/21-1024.avif 1024w, ./Renders/Penthouse-Oradea/21-1600.avif 1600w" sizes="(max-width: 860px) 100vw, 38vw" /><source type="image/webp" srcset="./Renders/Penthouse-Oradea/21-480.webp 480w, ./Renders/Penthouse-Oradea/21-1024.webp 1024w, ./Renders/Penthouse-Oradea/21-1600.webp 1600w" sizes="(max-width: 860px) 100vw, 38vw" /><img decoding="async" src="./Renders/Penthouse-Oradea/21.jpg" alt="Penthouse Oradea" loading="lazy" /></picture>
+      <span class="pc-arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span>
+    </div>
+    <div class="pc half" data-project="penthouse-oradea" aria-label="Penthouse Oradea, interior design, Oradea, Romania. Open gallery">
+      <picture style="--lqip:url('data:image/webp;base64,UklGRqIAAABXRUJQVlA4IJYAAAAQBACdASocAA8APu1kqk4ppaQiMAgBMB2JYwCsACIFpQmxZlGu+ueBwAD92N3RiqzqjimuqiardGhUXidB2GLO398KmZGEA5s7qOk+G2RznpgJYpIFS3Z8cI/k2pU6j6BvbFfXIsGP67ntZ7Lm1FKDpu0yEHhduMlI5uBkAFtSTfJlU+vJVwhu41uMCGXBJYwqSwcAAAA=')"><source type="image/avif" srcset="./Renders/Penthouse-Oradea/21-480.avif 480w, ./Renders/Penthouse-Oradea/21-1024.avif 1024w, ./Renders/Penthouse-Oradea/21-1600.avif 1600w" sizes="(max-width: 860px) 100vw, 38vw" /><source type="image/webp" srcset="./Renders/Penthouse-Oradea/21-480.webp 480w, ./Renders/Penthouse-Oradea/21-1024.webp 1024w, ./Renders/Penthouse-Oradea/21-1600.webp 1600w" sizes="(max-width: 860px) 100vw, 38vw" /><img decoding="async" src="./Renders/Penthouse-Oradea/21.jpg" alt="A rooftop terrace under a pale timber pergola, where a curved stone bar and an outdoor kitchen stand against walls of clipped ivy, lit by slim glass pendants." loading="lazy" /></picture>
       <div class="pc-info"><div class="pc-cat">Interior Design</div><div class="pc-name">Penthouse Oradea</div><div class="pc-loc">Oradea, Romania</div></div>
-      <span class="pc-arrow"><svg viewBox="0 0 24 24"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span>
-    </article>
-    <article class="pc half" data-project="florida-house" aria-label="Open Florida House gallery">
-      <picture style="--lqip:url('data:image/webp;base64,UklGRrIAAABXRUJQVlA4IKYAAADQAwCdASocAA8APu1iqU2ppaQiMAgBMB2JQBOkGQAXC4a7dgxjzwAA/Wkuqx+9olu1x0YaQgjoKcrHO4gqwlfojyjoPfck9EOpyizNdokoAVS23xvi3mBxeBfxqvnJ/iUegI2pedB+1wBckegSDvQXHhf34/7a5PtSnQal0ovAaWJuaIVRQ62fHCH0wOU2PqZ6X1bGAaCl6d1Wl2SqPsqV7QMvZAAA')"><source type="image/avif" srcset="./Renders/Florida-House/01-480.avif 480w, ./Renders/Florida-House/01-1024.avif 1024w, ./Renders/Florida-House/01-1600.avif 1600w" sizes="(max-width: 860px) 100vw, 38vw" /><source type="image/webp" srcset="./Renders/Florida-House/01-480.webp 480w, ./Renders/Florida-House/01-1024.webp 1024w, ./Renders/Florida-House/01-1600.webp 1600w" sizes="(max-width: 860px) 100vw, 38vw" /><img decoding="async" src="./Renders/Florida-House/01.jpg" alt="Florida House" loading="lazy" /></picture>
+      <span class="pc-arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span>
+    </div>
+    <div class="pc half" data-project="florida-house" aria-label="Florida House, architecture, Florida, USA. Open gallery">
+      <picture style="--lqip:url('data:image/webp;base64,UklGRrIAAABXRUJQVlA4IKYAAADQAwCdASocAA8APu1iqU2ppaQiMAgBMB2JQBOkGQAXC4a7dgxjzwAA/Wkuqx+9olu1x0YaQgjoKcrHO4gqwlfojyjoPfck9EOpyizNdokoAVS23xvi3mBxeBfxqvnJ/iUegI2pedB+1wBckegSDvQXHhf34/7a5PtSnQal0ovAaWJuaIVRQ62fHCH0wOU2PqZ6X1bGAaCl6d1Wl2SqPsqV7QMvZAAA')"><source type="image/avif" srcset="./Renders/Florida-House/01-480.avif 480w, ./Renders/Florida-House/01-1024.avif 1024w, ./Renders/Florida-House/01-1600.avif 1600w" sizes="(max-width: 860px) 100vw, 38vw" /><source type="image/webp" srcset="./Renders/Florida-House/01-480.webp 480w, ./Renders/Florida-House/01-1024.webp 1024w, ./Renders/Florida-House/01-1600.webp 1600w" sizes="(max-width: 860px) 100vw, 38vw" /><img decoding="async" src="./Renders/Florida-House/01.jpg" alt="A two-storey house in white render and dark ribbed timber, reached across a lawn on a broad ribbon of pale stone pavers, with tall palms overhead and cars drawn up under a timber car port." loading="lazy" /></picture>
       <div class="pc-info"><div class="pc-cat">Architecture</div><div class="pc-name">Florida House</div><div class="pc-loc">Florida, USA</div></div>
-      <span class="pc-arrow"><svg viewBox="0 0 24 24"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span>
-    </article>
+      <span class="pc-arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span>
+    </div>
   </div>
 
   <div class="works-row two reveal d2">
-    <article class="pc" data-project="casa-corbeanca" aria-label="Open Villa Corbeanca gallery">
-      <picture style="--lqip:url('data:image/webp;base64,UklGRoIAAABXRUJQVlA4IHYAAADwAwCdASocAA8APu1qrU8ppiQiMAgBMB2JQBOgBEQVh64vuvfBud+wAP3dVaoxyNdA85rlIamGE23/YFqIMKki1yna9BKG32NltAi1CLeDEGGbjm6Tri6bPqxRQlzOTjIM+xc/tY78NRiNHxap6gYquFwEtAAA')"><source type="image/avif" srcset="./Renders/Casa-Corebeanca/103-480.avif 480w, ./Renders/Casa-Corebeanca/103-1024.avif 1024w, ./Renders/Casa-Corebeanca/103-1600.avif 1600w" sizes="(max-width: 860px) 100vw, 53vw" /><source type="image/webp" srcset="./Renders/Casa-Corebeanca/103-480.webp 480w, ./Renders/Casa-Corebeanca/103-1024.webp 1024w, ./Renders/Casa-Corebeanca/103-1600.webp 1600w" sizes="(max-width: 860px) 100vw, 53vw" /><img decoding="async" src="./Renders/Casa-Corebeanca/103.jpg" alt="Villa Corbeanca" loading="lazy" /></picture>
+    <div class="pc" data-project="casa-corbeanca" aria-label="Villa Corbeanca, architecture and residential, Corbeanca, Romania. Open gallery">
+      <picture style="--lqip:url('data:image/webp;base64,UklGRoIAAABXRUJQVlA4IHYAAADwAwCdASocAA8APu1qrU8ppiQiMAgBMB2JQBOgBEQVh64vuvfBud+wAP3dVaoxyNdA85rlIamGE23/YFqIMKki1yna9BKG32NltAi1CLeDEGGbjm6Tri6bPqxRQlzOTjIM+xc/tY78NRiNHxap6gYquFwEtAAA')"><source type="image/avif" srcset="./Renders/Casa-Corebeanca/103-480.avif 480w, ./Renders/Casa-Corebeanca/103-1024.avif 1024w, ./Renders/Casa-Corebeanca/103-1600.avif 1600w" sizes="(max-width: 860px) 100vw, 53vw" /><source type="image/webp" srcset="./Renders/Casa-Corebeanca/103-480.webp 480w, ./Renders/Casa-Corebeanca/103-1024.webp 1024w, ./Renders/Casa-Corebeanca/103-1600.webp 1600w" sizes="(max-width: 860px) 100vw, 53vw" /><img decoding="async" src="./Renders/Casa-Corebeanca/103.jpg" alt="A cream rendered villa under a clay pantile roof, its columned loggia opening onto a wide lawn, with a matching roofed pavilion sheltering the pool terrace beyond." loading="lazy" /></picture>
       <div class="pc-info"><div class="pc-cat">Architecture · Residential</div><div class="pc-name">Villa Corbeanca</div><div class="pc-loc">Corbeanca, Romania</div></div>
-      <span class="pc-arrow"><svg viewBox="0 0 24 24"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span>
-    </article>
-    <article class="pc" data-project="apartment-in-oradea" aria-label="Open Apartment in Oradea gallery">
-      <picture style="--lqip:url('data:image/webp;base64,UklGRoIAAABXRUJQVlA4IHYAAADwAwCdASocAA8APu1oqk6ppiQiMAgBMB2JZwDCgGMjDDDkwxcAuFgAAP77Mkw/aSn6y+Nc9WqCkrY8X17i6AbyQ++Dee8pAM9nMkTBFnfyDD6NlOHsV6BDJNX/NHlMoSKs6ue3yWbyCwl++xhRn/rK+T+oLAAA')"><source type="image/avif" srcset="./Renders/Apartment-in-Oradea/01-6-scaled-480.avif 480w, ./Renders/Apartment-in-Oradea/01-6-scaled-1024.avif 1024w, ./Renders/Apartment-in-Oradea/01-6-scaled-1600.avif 1600w" sizes="(max-width: 860px) 100vw, 38vw" /><source type="image/webp" srcset="./Renders/Apartment-in-Oradea/01-6-scaled-480.webp 480w, ./Renders/Apartment-in-Oradea/01-6-scaled-1024.webp 1024w, ./Renders/Apartment-in-Oradea/01-6-scaled-1600.webp 1600w" sizes="(max-width: 860px) 100vw, 38vw" /><img decoding="async" src="./Renders/Apartment-in-Oradea/01-6-scaled.jpg" alt="Apartment in Oradea" loading="lazy" /></picture>
+      <span class="pc-arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span>
+    </div>
+    <div class="pc" data-project="apartment-in-oradea" aria-label="Apartment in Oradea, interior design, Oradea, Romania. Open gallery">
+      <picture style="--lqip:url('data:image/webp;base64,UklGRoIAAABXRUJQVlA4IHYAAADwAwCdASocAA8APu1oqk6ppiQiMAgBMB2JZwDCgGMjDDDkwxcAuFgAAP77Mkw/aSn6y+Nc9WqCkrY8X17i6AbyQ++Dee8pAM9nMkTBFnfyDD6NlOHsV6BDJNX/NHlMoSKs6ue3yWbyCwl++xhRn/rK+T+oLAAA')"><source type="image/avif" srcset="./Renders/Apartment-in-Oradea/01-6-scaled-480.avif 480w, ./Renders/Apartment-in-Oradea/01-6-scaled-1024.avif 1024w, ./Renders/Apartment-in-Oradea/01-6-scaled-1600.avif 1600w" sizes="(max-width: 860px) 100vw, 38vw" /><source type="image/webp" srcset="./Renders/Apartment-in-Oradea/01-6-scaled-480.webp 480w, ./Renders/Apartment-in-Oradea/01-6-scaled-1024.webp 1024w, ./Renders/Apartment-in-Oradea/01-6-scaled-1600.webp 1600w" sizes="(max-width: 860px) 100vw, 38vw" /><img decoding="async" src="./Renders/Apartment-in-Oradea/01-6-scaled.jpg" alt="An entrance hall in pale marble, where a dark bronze panelled door faces a floating stone console and a round olive velvet stool, under a cluster of slim brass pendants." loading="lazy" /></picture>
       <div class="pc-info"><div class="pc-cat">Interior Design</div><div class="pc-name">Apartment in Oradea</div><div class="pc-loc">Oradea, Romania</div></div>
-      <span class="pc-arrow"><svg viewBox="0 0 24 24"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span>
-    </article>
+      <span class="pc-arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span>
+    </div>
   </div>
 
   <div style="margin-top:44px;display:flex;justify-content:center;" class="reveal d3">
-    <a href="/projects" class="link">View the full portfolio <svg viewBox="0 0 24 24"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></a>
+    <a href="/projects" class="link">View the full portfolio <svg viewBox="0 0 24 24" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></a>
   </div>
 </section>
 
 <!-- FULL BLEED I -->
 <div class="fullbleed reveal">
-  <picture style="--lqip:url('data:image/webp;base64,UklGRpoAAABXRUJQVlA4II4AAADwAwCdASocAA8APu1mq04ppaQiMAgBMB2JYwBTAAWZipy5+7VicaiAAPv3OrEAT8FVzBl7ZthS1IGksya5iX3B4WVy1HaYDheKuL+YI5VMCxr1X/kFTaXJNs+DlTBnot77tL/Oxsdf9hP6sFXh2BJoGX25cNTF9TTt8yPDpJzSuJcOK8/QC0jHHtsgP7AA')"><source type="image/avif" srcset="./Renders/Casa-Corebeanca/120-480.avif 480w, ./Renders/Casa-Corebeanca/120-1024.avif 1024w, ./Renders/Casa-Corebeanca/120-1600.avif 1600w" sizes="100vw" /><source type="image/webp" srcset="./Renders/Casa-Corebeanca/120-480.webp 480w, ./Renders/Casa-Corebeanca/120-1024.webp 1024w, ./Renders/Casa-Corebeanca/120-1600.webp 1600w" sizes="100vw" /><img decoding="async" class="fb-img" data-parallax src="./Renders/Casa-Corebeanca/120.jpg" alt="Villa Corbeanca" loading="lazy" /></picture>
+  <picture style="--lqip:url('data:image/webp;base64,UklGRpoAAABXRUJQVlA4II4AAADwAwCdASocAA8APu1mq04ppaQiMAgBMB2JYwBTAAWZipy5+7VicaiAAPv3OrEAT8FVzBl7ZthS1IGksya5iX3B4WVy1HaYDheKuL+YI5VMCxr1X/kFTaXJNs+DlTBnot77tL/Oxsdf9hP6sFXh2BJoGX25cNTF9TTt8yPDpJzSuJcOK8/QC0jHHtsgP7AA')"><source type="image/avif" srcset="./Renders/Casa-Corebeanca/120-480.avif 480w, ./Renders/Casa-Corebeanca/120-1024.avif 1024w, ./Renders/Casa-Corebeanca/120-1600.avif 1600w" sizes="100vw" /><source type="image/webp" srcset="./Renders/Casa-Corebeanca/120-480.webp 480w, ./Renders/Casa-Corebeanca/120-1024.webp 1024w, ./Renders/Casa-Corebeanca/120-1600.webp 1600w" sizes="100vw" /><img decoding="async" class="fb-img" data-parallax src="./Renders/Casa-Corebeanca/120.jpg" alt="Villa Corbeanca: round concrete daybeds and tall glass lanterns on a timber deck beside a plunge pool, under a wide white parasol, with the tiled loggia and its flowering trees beyond." loading="lazy" /></picture>
   <div class="fb-caption">
     <h3>Nothing here<br />is accidental.</h3>
     <p>Proportion and material are settled long before a single stone is laid. The detail follows from them, never the other way round.</p>
@@ -436,7 +438,7 @@
 <!-- STUDIO -->
 <section id="studio">
   <div class="studio-left reveal">
-    <img class="studio-brand" src="./Logo Variants/Full Mark.png" alt="Draw Clever" />
+    <img class="studio-brand" src="./Logo Variants/Full Mark.png" alt="" />
     <h2>Who you will<br />be working with</h2>
     <div class="stats">
       <div class="stat"><div class="n">2014</div><div class="l">Atelier<br />established</div></div>
@@ -471,7 +473,7 @@
     <div class="disc"><div class="disc-n">04</div><div><h3 class="disc-name">Landscape</h3><p class="disc-body">Pools, terraces, gardens and entrance courts: the architecture's quieter half, designed in the same hand.</p></div></div>
     <div class="disc"><div class="disc-n">05</div><div><h3 class="disc-name">Stewardship</h3><p class="disc-body">Oversight from planning permission to handover. We do not leave the site until the work matches the drawings.</p></div></div>
   </div>
-  <div style="margin-top:40px;" class="reveal d2"><a href="/services" class="link">Explore our services <svg viewBox="0 0 24 24"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></a></div>
+  <div style="margin-top:40px;" class="reveal d2"><a href="/services" class="link">Explore our services <svg viewBox="0 0 24 24" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></a></div>
 </section>
 
 <!-- PHILOSOPHY -->
@@ -492,7 +494,7 @@
 
 <!-- FULL BLEED II -->
 <div class="fullbleed reveal">
-  <picture style="--lqip:url('data:image/webp;base64,UklGRqAAAABXRUJQVlA4IJQAAABwBACdASocAA8APu1kqU2ppaQiMAgBMB2JYwCdAywBilLjR3LDwRhxnLvmAADKB/Q4+nRIT7Qm5IRYyv/dSrp6QLdplsK8uPl9kHtlN4a4ZMFLKvmUFmiC/jj4Jmm9sh4ZpufrecSeXzVCe2FPud8cqTxPk0oYfKHWeWaD2cQclnr9isbIg2L+vhLPVnFS+IEvaOAA')"><source type="image/avif" srcset="./Renders/Casa-Marbella/01-scaled-480.avif 480w, ./Renders/Casa-Marbella/01-scaled-1024.avif 1024w, ./Renders/Casa-Marbella/01-scaled-1600.avif 1600w" sizes="100vw" /><source type="image/webp" srcset="./Renders/Casa-Marbella/01-scaled-480.webp 480w, ./Renders/Casa-Marbella/01-scaled-1024.webp 1024w, ./Renders/Casa-Marbella/01-scaled-1600.webp 1600w" sizes="100vw" /><img decoding="async" class="fb-img" data-parallax src="./Renders/Casa-Marbella/01-scaled.jpg" alt="Casa Marbella" loading="lazy" /></picture>
+  <picture style="--lqip:url('data:image/webp;base64,UklGRqAAAABXRUJQVlA4IJQAAABwBACdASocAA8APu1kqU2ppaQiMAgBMB2JYwCdAywBilLjR3LDwRhxnLvmAADKB/Q4+nRIT7Qm5IRYyv/dSrp6QLdplsK8uPl9kHtlN4a4ZMFLKvmUFmiC/jj4Jmm9sh4ZpufrecSeXzVCe2FPud8cqTxPk0oYfKHWeWaD2cQclnr9isbIg2L+vhLPVnFS+IEvaOAA')"><source type="image/avif" srcset="./Renders/Casa-Marbella/01-scaled-480.avif 480w, ./Renders/Casa-Marbella/01-scaled-1024.avif 1024w, ./Renders/Casa-Marbella/01-scaled-1600.avif 1600w" sizes="100vw" /><source type="image/webp" srcset="./Renders/Casa-Marbella/01-scaled-480.webp 480w, ./Renders/Casa-Marbella/01-scaled-1024.webp 1024w, ./Renders/Casa-Marbella/01-scaled-1600.webp 1600w" sizes="100vw" /><img decoding="async" class="fb-img" data-parallax src="./Renders/Casa-Marbella/01-scaled.jpg" alt="The villa seen head on from the beach, two floors of interiors open behind a glass wall above a mosaic-clad infinity pool whose water falls the full width of the terrace." loading="lazy" /></picture>
   <div class="fb-caption">
     <h3>Casa Marbella,<br />Andalucía.</h3>
     <p>A Mediterranean villa of glass and stone, set into the hillside above the sea, designed for a life lived between inside and out.</p>
@@ -516,16 +518,21 @@
   <a href="/contact" class="btn btn-solid btn-lg reveal d3">Start a Project</a>
 </section>
 
+</main>
+
 <!-- FOOTER -->
 <footer>
   <div class="foot-top">
     <a href="/" aria-label="Draw Clever, home"><img src="./Logo Variants/Word Mark.png" alt="Draw Clever" /></a>
-    <ul class="foot-nav">
+  <!-- role="navigation" rather than a <nav> element: src/site.css styles the
+       bare `nav` selector as the fixed site header, so a second <nav> anywhere
+       on the page becomes a second fixed header. Same landmark, no styling. -->
+    <div role="navigation" aria-label="Footer"><ul class="foot-nav">
       <li><a href="/projects">Portfolio</a></li>
       <li><a href="/about-us">About</a></li>
       <li><a href="/services">Services</a></li>
       <li><a href="/contact">Contact</a></li>
-    </ul>
+    </ul></div>
   </div>
   <div class="foot-bottom">
     <p>© 2026 Draw Clever. We redefine the luxury life.</p>
@@ -534,7 +541,7 @@
       <li><a href="https://pinterest.com/drawclever/">Pinterest</a></li>
       <li><a href="https://x.com/DrawClever">X</a></li>
     </ul>
-    <a href="#top" class="to-top">Back to top <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/></svg></a>
+    <a href="#top" class="to-top">Back to top <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/></svg></a>
   </div>
 </footer>
 

@@ -210,7 +210,7 @@
 <div class="grain" aria-hidden="true"></div>
 <div class="progress" id="progress" aria-hidden="true"></div>
 
-<nav id="nav">
+<nav id="nav" aria-label="Primary">
   <a href="/" class="brand" aria-label="Draw Clever, home"><img src="./Logo Variants/Logo Mark.png" alt="Draw Clever" /></a>
   <ul class="nav-links">
     <li><a href="/projects">Portfolio</a></li>
@@ -221,7 +221,7 @@
   <button class="nav-toggle" aria-label="Open menu" aria-controls="drawer" aria-expanded="false"><span></span><span></span><span></span></button>
 </nav>
 
-<div class="drawer" id="drawer" aria-hidden="true">
+<div class="drawer" id="drawer" role="dialog" aria-modal="true" aria-label="Menu" aria-hidden="true">
   <div class="drawer-inner">
     <ul class="drawer-links">
       <li><a href="/projects">Portfolio</a></li>
@@ -237,15 +237,17 @@
   </div>
 </div>
 
+<main id="main" tabindex="-1">
+
 <!-- BANNER -->
-<header class="banner" id="main" tabindex="-1">
+<section class="banner">
   <div class="banner-bg" style="background-image:url('./Renders/Apartment-in-Oradea/01-6-scaled.jpg');background-image:-webkit-image-set(url('./Renders/Apartment-in-Oradea/01-6-scaled.avif') type('image/avif'),url('./Renders/Apartment-in-Oradea/01-6-scaled.webp') type('image/webp'),url('./Renders/Apartment-in-Oradea/01-6-scaled.jpg') type('image/jpeg'));background-image:image-set(url('./Renders/Apartment-in-Oradea/01-6-scaled.avif') type('image/avif'),url('./Renders/Apartment-in-Oradea/01-6-scaled.webp') type('image/webp'),url('./Renders/Apartment-in-Oradea/01-6-scaled.jpg') type('image/jpeg'))"></div>
   <div class="banner-inner dc-head">
-    <div class="crumbs"><a href="/">Home</a><span class="sep">/</span><span>Services</span></div>
+    <div class="crumbs" role="navigation" aria-label="Breadcrumb"><a href="/">Home</a><span class="sep" aria-hidden="true">/</span><span>Services</span></div>
     <h1>What the<br />studio does.</h1>
     <p class="sub">Architecture, interiors, visualisation, landscape and management. Five disciplines under one roof, and none of them handed out.</p>
   </div>
-</header>
+</section>
 
 <!-- SERVICES -->
 <section id="services">
@@ -253,27 +255,27 @@
     <a class="svc reveal" href="/contact" aria-label="Start an architecture project">
       <div class="svc-n">01</div>
       <div class="svc-main"><h2>Architecture</h2><p class="svc-desc">From the first concept to the construction set, for residences and the occasional commercial commission.</p></div>
-      <span class="svc-go"><svg viewBox="0 0 24 24"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span>
+      <span class="svc-go"><svg viewBox="0 0 24 24" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span>
     </a>
     <a class="svc reveal" href="/contact" aria-label="Start an interior design project">
       <div class="svc-n">02</div>
       <div class="svc-main"><h2>Interior Design</h2><p class="svc-desc">Spatial planning, material selection, furniture and lighting, drawn for the room rather than chosen from a catalogue.</p></div>
-      <span class="svc-go"><svg viewBox="0 0 24 24"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span>
+      <span class="svc-go"><svg viewBox="0 0 24 24" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span>
     </a>
     <a class="svc reveal" href="/contact" aria-label="Start a 3D visualisation project">
       <div class="svc-n">03</div>
       <div class="svc-main"><h2>3D Visualisation</h2><p class="svc-desc">Photoreal renders made in-house, so you can walk the rooms on screen and change your mind before it costs anything.</p></div>
-      <span class="svc-go"><svg viewBox="0 0 24 24"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span>
+      <span class="svc-go"><svg viewBox="0 0 24 24" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span>
     </a>
     <a class="svc reveal" href="/contact" aria-label="Start a landscaping project">
       <div class="svc-n">04</div>
       <div class="svc-main"><h2>Landscaping</h2><p class="svc-desc">Pools, terraces, gardens and entrance courts, set out on the same drawings as the house.</p></div>
-      <span class="svc-go"><svg viewBox="0 0 24 24"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span>
+      <span class="svc-go"><svg viewBox="0 0 24 24" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span>
     </a>
     <a class="svc reveal" href="/contact" aria-label="Start a project management engagement">
       <div class="svc-n">05</div>
       <div class="svc-main"><h2>Project Management</h2><p class="svc-desc">Oversight from planning permission to handover, so the person who drew it is the person checking it.</p></div>
-      <span class="svc-go"><svg viewBox="0 0 24 24"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span>
+      <span class="svc-go"><svg viewBox="0 0 24 24" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span>
     </a>
   </div>
 </section>
@@ -301,15 +303,19 @@
   <a href="/contact" class="btn btn-solid btn-lg reveal d2">Start a Project</a>
 </section>
 
+</main>
 <footer>
   <div class="foot-top">
     <a href="/" aria-label="Draw Clever, home"><img src="./Logo Variants/Word Mark.png" alt="Draw Clever" /></a>
-    <ul class="foot-nav"><li><a href="/projects">Portfolio</a></li><li><a href="/about-us">About</a></li><li><a href="/services">Services</a></li><li><a href="/contact">Contact</a></li></ul>
+  <!-- role="navigation" rather than a <nav> element: src/site.css styles the
+       bare `nav` selector as the fixed site header, so a second <nav> anywhere
+       on the page becomes a second fixed header. Same landmark, no styling. -->
+    <div role="navigation" aria-label="Footer"><ul class="foot-nav"><li><a href="/projects">Portfolio</a></li><li><a href="/about-us">About</a></li><li><a href="/services">Services</a></li><li><a href="/contact">Contact</a></li></ul></div>
   </div>
   <div class="foot-bottom">
     <p>© 2026 Draw Clever. We redefine the luxury life.</p>
     <ul class="foot-social"><li><a href="https://www.instagram.com/drawclever.design/">Instagram</a></li><li><a href="https://pinterest.com/drawclever/">Pinterest</a></li><li><a href="https://x.com/DrawClever">X</a></li></ul>
-    <a href="#top" class="to-top">Back to top <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/></svg></a>
+    <a href="#top" class="to-top">Back to top <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/></svg></a>
   </div>
 </footer>
 
