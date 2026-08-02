@@ -2,6 +2,7 @@ import { defineConfig } from 'vite';
 import { existsSync, readFileSync } from 'node:fs';
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
+import { PROJECTS, ALT } from './src/data/projects.js';
 
 /**
  * Draw Clever Architecture — Vite config
@@ -52,12 +53,45 @@ const cleanUrls = () => {
  * live outside the page tree, so a change to one has to invalidate every page
  * by hand in dev; handleHotUpdate does that.
  */
+/**
+ * The project grids, rendered from src/data/projects.js at build time.
+ *
+ * `<!-- @cards surface="portfolio" -->` emits the full grid; the home page is
+ * two containers with different spans, so it asks for one at a time with
+ * `<!-- @cards surface="home" group="main" -->`. Both used to be hand-written
+ * markup in two files that also restated what lightbox.js already knew, which
+ * is how Florida House ended up with two different categories.
+ *
+ * Only the portfolio grid carries data-cat, because only that page filters.
+ */
+const RUNGS = [480, 1024, 1200, 1600];
+const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/"/g, '&quot;');
+
+const renderCards = (surface, group) => Object.entries(PROJECTS)
+  .filter(([, p]) => p[surface] && (!group || p[surface].group === group))
+  .map(([slug, p]) => {
+    const s = p[surface];
+    const stem = s.cover.replace(/\.jpg$/, '');
+    const set = (ext) => RUNGS.map((w) => `./${p.folder}/${stem}-${w}.${ext} ${w}w`).join(', ');
+    const alt = ALT[`${p.folder.replace(/^Renders\//, '')}/${s.cover}`] || '';
+    const cat = surface === 'portfolio' ? ` data-cat="${esc(p.tags)}"` : '';
+    return `<div class="${s.cls}" data-project="${slug}"${cat} aria-label="${esc(s.aria)}">
+  <picture style="--lqip:url('data:image/webp;base64,${s.lqip}')"><source type="image/avif" srcset="${set('avif')}" sizes="${esc(s.sizes)}" /><source type="image/webp" srcset="${set('webp')}" sizes="${esc(s.sizes)}" /><img decoding="async" src="./${p.folder}/${s.cover}" alt="${esc(alt)}" loading="lazy" /></picture>
+  <div class="pc-info"><div class="pc-cat">${esc(p.cat)}</div><div class="pc-name">${esc(p.title)}</div><div class="pc-loc">${esc(p.location)}</div></div>
+  <span class="pc-arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span>
+</div>`;
+  })
+  .join('\n');
+
 const htmlPartials = () => {
   const dir = resolve(__dirname, 'src/partials');
   const TAG = /([ \t]*)<!--\s*@include\s+([\w.-]+)([^>]*?)-->/g;
+  const CARDS = /([ \t]*)<!--\s*@cards\s+surface="(home|portfolio)"(?:\s+group="(\w+)")?\s*-->/g;
 
   const render = (html, from, depth = 0) => {
     if (depth > 5) throw new Error(`@include: nested too deep in ${from}`);
+    html = html.replace(CARDS, (_m, indent, surface, group) =>
+      renderCards(surface, group).split('\n').map((l, i) => (i === 0 || !l ? l : indent + l)).join('\n'));
     return html.replace(TAG, (_m, indent, file, rest) => {
       const path = resolve(dir, file);
       if (!existsSync(path)) throw new Error(`@include: no partial "${file}" (from ${from})`);
