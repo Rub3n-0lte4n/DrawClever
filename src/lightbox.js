@@ -1,3 +1,4 @@
+import { PROJECTS, ALT } from './data/projects.js';
 /**
  * Draw Clever Architecture — Project Lightbox
  *
@@ -14,54 +15,6 @@
  */
 
 /* ────────────── PROJECT MANIFEST ────────────── */
-const PROJECTS = {
-  'casa-marbella': {
-    title: 'Casa Marbella', location: 'Marbella, Spain', cat: 'Architecture · Residential',
-    folder: 'Renders/Casa-Marbella',
-    images: ['04-scaled.jpg', '01-scaled.jpg', '02-1-scaled.jpg', '05-scaled.jpg', '07-scaled.jpg', '09-scaled.jpg'],
-  },
-  'penthouse-oradea': {
-    title: 'Penthouse Oradea', location: 'Oradea, Romania', cat: 'Interior Design',
-    folder: 'Renders/Penthouse-Oradea',
-    images: ['21.jpg', '20-2.jpg', '15-1.jpg', '10-2.jpg', '27.jpg', '28.jpg', '29.jpg', '30-1.jpg',
-             '31-1.jpg', '33.jpg', '35-1.jpg', '36-2.jpg', '37.jpg', '38.jpg', '45.jpg', '46.jpg',
-             '51.jpg', '57.jpg', '58.jpg', '60.jpg', '64.jpg', '65.jpg', '66.jpg', '68.jpg'],
-  },
-  'florida-house': {
-    title: 'Florida House', location: 'Florida, USA', cat: 'Architecture',
-    folder: 'Renders/Florida-House',
-    images: ['01.jpg', '02.jpg', '03.jpg', '04.jpg', '05-scaled.jpg', '06.jpg', '07.jpg'],
-  },
-  'casa-corbeanca': {
-    title: 'Villa Corbeanca', location: 'Corbeanca, Romania', cat: 'Architecture · Residential',
-    folder: 'Renders/Casa-Corebeanca',
-    images: ['103.jpg', '110.jpg', '112.jpg', '113-1.jpg', '120.jpg', '123.jpg', '128.jpg', '131.jpg', '133.jpg', '135.jpg'],
-  },
-  'event-hall-baia-mare': {
-    title: 'Grand Event Hall', location: 'Baia Mare, Romania', cat: 'Interior Design · Commercial',
-    folder: 'Renders/Event-Hall-Baia-Mare',
-    images: ['01_1-Photo-scaled.jpg', '01_20-Foto-scaled.jpg', '02_19-Foto-scaled.jpg',
-             '02_2-Photo-scaled.jpg', '03_11-Foto-scaled.jpg', '04_4-Photo-scaled.jpg'],
-  },
-  'boutique-mosilor': {
-    title: 'Boutique Moșilor', location: 'Bucharest, Romania', cat: 'Architecture · Residential',
-    folder: 'Renders/Boutique-Mosilor',
-    images: ['01-scaled.jpg', '02-scaled.jpg', '03-scaled.jpg', '04-scaled.jpg', '05-scaled.jpg',
-             '06-scaled.jpg', '60_1-Photo-scaled.jpg', '60_4-Photo-scaled.jpg'],
-  },
-  'apartment-in-oradea': {
-    title: 'Apartment in Oradea', location: 'Oradea, Romania', cat: 'Interior Design',
-    folder: 'Renders/Apartment-in-Oradea',
-    images: ['01-6-scaled.jpg', '01-7-scaled.jpg', '01-8-scaled.jpg', '02-10-scaled.jpg', '02-8-scaled.jpg',
-             '02-9-scaled.jpg', '03-6-scaled.jpg', '03-7-scaled.jpg', '03-8-scaled.jpg', '04-4-scaled.jpg',
-             '04-5-scaled.jpg', '05-5-scaled.jpg', '06-4-scaled.jpg', '06-5-scaled.jpg', '06-6-scaled.jpg'],
-  },
-  'uav-library': {
-    title: 'University Library', location: 'Arad, Romania', cat: 'Architecture · Cultural',
-    folder: 'Renders/UAV-Library',
-    images: ['71.jpg', '70-1.jpg', '74.jpg', '75.jpg', '76.jpg', '77.jpg', '80.jpg', '81.jpg'],
-  },
-};
 
 /* ────────────── MARKUP (injected once) ────────────── */
 function buildLightbox() {
@@ -227,36 +180,6 @@ function bindGestures(stage) {
  * back to an honest position line rather than to an invented description.
  * Keyed by `<folder>/<file>` so it lines up with the manifest above.
  */
-const ALT = {
-  'Casa-Marbella/07-scaled.jpg':
-    'A white villa of stacked glazed volumes above a mosaic-tiled infinity pool, with an open-air kitchen and a long dining counter on the stone terrace below.',
-  'Casa-Marbella/04-scaled.jpg':
-    'The villa at dusk, its glazed rooms glowing warm above a sunken terrace lounge gathered around a lit fire table, with water spilling down the pool wall behind.',
-  'Casa-Marbella/01-scaled.jpg':
-    'The villa seen head on from the beach, two floors of interiors open behind a glass wall above a mosaic-clad infinity pool whose water falls the full width of the terrace.',
-  'Penthouse-Oradea/21.jpg':
-    'A rooftop terrace under a pale timber pergola, where a curved stone bar and an outdoor kitchen stand against walls of clipped ivy, lit by slim glass pendants.',
-  'Penthouse-Oradea/27.jpg':
-    'A living room under a coffered ceiling and a crystal chandelier, where a buttoned cream sofa and a round marble table face a glazed wall onto the terrace, with the dining room and kitchen open beyond.',
-  'Florida-House/01.jpg':
-    'A two-storey house in white render and dark ribbed timber, reached across a lawn on a broad ribbon of pale stone pavers, with tall palms overhead and cars drawn up under a timber car port.',
-  'Casa-Corebeanca/103.jpg':
-    'A cream rendered villa under a clay pantile roof, its columned loggia opening onto a wide lawn, with a matching roofed pavilion sheltering the pool terrace beyond.',
-  'Casa-Corebeanca/110.jpg':
-    "The villa's garden front seen across a timber deck, where an arcaded loggia holds a sheltered lounge and round concrete daybeds face the lawn under a cantilevered parasol.",
-  'Casa-Corebeanca/120.jpg':
-    'Round concrete daybeds and tall glass lanterns on a timber deck beside a plunge pool, under a wide white parasol, with the tiled loggia and its flowering trees beyond.',
-  'Apartment-in-Oradea/01-6-scaled.jpg':
-    'An entrance hall in pale marble, where a dark bronze panelled door faces a floating stone console and a round olive velvet stool, under a cluster of slim brass pendants.',
-  'Apartment-in-Oradea/03-6-scaled.jpg':
-    'A living room in white wall panelling, where a long black ribbon fireplace runs below the screen and sage velvet seating faces a marble-clad kitchen wall beyond the dining table.',
-  'Event-Hall-Baia-Mare/02_2-Photo-scaled.jpg':
-    'An empty ballroom in white marble, its floor banded with black inlay between fluted columns, lit by crystal basket chandeliers hung from a coffered and cove-lit ceiling.',
-  'Boutique-Mosilor/03-scaled.jpg':
-    "A lit entrance court at night, where the building's name stands in gold on a book-matched marble wall above dark stone paving framed by clipped hedges.",
-  'UAV-Library/74.jpg':
-    'A library workroom lined floor to ceiling with archive binders, where two timber desks face a grey wall of recessed niches and a full-height case of bound volumes stands opposite.',
-};
 
 function describe(project, i) {
   return ALT[`${project.folder.replace(/^Renders\//, '')}/${project.images[i]}`] || '';
