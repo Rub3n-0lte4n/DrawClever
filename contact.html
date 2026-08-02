@@ -32,6 +32,58 @@
   <meta name="twitter:title" content="Contact · Draw Clever" />
   <meta name="twitter:description" content="Start a conversation with Draw Clever. Ateliers in Romania and Spain." />
   <meta name="twitter:image" content="https://drawclever.vercel.app/Renders/Casa-Marbella/04-scaled.jpg" />
+
+  <!-- Structured data: ContactPage plus the genuine Q&A accordion in #faq, transcribed
+       verbatim (not forced onto content that isn't really FAQ). -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://drawclever.vercel.app/" },
+          { "@type": "ListItem", "position": 2, "name": "Contact", "item": "https://drawclever.vercel.app/contact" }
+        ]
+      },
+      {
+        "@type": "ContactPage",
+        "@id": "https://drawclever.vercel.app/contact#webpage",
+        "url": "https://drawclever.vercel.app/contact",
+        "name": "Contact · Draw Clever",
+        "description": "Start a conversation with Draw Clever. Ateliers in Romania and Spain. Tell us about your project and let's create something new.",
+        "isPartOf": { "@id": "https://drawclever.vercel.app/#website" },
+        "about": { "@id": "https://drawclever.vercel.app/#organization" }
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://drawclever.vercel.app/contact#faq",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Where are you based?",
+            "acceptedAnswer": { "@type": "Answer", "text": "A headquarters in Bucharest, Romania and a branch in Marbella, Spain, working with clients across Europe, the United States and the Middle East." }
+          },
+          {
+            "@type": "Question",
+            "name": "Do you handle architecture and interiors together?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Yes. Architecture, interiors and grounds are authored by one team as a single, continuous gesture. We don't refer the work out." }
+          },
+          {
+            "@type": "Question",
+            "name": "How does a project begin?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Every commission begins with a conversation. Tell us about your project using the form above and we'll arrange an introductory call to understand the brief." }
+          },
+          {
+            "@type": "Question",
+            "name": "Do you work internationally?",
+            "acceptedAnswer": { "@type": "Answer", "text": "We do. Our portfolio spans several countries across two continents. A well-run process makes distance a detail, not an obstacle." }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
   <style>
     @font-face { font-family: 'Inter'; src: url('./Fonts/Inter/Inter.woff2') format('woff2-variations'), url('./Fonts/Inter/Inter.woff2') format('woff2'); font-weight: 100 900; font-style: normal; font-display: swap; }
     @font-face { font-family: 'Inter'; src: url('./Fonts/Inter/Inter-Italic.woff2') format('woff2-variations'), url('./Fonts/Inter/Inter-Italic.woff2') format('woff2'); font-weight: 100 900; font-style: italic; font-display: swap; }

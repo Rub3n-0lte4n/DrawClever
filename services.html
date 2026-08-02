@@ -32,6 +32,68 @@
   <meta name="twitter:title" content="Services · Draw Clever" />
   <meta name="twitter:description" content="Architecture, interiors, visualisation, landscape and stewardship: one team, concept to handover." />
   <meta name="twitter:image" content="https://drawclever.vercel.app/Renders/Casa-Marbella/04-scaled.jpg" />
+
+  <!-- Structured data: the five service lines below, as plain Service entities (no
+       Offer/OfferCatalog wrapper — the client has not published pricing, and Offer without
+       a price would be an incomplete claim rather than a real one). -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://drawclever.vercel.app/" },
+          { "@type": "ListItem", "position": 2, "name": "Services", "item": "https://drawclever.vercel.app/services" }
+        ]
+      },
+      {
+        "@type": "CollectionPage",
+        "@id": "https://drawclever.vercel.app/services#webpage",
+        "url": "https://drawclever.vercel.app/services",
+        "name": "Services · Draw Clever",
+        "description": "Architecture, interior design, 3D visualisation, landscaping and project management: a complete studio, authored by one team from concept to handover.",
+        "isPartOf": { "@id": "https://drawclever.vercel.app/#website" },
+        "about": { "@id": "https://drawclever.vercel.app/#organization" },
+        "mainEntity": {
+          "@type": "ItemList",
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "item": {
+              "@type": "Service",
+              "name": "Architecture",
+              "description": "Full architectural design from concept through construction, with residential and commercial projects delivered worldwide.",
+              "provider": { "@id": "https://drawclever.vercel.app/#organization" }
+            } },
+            { "@type": "ListItem", "position": 2, "item": {
+              "@type": "Service",
+              "name": "Interior Design",
+              "description": "Bespoke interiors tailored to your lifestyle: spatial planning, material selection, furniture and lighting.",
+              "provider": { "@id": "https://drawclever.vercel.app/#organization" }
+            } },
+            { "@type": "ListItem", "position": 3, "item": {
+              "@type": "Service",
+              "name": "3D Visualisation",
+              "description": "Photorealistic renders that let you see and feel your space, long before a single wall is built.",
+              "provider": { "@id": "https://drawclever.vercel.app/#organization" }
+            } },
+            { "@type": "ListItem", "position": 4, "item": {
+              "@type": "Service",
+              "name": "Landscaping",
+              "description": "Exterior environments designed to extend the architecture: pools, terraces, gardens and entrance courts.",
+              "provider": { "@id": "https://drawclever.vercel.app/#organization" }
+            } },
+            { "@type": "ListItem", "position": 5, "item": {
+              "@type": "Service",
+              "name": "Project Management",
+              "description": "End-to-end oversight from planning permission to handover, your project delivered on time, on brief.",
+              "provider": { "@id": "https://drawclever.vercel.app/#organization" }
+            } }
+          ]
+        }
+      }
+    ]
+  }
+  </script>
   <style>
     @font-face { font-family: 'Inter'; src: url('./Fonts/Inter/Inter.woff2') format('woff2-variations'), url('./Fonts/Inter/Inter.woff2') format('woff2'); font-weight: 100 900; font-style: normal; font-display: swap; }
     @font-face { font-family: 'Inter'; src: url('./Fonts/Inter/Inter-Italic.woff2') format('woff2-variations'), url('./Fonts/Inter/Inter-Italic.woff2') format('woff2'); font-weight: 100 900; font-style: italic; font-display: swap; }

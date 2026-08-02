@@ -32,6 +32,101 @@
   <meta name="twitter:title" content="Portfolio · Draw Clever" />
   <meta name="twitter:description" content="The Draw Clever portfolio: luxury residences, interiors and commercial spaces across Romania, Spain and beyond." />
   <meta name="twitter:image" content="https://drawclever.vercel.app/Renders/Casa-Marbella/04-scaled.jpg" />
+
+  <!-- Structured data: the portfolio grid below, modelled project-by-project from what is
+       actually rendered on this page (name, category tags, location, hero image). -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://drawclever.vercel.app/" },
+          { "@type": "ListItem", "position": 2, "name": "Portfolio", "item": "https://drawclever.vercel.app/projects" }
+        ]
+      },
+      {
+        "@type": "CollectionPage",
+        "@id": "https://drawclever.vercel.app/projects#webpage",
+        "url": "https://drawclever.vercel.app/projects",
+        "name": "Portfolio · Draw Clever",
+        "description": "The Draw Clever portfolio: luxury residences, interiors and commercial spaces across Romania, Spain and beyond. Every space, a story.",
+        "isPartOf": { "@id": "https://drawclever.vercel.app/#website" },
+        "about": { "@id": "https://drawclever.vercel.app/#organization" },
+        "mainEntity": {
+          "@type": "ItemList",
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "item": {
+              "@type": "CreativeWork",
+              "name": "Casa Marbella",
+              "image": "https://drawclever.vercel.app/Renders/Casa-Marbella/04-scaled.jpg",
+              "genre": ["Architecture", "Residential"],
+              "locationCreated": { "@type": "Place", "address": { "@type": "PostalAddress", "addressLocality": "Marbella", "addressCountry": "ES" } },
+              "creator": { "@id": "https://drawclever.vercel.app/#organization" }
+            } },
+            { "@type": "ListItem", "position": 2, "item": {
+              "@type": "CreativeWork",
+              "name": "Penthouse Oradea",
+              "image": "https://drawclever.vercel.app/Renders/Penthouse-Oradea/21.jpg",
+              "genre": ["Interior Design"],
+              "locationCreated": { "@type": "Place", "address": { "@type": "PostalAddress", "addressLocality": "Oradea", "addressCountry": "RO" } },
+              "creator": { "@id": "https://drawclever.vercel.app/#organization" }
+            } },
+            { "@type": "ListItem", "position": 3, "item": {
+              "@type": "CreativeWork",
+              "name": "Florida House",
+              "image": "https://drawclever.vercel.app/Renders/Florida-House/01.jpg",
+              "genre": ["Architecture", "Residential"],
+              "locationCreated": { "@type": "Place", "address": { "@type": "PostalAddress", "addressRegion": "Florida", "addressCountry": "US" } },
+              "creator": { "@id": "https://drawclever.vercel.app/#organization" }
+            } },
+            { "@type": "ListItem", "position": 4, "item": {
+              "@type": "CreativeWork",
+              "name": "Villa Corbeanca",
+              "image": "https://drawclever.vercel.app/Renders/Casa-Corebeanca/110.jpg",
+              "genre": ["Architecture", "Residential"],
+              "locationCreated": { "@type": "Place", "address": { "@type": "PostalAddress", "addressLocality": "Corbeanca", "addressCountry": "RO" } },
+              "creator": { "@id": "https://drawclever.vercel.app/#organization" }
+            } },
+            { "@type": "ListItem", "position": 5, "item": {
+              "@type": "CreativeWork",
+              "name": "Grand Event Hall",
+              "image": "https://drawclever.vercel.app/Renders/Event-Hall-Baia-Mare/02_2-Photo-scaled.jpg",
+              "genre": ["Interior Design", "Commercial"],
+              "locationCreated": { "@type": "Place", "address": { "@type": "PostalAddress", "addressLocality": "Baia Mare", "addressCountry": "RO" } },
+              "creator": { "@id": "https://drawclever.vercel.app/#organization" }
+            } },
+            { "@type": "ListItem", "position": 6, "item": {
+              "@type": "CreativeWork",
+              "name": "Boutique Moșilor",
+              "image": "https://drawclever.vercel.app/Renders/Boutique-Mosilor/03-scaled.jpg",
+              "genre": ["Architecture", "Residential"],
+              "locationCreated": { "@type": "Place", "address": { "@type": "PostalAddress", "addressLocality": "Bucharest", "addressCountry": "RO" } },
+              "creator": { "@id": "https://drawclever.vercel.app/#organization" }
+            } },
+            { "@type": "ListItem", "position": 7, "item": {
+              "@type": "CreativeWork",
+              "name": "Apartment in Oradea",
+              "image": "https://drawclever.vercel.app/Renders/Apartment-in-Oradea/03-6-scaled.jpg",
+              "genre": ["Interior Design"],
+              "locationCreated": { "@type": "Place", "address": { "@type": "PostalAddress", "addressLocality": "Oradea", "addressCountry": "RO" } },
+              "creator": { "@id": "https://drawclever.vercel.app/#organization" }
+            } },
+            { "@type": "ListItem", "position": 8, "item": {
+              "@type": "CreativeWork",
+              "name": "University Library",
+              "image": "https://drawclever.vercel.app/Renders/UAV-Library/74.jpg",
+              "genre": ["Architecture", "Cultural"],
+              "locationCreated": { "@type": "Place", "address": { "@type": "PostalAddress", "addressLocality": "Arad", "addressCountry": "RO" } },
+              "creator": { "@id": "https://drawclever.vercel.app/#organization" }
+            } }
+          ]
+        }
+      }
+    ]
+  }
+  </script>
   <style>
     @font-face { font-family: 'Inter'; src: url('./Fonts/Inter/Inter.woff2') format('woff2-variations'), url('./Fonts/Inter/Inter.woff2') format('woff2'); font-weight: 100 900; font-style: normal; font-display: swap; }
     @font-face { font-family: 'Inter'; src: url('./Fonts/Inter/Inter-Italic.woff2') format('woff2-variations'), url('./Fonts/Inter/Inter-Italic.woff2') format('woff2'); font-weight: 100 900; font-style: italic; font-display: swap; }
