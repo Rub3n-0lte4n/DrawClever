@@ -55,7 +55,13 @@
        reader has a landmark to jump to. It inherits the centring body used to do
        itself, so the rendered box is unchanged. */
     main { width: 100%; flex: 1 1 auto; display: flex; flex-direction: column; align-items: center; justify-content: center; }
-    .mark { height: 46px; margin-bottom: 56px; mix-blend-mode: screen; opacity: .9; }
+    /* width:auto is load-bearing. The mark carries width/height attributes so
+       its box is reserved before the file lands, but those map to presentational
+       hints that any CSS rule outranks, and this rule only set height, so the
+       384px width hint survived and overflowed a 320px viewport. site.css pairs
+       height with width:auto on every logo for the same reason; this page is
+       standalone and never loads it, so it needs its own copy. */
+    .mark { height: 46px; width: auto; margin-bottom: 56px; mix-blend-mode: screen; opacity: .9; }
     .code { font-family: 'Playfair Display SC', 'Playfair SC Fallback', serif; font-size: clamp(110px, 26vw, 320px); line-height: .82; letter-spacing: -.01em; color: var(--champ); }
     h1 { font-family: 'Playfair Display SC', 'Playfair SC Fallback', serif; font-weight: 400; text-transform: none; font-size: clamp(24px, 3.2vw, 38px); letter-spacing: .012em; margin: 28px 0 16px; }
     h1 .i { font-style: italic; color: var(--champ); }
@@ -94,7 +100,7 @@
   <script>(function(){var h=document.documentElement,first=true;try{first=!sessionStorage.getItem("dcv");sessionStorage.setItem("dcv","1");}catch(e){}if(!first){h.classList.add('dc-ready');return;}h.classList.add('dc-loading');var MIN=450,MAX=4500,t0=Date.now(),done=false;function go(){if(done)return;done=true;setTimeout(function(){h.classList.remove('dc-loading');h.classList.add('dc-ready');},Math.max(0,MIN-(Date.now()-t0)));}var ff=document.fonts;(ff&&ff.ready?ff.ready:Promise.resolve()).then(go);setTimeout(go,MAX);})();</script>
 </head>
 <body>
-  <div id="dc-loader" aria-hidden="true"><img class="dc-mark" src="/Logo Variants/logo-mark-384.png" alt="Draw Clever" width="384" height="252" /><span class="dc-bar"></span></div>
+  <div id="dc-loader" aria-hidden="true"><img class="dc-mark" src="/Logo Variants/logo-mark-384.png" alt="" width="384" height="252" /><span class="dc-bar"></span></div>
   <img class="mark" src="/Logo Variants/logo-mark-384.png" alt="Draw Clever" width="384" height="252" />
   <div class="code">404</div>
   <h1>This space hasn't<br />been <span class="i">built</span> yet.</h1>
