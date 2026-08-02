@@ -312,7 +312,7 @@ function flipOpen(card) {
   const lb = document.getElementById('lb');
   const stage = lb && lb.querySelector('.lb-stage');
   const lbCS = lb && getComputedStyle(lb);
-  let maxW = innerWidth * .92, maxH = innerHeight * .82, band = 0;
+  let maxW = innerWidth * .92, maxH = innerHeight * .82, band = 0, padT = 0;
   if (stage && lbCS) {
     // Guard the fallback by the UNIT, not by the magnitude. An engine without
     // @property hands a custom property back exactly as specified, so this reads
@@ -329,25 +329,34 @@ function flipOpen(card) {
     const w = parseFloat(getComputedStyle(stage).maxWidth);
     if (h > 40) maxH = h;   // NaN fails this, falling back to innerHeight * .82
     if (w > 40) maxW = w;
-    band = parseFloat(lbCS.paddingBottom) || 0;
+    padT = parseFloat(lbCS.paddingTop) || 0;
+    band = padT + (parseFloat(lbCS.paddingBottom) || 0);
     if (lbCS.flexDirection === 'column') {
-      // Centring a group of (image + everything under it) inside the content box
-      // puts the image's top exactly where centring the image alone inside a box
-      // shortened by TWICE that everything would put it. Summing the in-flow
-      // siblings rather than naming them means adding one later cannot break the
-      // aim. Absolutely positioned children (the close button) are not in the
-      // column and are skipped.
+      // A centred flex column puts the stage's top at
+      //   padTop + (contentHeight - stageHeight - everythingUnderIt) / 2
+      // so `below` is subtracted ONCE, inside the halving. It used to be added
+      // twice, which is where the morph was landing high: at 390x844 the aim
+      // came out 101px above the image it was aiming at, and at 430x818 in
+      // Safari 100px above, both almost exactly half of `below`. Subtracting it
+      // once lands within 1px in Chrome, Safari and Firefox.
+      // Summing the in-flow siblings rather than naming them means adding one
+      // later cannot break the aim. Absolutely positioned children (the close
+      // button) are not in the column and are skipped. Flex items never collapse
+      // margins, so their margins are part of the line and are counted here;
+      // the zoom hint's -8px is the reason that matters.
       const gap = parseFloat(lbCS.rowGap) || 0;
       let below = 0;
       for (const el of lb.children) {
-        if (el === stage || getComputedStyle(el).position !== 'static') continue;
-        below += el.getBoundingClientRect().height + gap;
+        const cs = getComputedStyle(el);
+        if (el === stage || cs.position !== 'static') continue;
+        below += el.getBoundingClientRect().height + gap
+               + (parseFloat(cs.marginTop) || 0) + (parseFloat(cs.marginBottom) || 0);
       }
-      band += 2 * below;
+      band += below;
     }
   }
   const dW = Math.min(maxW, maxH * nar), dH = Math.min(maxH, maxW / nar);
-  const dx = (innerWidth - dW) / 2, dy = (innerHeight - band - dH) / 2;
+  const dx = (innerWidth - dW) / 2, dy = padT + (innerHeight - band - dH) / 2;
 
   const wrap = document.createElement('div');
   wrap.className = 'lb-flip';
