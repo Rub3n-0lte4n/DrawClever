@@ -20,6 +20,26 @@
   const okNote = document.getElementById('form-ok-note');
   const btn = form.querySelector('button[type="submit"]');
 
+  /* Every state this form enters was silent to a screen reader: the button's
+     label flipping to "Sending…" is not an announcement, and `novalidate` +
+     reportValidity() draws a native bubble that assistive tech reads
+     inconsistently and that vanishes on the next keystroke. This polite status
+     narrates the states that have no other voice. The success and fallback
+     results already speak, via #form-ok (role="status") being unhidden and
+     focused, so they are not repeated here. */
+  const live = document.createElement('p');
+  live.setAttribute('role', 'status');
+  live.setAttribute('aria-live', 'polite');
+  live.style.cssText = 'position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap;border:0';
+  form.appendChild(live);
+
+  const required = [...form.querySelectorAll('[required]')];
+  // aria-invalid is the durable half of the error state: it survives the bubble
+  // closing, and it clears itself the moment the field is answered.
+  required.forEach((f) => f.addEventListener('input', () => {
+    if (f.getAttribute('aria-invalid') === 'true' && f.checkValidity()) f.setAttribute('aria-invalid', 'false');
+  }));
+
   function showOk(title, note) {
     if (okTitle) okTitle.textContent = title;
     if (okNote) okNote.textContent = note;
@@ -38,11 +58,20 @@
 
   form.addEventListener('submit', async function (e) {
     e.preventDefault();
-    if (!form.reportValidity()) return;
+    required.forEach((f) => f.setAttribute('aria-invalid', String(!f.checkValidity())));
+    if (!form.reportValidity()) {
+      const missing = required.filter((f) => !f.checkValidity()).length;
+      live.textContent = missing === 1
+        ? 'One required field still needs an answer.'
+        : `${missing} required fields still need an answer.`;
+      return;
+    }
     const d = new FormData(form);
     const name = ((d.get('first') || '') + ' ' + (d.get('last') || '')).trim();
 
     if (btn) { btn.disabled = true; btn.textContent = 'Sending…'; }
+    form.setAttribute('aria-busy', 'true');
+    live.textContent = 'Sending your message.';
     try {
       const res = await fetch('https://api.web3forms.com/submit', {
         method: 'POST',
@@ -68,6 +97,8 @@
       mailtoFallback(d, name);
     } finally {
       if (btn) { btn.disabled = false; btn.textContent = 'Send Message'; }
+      form.removeAttribute('aria-busy');
+      live.textContent = '';   // #form-ok now carries the result
     }
   });
 })();

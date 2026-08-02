@@ -69,12 +69,19 @@ function buildLightbox() {
   const lb = document.createElement('div');
   lb.id = 'lb'; lb.className = 'lb'; lb.setAttribute('hidden', '');
   lb.setAttribute('aria-modal', 'true'); lb.setAttribute('role', 'dialog'); lb.setAttribute('aria-label', 'Project gallery');
+  // A dialog's description is read once, on entry, and can be muted by the user
+  // — the right place for keys nothing on screen can advertise.
+  lb.setAttribute('aria-describedby', 'lb-keys');
   // The stage comes before the controls so the controls paint above it: a zoomed
   // image is bigger than its frame, and in the old order it buried the arrows.
   // prev / counter / next share a .lb-rail wrapper. On a desktop the rail is
   // `display: contents`, so it generates no box and those three keep resolving
   // their absolute positions against .lb exactly as before; on a phone the rail
   // becomes the flex row that puts them on one line under the caption.
+  // The counter is aria-hidden because "01 / 06" reads as "zero one slash zero
+  // six"; .lb-live carries the same position as a sentence, and is the only
+  // thing that speaks when stepping (nothing moves focus, and swapping an
+  // <img>'s src and alt announces nothing at all).
   lb.innerHTML = `
     <figure class="lb-stage"><img class="lb-img" alt="" decoding="async" /></figure>
     <button class="lb-close" type="button" aria-label="Close gallery">
@@ -87,12 +94,14 @@ function buildLightbox() {
       <button class="lb-prev" type="button" aria-label="Previous photo">
         <svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="15 6 9 12 15 18"/></svg>
       </button>
-      <span class="lb-counter"></span>
+      <span class="lb-counter" aria-hidden="true"></span>
       <button class="lb-next" type="button" aria-label="Next photo">
         <svg viewBox="0 0 24 24" aria-hidden="true"><polyline points="9 6 15 12 9 18"/></svg>
       </button>
     </div>
-    <span class="lb-zoom-hint" aria-hidden="true">Pinch or double-tap to zoom</span>`;
+    <span class="lb-zoom-hint" aria-hidden="true">Pinch or double-tap to zoom</span>
+    <p class="lb-live" role="status" aria-live="polite" style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap;border:0"></p>
+    <p id="lb-keys" style="position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap;border:0">Left and right arrows move through the gallery. Press plus or minus to zoom the photo, and zero to reset it. While zoomed, the arrows pan instead of stepping.</p>`;
   document.body.appendChild(lb);
   bindGestures(lb.querySelector('.lb-stage'));
   return lb;
@@ -208,6 +217,49 @@ function bindGestures(stage) {
   };
   stage.addEventListener('pointerup', release);
   stage.addEventListener('pointercancel', release);
+}
+
+/* ────────────── ALT TEXT ──────────────
+ * `${title} — photo 3` is a filename read aloud, not a description, and on an
+ * architecture portfolio the render IS the work. These were written by opening
+ * each file under public/Renders and describing what is in it. They cover the
+ * fourteen renders that also appear on the pages; the rest of the gallery falls
+ * back to an honest position line rather than to an invented description.
+ * Keyed by `<folder>/<file>` so it lines up with the manifest above.
+ */
+const ALT = {
+  'Casa-Marbella/07-scaled.jpg':
+    'A white villa of stacked glazed volumes above a mosaic-tiled infinity pool, with an open-air kitchen and a long dining counter on the stone terrace below.',
+  'Casa-Marbella/04-scaled.jpg':
+    'The villa at dusk, its glazed rooms glowing warm above a sunken terrace lounge gathered around a lit fire table, with water spilling down the pool wall behind.',
+  'Casa-Marbella/01-scaled.jpg':
+    'The villa seen head on from the beach, two floors of interiors open behind a glass wall above a mosaic-clad infinity pool whose water falls the full width of the terrace.',
+  'Penthouse-Oradea/21.jpg':
+    'A rooftop terrace under a pale timber pergola, where a curved stone bar and an outdoor kitchen stand against walls of clipped ivy, lit by slim glass pendants.',
+  'Penthouse-Oradea/27.jpg':
+    'A living room under a coffered ceiling and a crystal chandelier, where a buttoned cream sofa and a round marble table face a glazed wall onto the terrace, with the dining room and kitchen open beyond.',
+  'Florida-House/01.jpg':
+    'A two-storey house in white render and dark ribbed timber, reached across a lawn on a broad ribbon of pale stone pavers, with tall palms overhead and cars drawn up under a timber car port.',
+  'Casa-Corebeanca/103.jpg':
+    'A cream rendered villa under a clay pantile roof, its columned loggia opening onto a wide lawn, with a matching roofed pavilion sheltering the pool terrace beyond.',
+  'Casa-Corebeanca/110.jpg':
+    "The villa's garden front seen across a timber deck, where an arcaded loggia holds a sheltered lounge and round concrete daybeds face the lawn under a cantilevered parasol.",
+  'Casa-Corebeanca/120.jpg':
+    'Round concrete daybeds and tall glass lanterns on a timber deck beside a plunge pool, under a wide white parasol, with the tiled loggia and its flowering trees beyond.',
+  'Apartment-in-Oradea/01-6-scaled.jpg':
+    'An entrance hall in pale marble, where a dark bronze panelled door faces a floating stone console and a round olive velvet stool, under a cluster of slim brass pendants.',
+  'Apartment-in-Oradea/03-6-scaled.jpg':
+    'A living room in white wall panelling, where a long black ribbon fireplace runs below the screen and sage velvet seating faces a marble-clad kitchen wall beyond the dining table.',
+  'Event-Hall-Baia-Mare/02_2-Photo-scaled.jpg':
+    'An empty ballroom in white marble, its floor banded with black inlay between fluted columns, lit by crystal basket chandeliers hung from a coffered and cove-lit ceiling.',
+  'Boutique-Mosilor/03-scaled.jpg':
+    "A lit entrance court at night, where the building's name stands in gold on a book-matched marble wall above dark stone paving framed by clipped hedges.",
+  'UAV-Library/74.jpg':
+    'A library workroom lined floor to ceiling with archive binders, where two timber desks face a grey wall of recessed niches and a full-height case of bound volumes stands opposite.',
+};
+
+function describe(project, i) {
+  return ALT[`${project.folder.replace(/^Renders\//, '')}/${project.images[i]}`] || '';
 }
 
 /* ────────────── IMAGE SOURCES ────────────── */
@@ -331,6 +383,9 @@ function show(slug, card) {
   const lb = buildLightbox();
   state = { slug, project, idx: 0 };
   resetZoom();
+  // "Project gallery" named every gallery the same. Name it for the project the
+  // visitor actually opened, so the dialog announces where they landed.
+  lb.setAttribute('aria-label', `${project.title}, gallery`);
   render();
   // Un-hide BEFORE the flip: the stage has to be laid out for flipOpen to read
   // its resolved max-width back off the stylesheet. The clone rides above the
@@ -338,7 +393,7 @@ function show(slug, card) {
   // exactly what should happen.
   lb.removeAttribute('hidden');
   flipOpen(card);
-  requestAnimationFrame(() => lb.classList.add('lb-open'));
+  requestAnimationFrame(() => { lb.classList.add('lb-open'); announce(); });
   document.documentElement.classList.add('lb-locked');
   lb.querySelector('.lb-close').focus();
 }
@@ -360,6 +415,7 @@ function step(delta) {
   state.idx = (state.idx + delta + n) % n;
   resetZoom();   // a new photo starts at rest, never inheriting the last pan
   render();
+  announce();
   preloadNeighbours();
 }
 
@@ -378,12 +434,28 @@ function render() {
     stage.classList.remove('lb-loading');
   };
   img.setAttribute('src', srcFor(project, idx));
-  img.setAttribute('alt', `${project.title} — photo ${idx + 1}`);
+  const desc = describe(project, idx);
+  img.setAttribute('alt', desc || `${project.title}, photo ${idx + 1} of ${project.images.length}`);
   document.querySelector('.lb-cat').textContent = project.cat;
   document.querySelector('.lb-title').textContent = project.title;
   document.querySelector('.lb-loc').textContent = project.location;
   document.querySelector('.lb-counter').textContent =
     `${String(idx + 1).padStart(2, '0')} / ${String(project.images.length).padStart(2, '0')}`;
+}
+
+// Everything a sighted user gets from stepping (a new photo, a new position) is
+// silent otherwise: focus stays on the arrow it was on, and re-pointing an <img>
+// announces nothing. Kept out of render() because a live region inside a
+// `hidden` (display:none) dialog is not observed, so the open path calls it once
+// the dialog is up.
+function announce(extra) {
+  const live = document.querySelector('.lb-live');
+  if (!live) return;
+  if (extra) { live.textContent = extra; return; }
+  if (!state) return;
+  const { project, idx } = state;
+  const desc = describe(project, idx);
+  live.textContent = `Photo ${idx + 1} of ${project.images.length}.` + (desc ? ` ${desc}` : '');
 }
 
 function preloadNeighbours() {
@@ -410,11 +482,45 @@ function onClickDocument(e) {
       !e.target.closest('.lb-prev')  && !e.target.closest('.lb-next')) close();
 }
 
+/* Zoom, from the keyboard. The gesture path above bails on `pointerType ===
+   'mouse'`, so until now looking closer at a render was a touch-only ability —
+   WCAG 2.1.1 wants the same functionality without a pointer. The key map mirrors
+   the touch behaviour rather than inventing a second one: + / - / 0 stand in for
+   pinch and double-tap, and while zoomed the arrows pan instead of stepping,
+   exactly as swipe-to-step is suppressed while zoomed. */
+const KZOOM_STEP = 0.4;
+
+function keyZoom(delta) {
+  const stage = document.querySelector('.lb-stage');
+  if (!stage) return;
+  const before = zoom.s;
+  zoom = delta === 0
+    ? { s: 1, x: 0, y: 0 }
+    : { ...zoom, s: Math.max(1, Math.min(MAX_SCALE, Math.round((zoom.s + delta) * 100) / 100)) };
+  applyZoom(stage);
+  if (zoom.s !== before) announce(zoom.s > 1.01 ? `Zoomed to ${Math.round(zoom.s * 100)} percent.` : 'Zoom reset.');
+}
+
+function keyPan(dx, dy) {
+  const stage = document.querySelector('.lb-stage');
+  const img = stage && stage.querySelector('.lb-img');
+  if (!img) return;
+  zoom.x += dx * img.offsetWidth * 0.12;
+  zoom.y += dy * img.offsetHeight * 0.12;
+  applyZoom(stage);
+}
+
 function onKey(e) {
   if (!state) return;
-  if (e.key === 'Escape')     return close();
-  if (e.key === 'ArrowLeft')  return step(-1);
-  if (e.key === 'ArrowRight') return step(+1);
+  if (e.key === 'Escape') return close();
+  if (e.key === '+' || e.key === '=') { e.preventDefault(); return keyZoom(+KZOOM_STEP); }
+  if (e.key === '-' || e.key === '_') { e.preventDefault(); return keyZoom(-KZOOM_STEP); }
+  if (e.key === '0')                  { e.preventDefault(); return keyZoom(0); }
+  const zoomed = zoom.s > 1.01;
+  if (e.key === 'ArrowLeft')  { if (zoomed) { e.preventDefault(); return keyPan(+1, 0); } return step(-1); }
+  if (e.key === 'ArrowRight') { if (zoomed) { e.preventDefault(); return keyPan(-1, 0); } return step(+1); }
+  if (e.key === 'ArrowUp')    { if (zoomed) { e.preventDefault(); return keyPan(0, +1); } return; }
+  if (e.key === 'ArrowDown')  { if (zoomed) { e.preventDefault(); return keyPan(0, -1); } return; }
   if (e.key === 'Tab') {
     // Focus trap — keep Tab/Shift+Tab cycling through the dialog's controls.
     const lb = document.getElementById('lb');

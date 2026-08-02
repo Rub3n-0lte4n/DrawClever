@@ -78,7 +78,7 @@
 <div class="grain" aria-hidden="true"></div>
 <div class="progress" id="progress" aria-hidden="true"></div>
 
-<nav id="nav">
+<nav id="nav" aria-label="Primary">
   <a href="/" class="brand" aria-label="Draw Clever, home"><img src="./Logo Variants/Logo Mark.png" alt="Draw Clever" /></a>
   <ul class="nav-links">
     <li><a href="/projects">Portfolio</a></li>
@@ -89,7 +89,7 @@
   <button class="nav-toggle" aria-label="Open menu" aria-controls="drawer" aria-expanded="false"><span></span><span></span><span></span></button>
 </nav>
 
-<div class="drawer" id="drawer" aria-hidden="true">
+<div class="drawer" id="drawer" role="dialog" aria-modal="true" aria-label="Menu" aria-hidden="true">
   <div class="drawer-inner">
     <ul class="drawer-links">
       <li><a href="/projects">Portfolio</a></li>
@@ -105,15 +105,17 @@
   </div>
 </div>
 
+<main id="main" tabindex="-1">
+
 <!-- BANNER -->
-<header class="banner" id="main" tabindex="-1">
+<section class="banner">
   <div class="banner-bg" style="background-image:url('./Renders/Penthouse-Oradea/21.jpg');background-image:-webkit-image-set(url('./Renders/Penthouse-Oradea/21.avif') type('image/avif'),url('./Renders/Penthouse-Oradea/21.webp') type('image/webp'),url('./Renders/Penthouse-Oradea/21.jpg') type('image/jpeg'));background-image:image-set(url('./Renders/Penthouse-Oradea/21.avif') type('image/avif'),url('./Renders/Penthouse-Oradea/21.webp') type('image/webp'),url('./Renders/Penthouse-Oradea/21.jpg') type('image/jpeg'))"></div>
   <div class="banner-inner dc-head">
-    <div class="crumbs"><a href="/">Home</a><span class="sep">/</span><span>About</span></div>
+    <div class="crumbs" role="navigation" aria-label="Breadcrumb"><a href="/">Home</a><span class="sep" aria-hidden="true">/</span><span>About</span></div>
     <h1>We redefine<br />the <span class="gold">luxury life.</span></h1>
     <p class="sub">A luxury architecture &amp; interior design atelier, composing spaces that are not merely beautiful, but deeply intentional.</p>
   </div>
-</header>
+</section>
 
 <!-- STORY -->
 <section id="story">
@@ -137,7 +139,7 @@
 
 <!-- FULL BLEED -->
 <div class="fullbleed reveal">
-  <picture><source type="image/avif" srcset="./Renders/Penthouse-Oradea/27.avif" /><source type="image/webp" srcset="./Renders/Penthouse-Oradea/27.webp" /><img class="fb-img" data-parallax src="./Renders/Penthouse-Oradea/27.jpg" alt="Penthouse Oradea interior" loading="lazy" /></picture>
+  <picture><source type="image/avif" srcset="./Renders/Penthouse-Oradea/27.avif" /><source type="image/webp" srcset="./Renders/Penthouse-Oradea/27.webp" /><img class="fb-img" data-parallax src="./Renders/Penthouse-Oradea/27.jpg" alt="A penthouse living room under a coffered ceiling and a crystal chandelier, where a buttoned cream sofa and a round marble table face a glazed wall onto the terrace, with the dining room and kitchen open beyond." loading="lazy" /></picture>
   <div class="fb-caption">
     <h3>A top floor<br />in Oradea.</h3>
     <p>Spatial planning, materials, joinery and light, composed so the architecture and the interior read as one.</p>
@@ -189,15 +191,19 @@
   <a href="/contact" class="btn btn-solid btn-lg reveal d2">Start a Project</a>
 </section>
 
+</main>
 <footer>
   <div class="foot-top">
     <a href="/" aria-label="Draw Clever, home"><img src="./Logo Variants/Word Mark.png" alt="Draw Clever" /></a>
-    <ul class="foot-nav"><li><a href="/projects">Portfolio</a></li><li><a href="/about-us">About</a></li><li><a href="/services">Services</a></li><li><a href="/contact">Contact</a></li></ul>
+  <!-- role="navigation" rather than a <nav> element: src/site.css styles the
+       bare `nav` selector as the fixed site header, so a second <nav> anywhere
+       on the page becomes a second fixed header. Same landmark, no styling. -->
+    <div role="navigation" aria-label="Footer"><ul class="foot-nav"><li><a href="/projects">Portfolio</a></li><li><a href="/about-us">About</a></li><li><a href="/services">Services</a></li><li><a href="/contact">Contact</a></li></ul></div>
   </div>
   <div class="foot-bottom">
     <p>© 2026 Draw Clever. We redefine the luxury life.</p>
     <ul class="foot-social"><li><a href="https://www.instagram.com/drawclever.design/">Instagram</a></li><li><a href="https://pinterest.com/drawclever/">Pinterest</a></li><li><a href="https://x.com/DrawClever">X</a></li></ul>
-    <a href="#top" class="to-top">Back to top <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/></svg></a>
+    <a href="#top" class="to-top">Back to top <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/></svg></a>
   </div>
 </footer>
 

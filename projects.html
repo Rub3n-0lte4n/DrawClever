@@ -68,7 +68,7 @@
 <div class="grain" aria-hidden="true"></div>
 <div class="progress" id="progress" aria-hidden="true"></div>
 
-<nav id="nav">
+<nav id="nav" aria-label="Primary">
   <a href="/" class="brand" aria-label="Draw Clever, home"><img src="./Logo Variants/Logo Mark.png" alt="Draw Clever" /></a>
   <ul class="nav-links">
     <li><a href="/projects" class="active">Portfolio</a></li>
@@ -79,7 +79,7 @@
   <button class="nav-toggle" aria-label="Open menu" aria-controls="drawer" aria-expanded="false"><span></span><span></span><span></span></button>
 </nav>
 
-<div class="drawer" id="drawer" aria-hidden="true">
+<div class="drawer" id="drawer" role="dialog" aria-modal="true" aria-label="Menu" aria-hidden="true">
   <div class="drawer-inner">
     <ul class="drawer-links">
       <li><a href="/projects" class="active">Portfolio</a></li>
@@ -95,66 +95,68 @@
   </div>
 </div>
 
+<main id="main" tabindex="-1">
+
 <!-- BANNER -->
-<header class="banner" id="main" tabindex="-1">
+<section class="banner">
   <div class="banner-bg" style="background-image:url('./Renders/Casa-Marbella/05-scaled.jpg');background-image:-webkit-image-set(url('./Renders/Casa-Marbella/05-scaled.avif') type('image/avif'),url('./Renders/Casa-Marbella/05-scaled.webp') type('image/webp'),url('./Renders/Casa-Marbella/05-scaled.jpg') type('image/jpeg'));background-image:image-set(url('./Renders/Casa-Marbella/05-scaled.avif') type('image/avif'),url('./Renders/Casa-Marbella/05-scaled.webp') type('image/webp'),url('./Renders/Casa-Marbella/05-scaled.jpg') type('image/jpeg'))"></div>
   <div class="banner-inner dc-head">
-    <div class="crumbs"><a href="/">Home</a><span class="sep">/</span><span>Portfolio</span></div>
+    <div class="crumbs" role="navigation" aria-label="Breadcrumb"><a href="/">Home</a><span class="sep" aria-hidden="true">/</span><span>Portfolio</span></div>
     <h1>The full<br />portfolio.</h1>
     <p class="sub">A decade of residences, interiors and commercial spaces, composed across Romania, Spain and beyond. Select any project to enter its gallery.</p>
   </div>
-</header>
+</section>
 
 <!-- PORTFOLIO GRID -->
 <section id="portfolio">
-  <div class="pf-filters reveal">
-    <button class="pf-filter btn btn-sm active" data-filter="all">All</button>
-    <button class="pf-filter btn btn-sm" data-filter="architecture">Architecture</button>
-    <button class="pf-filter btn btn-sm" data-filter="interior">Interior Design</button>
-    <button class="pf-filter btn btn-sm" data-filter="residential">Residential</button>
-    <button class="pf-filter btn btn-sm" data-filter="commercial">Commercial</button>
+  <div class="pf-filters reveal" role="group" aria-label="Filter the portfolio by discipline">
+    <button class="pf-filter btn btn-sm active" data-filter="all" type="button" aria-pressed="true">All</button>
+    <button class="pf-filter btn btn-sm" data-filter="architecture" type="button" aria-pressed="false">Architecture</button>
+    <button class="pf-filter btn btn-sm" data-filter="interior" type="button" aria-pressed="false">Interior Design</button>
+    <button class="pf-filter btn btn-sm" data-filter="residential" type="button" aria-pressed="false">Residential</button>
+    <button class="pf-filter btn btn-sm" data-filter="commercial" type="button" aria-pressed="false">Commercial</button>
   </div>
   <div class="pf-grid reveal d1">
-    <article class="pc" data-project="casa-marbella" data-cat="architecture residential" aria-label="Open Casa Marbella gallery">
-      <picture style="--lqip:url('data:image/webp;base64,UklGRrAAAABXRUJQVlA4IKQAAADQBACdASocAA8APu1iqU2ppaOiMAgBMB2JZQCsAd0ZA8QSelV5D5yo7qMF4HZWAAD+6kviuoNv0qzOlkiemh/P9fEMVspGaMv/RLu5Ush9HzVeqRU0jZ/QKpPF1H8a6NNTsb201DKG6CSobtIGCaltUxgTZZY5PwA8tErqeNjQxaV18Ui2KUmI8j2H4mmj/WKRi2N4rZPJ2xUINT1n8xHh5JAAAA==')"><source type="image/avif" srcset="./Renders/Casa-Marbella/04-scaled-480.avif 480w, ./Renders/Casa-Marbella/04-scaled-1024.avif 1024w, ./Renders/Casa-Marbella/04-scaled-1600.avif 1600w" sizes="(max-width: 860px) 100vw, (max-width: 1200px) 50vw, 34vw" /><source type="image/webp" srcset="./Renders/Casa-Marbella/04-scaled-480.webp 480w, ./Renders/Casa-Marbella/04-scaled-1024.webp 1024w, ./Renders/Casa-Marbella/04-scaled-1600.webp 1600w" sizes="(max-width: 860px) 100vw, (max-width: 1200px) 50vw, 34vw" /><img decoding="async" src="./Renders/Casa-Marbella/04-scaled.jpg" alt="Casa Marbella" loading="lazy" /></picture>
+    <div class="pc" data-project="casa-marbella" data-cat="architecture residential" aria-label="Casa Marbella, architecture and residential, Marbella, Spain. Open gallery">
+      <picture style="--lqip:url('data:image/webp;base64,UklGRrAAAABXRUJQVlA4IKQAAADQBACdASocAA8APu1iqU2ppaOiMAgBMB2JZQCsAd0ZA8QSelV5D5yo7qMF4HZWAAD+6kviuoNv0qzOlkiemh/P9fEMVspGaMv/RLu5Ush9HzVeqRU0jZ/QKpPF1H8a6NNTsb201DKG6CSobtIGCaltUxgTZZY5PwA8tErqeNjQxaV18Ui2KUmI8j2H4mmj/WKRi2N4rZPJ2xUINT1n8xHh5JAAAA==')"><source type="image/avif" srcset="./Renders/Casa-Marbella/04-scaled-480.avif 480w, ./Renders/Casa-Marbella/04-scaled-1024.avif 1024w, ./Renders/Casa-Marbella/04-scaled-1600.avif 1600w" sizes="(max-width: 860px) 100vw, (max-width: 1200px) 50vw, 34vw" /><source type="image/webp" srcset="./Renders/Casa-Marbella/04-scaled-480.webp 480w, ./Renders/Casa-Marbella/04-scaled-1024.webp 1024w, ./Renders/Casa-Marbella/04-scaled-1600.webp 1600w" sizes="(max-width: 860px) 100vw, (max-width: 1200px) 50vw, 34vw" /><img decoding="async" src="./Renders/Casa-Marbella/04-scaled.jpg" alt="The villa at dusk, its glazed rooms glowing warm above a sunken terrace lounge gathered around a lit fire table, with water spilling down the pool wall behind." loading="lazy" /></picture>
       <div class="pc-info"><div class="pc-cat">Architecture · Residential</div><div class="pc-name">Casa Marbella</div><div class="pc-loc">Marbella, Spain</div></div>
-      <span class="pc-arrow"><svg viewBox="0 0 24 24"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span>
-    </article>
-    <article class="pc" data-project="penthouse-oradea" data-cat="interior residential" aria-label="Open Penthouse Oradea gallery">
-      <picture style="--lqip:url('data:image/webp;base64,UklGRqIAAABXRUJQVlA4IJYAAAAQBACdASocAA8APu1kqk4ppaQiMAgBMB2JYwCsACIFpQmxZlGu+ueBwAD92N3RiqzqjimuqiardGhUXidB2GLO398KmZGEA5s7qOk+G2RznpgJYpIFS3Z8cI/k2pU6j6BvbFfXIsGP67ntZ7Lm1FKDpu0yEHhduMlI5uBkAFtSTfJlU+vJVwhu41uMCGXBJYwqSwcAAAA=')"><source type="image/avif" srcset="./Renders/Penthouse-Oradea/21-480.avif 480w, ./Renders/Penthouse-Oradea/21-1024.avif 1024w, ./Renders/Penthouse-Oradea/21-1600.avif 1600w" sizes="(max-width: 860px) 100vw, (max-width: 1200px) 50vw, 34vw" /><source type="image/webp" srcset="./Renders/Penthouse-Oradea/21-480.webp 480w, ./Renders/Penthouse-Oradea/21-1024.webp 1024w, ./Renders/Penthouse-Oradea/21-1600.webp 1600w" sizes="(max-width: 860px) 100vw, (max-width: 1200px) 50vw, 34vw" /><img decoding="async" src="./Renders/Penthouse-Oradea/21.jpg" alt="Penthouse Oradea" loading="lazy" /></picture>
+      <span class="pc-arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span>
+    </div>
+    <div class="pc" data-project="penthouse-oradea" data-cat="interior residential" aria-label="Penthouse Oradea, interior design, Oradea, Romania. Open gallery">
+      <picture style="--lqip:url('data:image/webp;base64,UklGRqIAAABXRUJQVlA4IJYAAAAQBACdASocAA8APu1kqk4ppaQiMAgBMB2JYwCsACIFpQmxZlGu+ueBwAD92N3RiqzqjimuqiardGhUXidB2GLO398KmZGEA5s7qOk+G2RznpgJYpIFS3Z8cI/k2pU6j6BvbFfXIsGP67ntZ7Lm1FKDpu0yEHhduMlI5uBkAFtSTfJlU+vJVwhu41uMCGXBJYwqSwcAAAA=')"><source type="image/avif" srcset="./Renders/Penthouse-Oradea/21-480.avif 480w, ./Renders/Penthouse-Oradea/21-1024.avif 1024w, ./Renders/Penthouse-Oradea/21-1600.avif 1600w" sizes="(max-width: 860px) 100vw, (max-width: 1200px) 50vw, 34vw" /><source type="image/webp" srcset="./Renders/Penthouse-Oradea/21-480.webp 480w, ./Renders/Penthouse-Oradea/21-1024.webp 1024w, ./Renders/Penthouse-Oradea/21-1600.webp 1600w" sizes="(max-width: 860px) 100vw, (max-width: 1200px) 50vw, 34vw" /><img decoding="async" src="./Renders/Penthouse-Oradea/21.jpg" alt="A rooftop terrace under a pale timber pergola, where a curved stone bar and an outdoor kitchen stand against walls of clipped ivy, lit by slim glass pendants." loading="lazy" /></picture>
       <div class="pc-info"><div class="pc-cat">Interior Design</div><div class="pc-name">Penthouse Oradea</div><div class="pc-loc">Oradea, Romania</div></div>
-      <span class="pc-arrow"><svg viewBox="0 0 24 24"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span>
-    </article>
-    <article class="pc" data-project="florida-house" data-cat="architecture residential" aria-label="Open Florida House gallery">
-      <picture style="--lqip:url('data:image/webp;base64,UklGRrIAAABXRUJQVlA4IKYAAADQAwCdASocAA8APu1iqU2ppaQiMAgBMB2JQBOkGQAXC4a7dgxjzwAA/Wkuqx+9olu1x0YaQgjoKcrHO4gqwlfojyjoPfck9EOpyizNdokoAVS23xvi3mBxeBfxqvnJ/iUegI2pedB+1wBckegSDvQXHhf34/7a5PtSnQal0ovAaWJuaIVRQ62fHCH0wOU2PqZ6X1bGAaCl6d1Wl2SqPsqV7QMvZAAA')"><source type="image/avif" srcset="./Renders/Florida-House/01-480.avif 480w, ./Renders/Florida-House/01-1024.avif 1024w, ./Renders/Florida-House/01-1600.avif 1600w" sizes="(max-width: 860px) 100vw, (max-width: 1200px) 50vw, 34vw" /><source type="image/webp" srcset="./Renders/Florida-House/01-480.webp 480w, ./Renders/Florida-House/01-1024.webp 1024w, ./Renders/Florida-House/01-1600.webp 1600w" sizes="(max-width: 860px) 100vw, (max-width: 1200px) 50vw, 34vw" /><img decoding="async" src="./Renders/Florida-House/01.jpg" alt="Florida House" loading="lazy" /></picture>
+      <span class="pc-arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span>
+    </div>
+    <div class="pc" data-project="florida-house" data-cat="architecture residential" aria-label="Florida House, architecture and residential, Florida, USA. Open gallery">
+      <picture style="--lqip:url('data:image/webp;base64,UklGRrIAAABXRUJQVlA4IKYAAADQAwCdASocAA8APu1iqU2ppaQiMAgBMB2JQBOkGQAXC4a7dgxjzwAA/Wkuqx+9olu1x0YaQgjoKcrHO4gqwlfojyjoPfck9EOpyizNdokoAVS23xvi3mBxeBfxqvnJ/iUegI2pedB+1wBckegSDvQXHhf34/7a5PtSnQal0ovAaWJuaIVRQ62fHCH0wOU2PqZ6X1bGAaCl6d1Wl2SqPsqV7QMvZAAA')"><source type="image/avif" srcset="./Renders/Florida-House/01-480.avif 480w, ./Renders/Florida-House/01-1024.avif 1024w, ./Renders/Florida-House/01-1600.avif 1600w" sizes="(max-width: 860px) 100vw, (max-width: 1200px) 50vw, 34vw" /><source type="image/webp" srcset="./Renders/Florida-House/01-480.webp 480w, ./Renders/Florida-House/01-1024.webp 1024w, ./Renders/Florida-House/01-1600.webp 1600w" sizes="(max-width: 860px) 100vw, (max-width: 1200px) 50vw, 34vw" /><img decoding="async" src="./Renders/Florida-House/01.jpg" alt="A two-storey house in white render and dark ribbed timber, reached across a lawn on a broad ribbon of pale stone pavers, with tall palms overhead and cars drawn up under a timber car port." loading="lazy" /></picture>
       <div class="pc-info"><div class="pc-cat">Architecture · Residential</div><div class="pc-name">Florida House</div><div class="pc-loc">Florida, USA</div></div>
-      <span class="pc-arrow"><svg viewBox="0 0 24 24"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span>
-    </article>
-    <article class="pc" data-project="casa-corbeanca" data-cat="architecture residential" aria-label="Open Villa Corbeanca gallery">
-      <picture style="--lqip:url('data:image/webp;base64,UklGRpYAAABXRUJQVlA4IIoAAAAwBACdASocAA8APu1iqk2ppaQiMAgBMB2JQBOj+ABi/LdCU6DgBuJm1wAA/FI69oieqd3oxJTVFDVbt0kTEhTgdHNc+kW0BeDNmSETSO32XzB5PN/AOfYeL0tCMgAXs3Qc+6jSV+NLeOrGw74dQ6K+gtS2nZ8ViaCxTX1WKb98ZPgA3cxURLiaAAA=')"><source type="image/avif" srcset="./Renders/Casa-Corebeanca/110-480.avif 480w, ./Renders/Casa-Corebeanca/110-1024.avif 1024w, ./Renders/Casa-Corebeanca/110-1600.avif 1600w" sizes="(max-width: 860px) 100vw, (max-width: 1200px) 50vw, 34vw" /><source type="image/webp" srcset="./Renders/Casa-Corebeanca/110-480.webp 480w, ./Renders/Casa-Corebeanca/110-1024.webp 1024w, ./Renders/Casa-Corebeanca/110-1600.webp 1600w" sizes="(max-width: 860px) 100vw, (max-width: 1200px) 50vw, 34vw" /><img decoding="async" src="./Renders/Casa-Corebeanca/110.jpg" alt="Villa Corbeanca" loading="lazy" /></picture>
+      <span class="pc-arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span>
+    </div>
+    <div class="pc" data-project="casa-corbeanca" data-cat="architecture residential" aria-label="Villa Corbeanca, architecture and residential, Corbeanca, Romania. Open gallery">
+      <picture style="--lqip:url('data:image/webp;base64,UklGRpYAAABXRUJQVlA4IIoAAAAwBACdASocAA8APu1iqk2ppaQiMAgBMB2JQBOj+ABi/LdCU6DgBuJm1wAA/FI69oieqd3oxJTVFDVbt0kTEhTgdHNc+kW0BeDNmSETSO32XzB5PN/AOfYeL0tCMgAXs3Qc+6jSV+NLeOrGw74dQ6K+gtS2nZ8ViaCxTX1WKb98ZPgA3cxURLiaAAA=')"><source type="image/avif" srcset="./Renders/Casa-Corebeanca/110-480.avif 480w, ./Renders/Casa-Corebeanca/110-1024.avif 1024w, ./Renders/Casa-Corebeanca/110-1600.avif 1600w" sizes="(max-width: 860px) 100vw, (max-width: 1200px) 50vw, 34vw" /><source type="image/webp" srcset="./Renders/Casa-Corebeanca/110-480.webp 480w, ./Renders/Casa-Corebeanca/110-1024.webp 1024w, ./Renders/Casa-Corebeanca/110-1600.webp 1600w" sizes="(max-width: 860px) 100vw, (max-width: 1200px) 50vw, 34vw" /><img decoding="async" src="./Renders/Casa-Corebeanca/110.jpg" alt="The villa's garden front seen across a timber deck, where an arcaded loggia holds a sheltered lounge and round concrete daybeds face the lawn under a cantilevered parasol." loading="lazy" /></picture>
       <div class="pc-info"><div class="pc-cat">Architecture · Residential</div><div class="pc-name">Villa Corbeanca</div><div class="pc-loc">Corbeanca, Romania</div></div>
-      <span class="pc-arrow"><svg viewBox="0 0 24 24"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span>
-    </article>
-    <article class="pc" data-project="event-hall-baia-mare" data-cat="interior commercial" aria-label="Open Grand Event Hall gallery">
-      <picture style="--lqip:url('data:image/webp;base64,UklGRnQAAABXRUJQVlA4IGgAAAAQBACdASocAA8APu1iqk2ppaQiMAgBMB2JZwDCgCIjHCHMJP2ZfLmkAAD+tZZKZihE+sSOIE+Hi1xw3Q2mWTmRpU7mDKu6pKz+f/nzrk4KZ3sVpqGLsjZrRvreYK6n3UziZuvhrR4gAA==')"><source type="image/avif" srcset="./Renders/Event-Hall-Baia-Mare/02_2-Photo-scaled-480.avif 480w, ./Renders/Event-Hall-Baia-Mare/02_2-Photo-scaled-1024.avif 1024w, ./Renders/Event-Hall-Baia-Mare/02_2-Photo-scaled-1600.avif 1600w" sizes="(max-width: 860px) 100vw, (max-width: 1200px) 50vw, 34vw" /><source type="image/webp" srcset="./Renders/Event-Hall-Baia-Mare/02_2-Photo-scaled-480.webp 480w, ./Renders/Event-Hall-Baia-Mare/02_2-Photo-scaled-1024.webp 1024w, ./Renders/Event-Hall-Baia-Mare/02_2-Photo-scaled-1600.webp 1600w" sizes="(max-width: 860px) 100vw, (max-width: 1200px) 50vw, 34vw" /><img decoding="async" src="./Renders/Event-Hall-Baia-Mare/02_2-Photo-scaled.jpg" alt="Grand Event Hall" loading="lazy" /></picture>
+      <span class="pc-arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span>
+    </div>
+    <div class="pc" data-project="event-hall-baia-mare" data-cat="interior commercial" aria-label="Grand Event Hall, interior design and commercial, Baia Mare, Romania. Open gallery">
+      <picture style="--lqip:url('data:image/webp;base64,UklGRnQAAABXRUJQVlA4IGgAAAAQBACdASocAA8APu1iqk2ppaQiMAgBMB2JZwDCgCIjHCHMJP2ZfLmkAAD+tZZKZihE+sSOIE+Hi1xw3Q2mWTmRpU7mDKu6pKz+f/nzrk4KZ3sVpqGLsjZrRvreYK6n3UziZuvhrR4gAA==')"><source type="image/avif" srcset="./Renders/Event-Hall-Baia-Mare/02_2-Photo-scaled-480.avif 480w, ./Renders/Event-Hall-Baia-Mare/02_2-Photo-scaled-1024.avif 1024w, ./Renders/Event-Hall-Baia-Mare/02_2-Photo-scaled-1600.avif 1600w" sizes="(max-width: 860px) 100vw, (max-width: 1200px) 50vw, 34vw" /><source type="image/webp" srcset="./Renders/Event-Hall-Baia-Mare/02_2-Photo-scaled-480.webp 480w, ./Renders/Event-Hall-Baia-Mare/02_2-Photo-scaled-1024.webp 1024w, ./Renders/Event-Hall-Baia-Mare/02_2-Photo-scaled-1600.webp 1600w" sizes="(max-width: 860px) 100vw, (max-width: 1200px) 50vw, 34vw" /><img decoding="async" src="./Renders/Event-Hall-Baia-Mare/02_2-Photo-scaled.jpg" alt="An empty ballroom in white marble, its floor banded with black inlay between fluted columns, lit by crystal basket chandeliers hung from a coffered and cove-lit ceiling." loading="lazy" /></picture>
       <div class="pc-info"><div class="pc-cat">Interior Design · Commercial</div><div class="pc-name">Grand Event Hall</div><div class="pc-loc">Baia Mare, Romania</div></div>
-      <span class="pc-arrow"><svg viewBox="0 0 24 24"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span>
-    </article>
-    <article class="pc" data-project="boutique-mosilor" data-cat="architecture residential" aria-label="Open Boutique Moșilor gallery">
-      <picture style="--lqip:url('data:image/webp;base64,UklGRn4AAABXRUJQVlA4IHIAAABQBACdASocAA8APu1mqk2ppaQiMAgBMB2JYwC7ABuc3s73ax7ayqlFIUoAAP6pPWqEQo3xaPuKuWMvJO4/rVXJy3MCCjSVK2fDIxokRvC1qzkqjBiJl47fAnyRgX3P4MxClRaed/P3HMc8+oSh3qQAAAA=')"><source type="image/avif" srcset="./Renders/Boutique-Mosilor/03-scaled-480.avif 480w, ./Renders/Boutique-Mosilor/03-scaled-1024.avif 1024w, ./Renders/Boutique-Mosilor/03-scaled-1600.avif 1600w" sizes="(max-width: 860px) 100vw, (max-width: 1200px) 50vw, 34vw" /><source type="image/webp" srcset="./Renders/Boutique-Mosilor/03-scaled-480.webp 480w, ./Renders/Boutique-Mosilor/03-scaled-1024.webp 1024w, ./Renders/Boutique-Mosilor/03-scaled-1600.webp 1600w" sizes="(max-width: 860px) 100vw, (max-width: 1200px) 50vw, 34vw" /><img decoding="async" src="./Renders/Boutique-Mosilor/03-scaled.jpg" alt="Boutique Moșilor" loading="lazy" /></picture>
+      <span class="pc-arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span>
+    </div>
+    <div class="pc" data-project="boutique-mosilor" data-cat="architecture residential" aria-label="Boutique Moșilor, architecture and residential, Bucharest, Romania. Open gallery">
+      <picture style="--lqip:url('data:image/webp;base64,UklGRn4AAABXRUJQVlA4IHIAAABQBACdASocAA8APu1mqk2ppaQiMAgBMB2JYwC7ABuc3s73ax7ayqlFIUoAAP6pPWqEQo3xaPuKuWMvJO4/rVXJy3MCCjSVK2fDIxokRvC1qzkqjBiJl47fAnyRgX3P4MxClRaed/P3HMc8+oSh3qQAAAA=')"><source type="image/avif" srcset="./Renders/Boutique-Mosilor/03-scaled-480.avif 480w, ./Renders/Boutique-Mosilor/03-scaled-1024.avif 1024w, ./Renders/Boutique-Mosilor/03-scaled-1600.avif 1600w" sizes="(max-width: 860px) 100vw, (max-width: 1200px) 50vw, 34vw" /><source type="image/webp" srcset="./Renders/Boutique-Mosilor/03-scaled-480.webp 480w, ./Renders/Boutique-Mosilor/03-scaled-1024.webp 1024w, ./Renders/Boutique-Mosilor/03-scaled-1600.webp 1600w" sizes="(max-width: 860px) 100vw, (max-width: 1200px) 50vw, 34vw" /><img decoding="async" src="./Renders/Boutique-Mosilor/03-scaled.jpg" alt="A lit entrance court at night, where the building's name stands in gold on a book-matched marble wall above dark stone paving framed by clipped hedges." loading="lazy" /></picture>
       <div class="pc-info"><div class="pc-cat">Architecture · Residential</div><div class="pc-name">Boutique Moșilor</div><div class="pc-loc">Bucharest, Romania</div></div>
-      <span class="pc-arrow"><svg viewBox="0 0 24 24"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span>
-    </article>
-    <article class="pc" data-project="apartment-in-oradea" data-cat="interior residential" aria-label="Open Apartment in Oradea gallery">
-      <picture style="--lqip:url('data:image/webp;base64,UklGRp4AAABXRUJQVlA4IJIAAAAQBACdASocAA8APu1kqU2ppaQiMAgBMB2JZwC7ACFf942jBMIjjGtXAAD+rsXZidLzaKqUoeaXTK56DBd4ICUYnb7P6NhwO+FRyNF+lONL7riTDUh1XGHugP+ZC7c2oMasuceF6WT4Ppit+VYLZaGcnzVnsazVeJPS1YoSvA98SpT60OIIh7U7S1/yidzTftgAAA==')"><source type="image/avif" srcset="./Renders/Apartment-in-Oradea/03-6-scaled-480.avif 480w, ./Renders/Apartment-in-Oradea/03-6-scaled-1024.avif 1024w, ./Renders/Apartment-in-Oradea/03-6-scaled-1600.avif 1600w" sizes="(max-width: 860px) 100vw, (max-width: 1200px) 50vw, 34vw" /><source type="image/webp" srcset="./Renders/Apartment-in-Oradea/03-6-scaled-480.webp 480w, ./Renders/Apartment-in-Oradea/03-6-scaled-1024.webp 1024w, ./Renders/Apartment-in-Oradea/03-6-scaled-1600.webp 1600w" sizes="(max-width: 860px) 100vw, (max-width: 1200px) 50vw, 34vw" /><img decoding="async" src="./Renders/Apartment-in-Oradea/03-6-scaled.jpg" alt="Apartment in Oradea" loading="lazy" /></picture>
+      <span class="pc-arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span>
+    </div>
+    <div class="pc" data-project="apartment-in-oradea" data-cat="interior residential" aria-label="Apartment in Oradea, interior design, Oradea, Romania. Open gallery">
+      <picture style="--lqip:url('data:image/webp;base64,UklGRp4AAABXRUJQVlA4IJIAAAAQBACdASocAA8APu1kqU2ppaQiMAgBMB2JZwC7ACFf942jBMIjjGtXAAD+rsXZidLzaKqUoeaXTK56DBd4ICUYnb7P6NhwO+FRyNF+lONL7riTDUh1XGHugP+ZC7c2oMasuceF6WT4Ppit+VYLZaGcnzVnsazVeJPS1YoSvA98SpT60OIIh7U7S1/yidzTftgAAA==')"><source type="image/avif" srcset="./Renders/Apartment-in-Oradea/03-6-scaled-480.avif 480w, ./Renders/Apartment-in-Oradea/03-6-scaled-1024.avif 1024w, ./Renders/Apartment-in-Oradea/03-6-scaled-1600.avif 1600w" sizes="(max-width: 860px) 100vw, (max-width: 1200px) 50vw, 34vw" /><source type="image/webp" srcset="./Renders/Apartment-in-Oradea/03-6-scaled-480.webp 480w, ./Renders/Apartment-in-Oradea/03-6-scaled-1024.webp 1024w, ./Renders/Apartment-in-Oradea/03-6-scaled-1600.webp 1600w" sizes="(max-width: 860px) 100vw, (max-width: 1200px) 50vw, 34vw" /><img decoding="async" src="./Renders/Apartment-in-Oradea/03-6-scaled.jpg" alt="A living room in white wall panelling, where a long black ribbon fireplace runs below the screen and sage velvet seating faces a marble-clad kitchen wall beyond the dining table." loading="lazy" /></picture>
       <div class="pc-info"><div class="pc-cat">Interior Design</div><div class="pc-name">Apartment in Oradea</div><div class="pc-loc">Oradea, Romania</div></div>
-      <span class="pc-arrow"><svg viewBox="0 0 24 24"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span>
-    </article>
-    <article class="pc" data-project="uav-library" data-cat="architecture commercial" aria-label="Open University Library gallery">
-      <picture style="--lqip:url('data:image/webp;base64,UklGRowAAABXRUJQVlA4IIAAAAAQBACdASocAA8ALrV2u12jqampiYC0SygFR6IiPfpgy6hUErTIoq7IAAD+9XGNoIkyr1f0lNhniHkEneOwF/p7a2dLnv57nptUXSkLuApzcHx62fSBOaaL/k1xiUfGKyR4OUZ0bA+fXM7emFMsoX3dWYmX4aXNa518aODyt0agAA==')"><source type="image/avif" srcset="./Renders/UAV-Library/74-480.avif 480w, ./Renders/UAV-Library/74-1024.avif 1024w, ./Renders/UAV-Library/74-1600.avif 1600w" sizes="(max-width: 860px) 100vw, (max-width: 1200px) 50vw, 34vw" /><source type="image/webp" srcset="./Renders/UAV-Library/74-480.webp 480w, ./Renders/UAV-Library/74-1024.webp 1024w, ./Renders/UAV-Library/74-1600.webp 1600w" sizes="(max-width: 860px) 100vw, (max-width: 1200px) 50vw, 34vw" /><img decoding="async" src="./Renders/UAV-Library/74.jpg" alt="University Library" loading="lazy" /></picture>
+      <span class="pc-arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span>
+    </div>
+    <div class="pc" data-project="uav-library" data-cat="architecture commercial" aria-label="University Library, architecture and cultural, Arad, Romania. Open gallery">
+      <picture style="--lqip:url('data:image/webp;base64,UklGRowAAABXRUJQVlA4IIAAAAAQBACdASocAA8ALrV2u12jqampiYC0SygFR6IiPfpgy6hUErTIoq7IAAD+9XGNoIkyr1f0lNhniHkEneOwF/p7a2dLnv57nptUXSkLuApzcHx62fSBOaaL/k1xiUfGKyR4OUZ0bA+fXM7emFMsoX3dWYmX4aXNa518aODyt0agAA==')"><source type="image/avif" srcset="./Renders/UAV-Library/74-480.avif 480w, ./Renders/UAV-Library/74-1024.avif 1024w, ./Renders/UAV-Library/74-1600.avif 1600w" sizes="(max-width: 860px) 100vw, (max-width: 1200px) 50vw, 34vw" /><source type="image/webp" srcset="./Renders/UAV-Library/74-480.webp 480w, ./Renders/UAV-Library/74-1024.webp 1024w, ./Renders/UAV-Library/74-1600.webp 1600w" sizes="(max-width: 860px) 100vw, (max-width: 1200px) 50vw, 34vw" /><img decoding="async" src="./Renders/UAV-Library/74.jpg" alt="A library workroom lined floor to ceiling with archive binders, where two timber desks face a grey wall of recessed niches and a full-height case of bound volumes stands opposite." loading="lazy" /></picture>
       <div class="pc-info"><div class="pc-cat">Architecture · Cultural</div><div class="pc-name">University Library</div><div class="pc-loc">Arad, Romania</div></div>
-      <span class="pc-arrow"><svg viewBox="0 0 24 24"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span>
-    </article>
+      <span class="pc-arrow"><svg viewBox="0 0 24 24" aria-hidden="true"><line x1="7" y1="17" x2="17" y2="7"/><polyline points="7 7 17 7 17 17"/></svg></span>
+    </div>
   </div>
 </section>
 
@@ -165,15 +167,19 @@
   <a href="/contact" class="btn btn-solid btn-lg reveal d2">Start a Project</a>
 </section>
 
+</main>
 <footer>
   <div class="foot-top">
     <a href="/" aria-label="Draw Clever, home"><img src="./Logo Variants/Word Mark.png" alt="Draw Clever" /></a>
-    <ul class="foot-nav"><li><a href="/projects">Portfolio</a></li><li><a href="/about-us">About</a></li><li><a href="/services">Services</a></li><li><a href="/contact">Contact</a></li></ul>
+  <!-- role="navigation" rather than a <nav> element: src/site.css styles the
+       bare `nav` selector as the fixed site header, so a second <nav> anywhere
+       on the page becomes a second fixed header. Same landmark, no styling. -->
+    <div role="navigation" aria-label="Footer"><ul class="foot-nav"><li><a href="/projects">Portfolio</a></li><li><a href="/about-us">About</a></li><li><a href="/services">Services</a></li><li><a href="/contact">Contact</a></li></ul></div>
   </div>
   <div class="foot-bottom">
     <p>© 2026 Draw Clever. We redefine the luxury life.</p>
     <ul class="foot-social"><li><a href="https://www.instagram.com/drawclever.design/">Instagram</a></li><li><a href="https://pinterest.com/drawclever/">Pinterest</a></li><li><a href="https://x.com/DrawClever">X</a></li></ul>
-    <a href="#top" class="to-top">Back to top <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/></svg></a>
+    <a href="#top" class="to-top">Back to top <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/></svg></a>
   </div>
 </footer>
 
