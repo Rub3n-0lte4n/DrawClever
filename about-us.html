@@ -105,13 +105,13 @@
 </head>
 <body>
 <a class="skip-link btn btn-solid" href="#main">Skip to content</a>
-<div id="dc-loader" aria-hidden="true"><img class="dc-mark" src="./Logo Variants/Logo Mark.png" alt="" /><span class="dc-bar"></span></div>
+<div id="dc-loader" aria-hidden="true"><img class="dc-mark" src="./Logo Variants/logo-mark-384.png" alt="" width="384" height="252" /><span class="dc-bar"></span></div>
 
 <div class="grain" aria-hidden="true"></div>
 <div class="progress" id="progress" aria-hidden="true"></div>
 
-<nav id="nav" aria-label="Primary">
-  <a href="/" class="brand" aria-label="Draw Clever, home"><img src="./Logo Variants/Logo Mark.png" alt="Draw Clever" /></a>
+<nav id="nav">
+  <a href="/" class="brand" aria-label="Draw Clever, home"><img src="./Logo Variants/logo-mark-384.png" alt="Draw Clever" width="384" height="252" /></a>
   <ul class="nav-links">
     <li><a href="/projects">Portfolio</a></li>
     <li><a href="/about-us" class="active">About</a></li>
@@ -171,7 +171,7 @@
 
 <!-- FULL BLEED -->
 <div class="fullbleed reveal">
-  <picture><source type="image/avif" srcset="./Renders/Penthouse-Oradea/27.avif" /><source type="image/webp" srcset="./Renders/Penthouse-Oradea/27.webp" /><img class="fb-img" data-parallax src="./Renders/Penthouse-Oradea/27.jpg" alt="A penthouse living room under a coffered ceiling and a crystal chandelier, where a buttoned cream sofa and a round marble table face a glazed wall onto the terrace, with the dining room and kitchen open beyond." loading="lazy" /></picture>
+  <picture><source type="image/avif" srcset="./Renders/Penthouse-Oradea/27-480.avif 480w, ./Renders/Penthouse-Oradea/27-1024.avif 1024w, ./Renders/Penthouse-Oradea/27-1200.avif 1200w, ./Renders/Penthouse-Oradea/27-1600.avif 1600w" sizes="100vw" /><source type="image/webp" srcset="./Renders/Penthouse-Oradea/27-480.webp 480w, ./Renders/Penthouse-Oradea/27-1024.webp 1024w, ./Renders/Penthouse-Oradea/27-1200.webp 1200w, ./Renders/Penthouse-Oradea/27-1600.webp 1600w" sizes="100vw" /><img class="fb-img" data-parallax decoding="async" src="./Renders/Penthouse-Oradea/27.jpg" alt="A penthouse living room under a coffered ceiling and a crystal chandelier, where a buttoned cream sofa and a round marble table face a glazed wall onto the terrace, with the dining room and kitchen open beyond." loading="lazy" /></picture>
   <div class="fb-caption">
     <h3>A top floor<br />in Oradea.</h3>
     <p>Spatial planning, materials, joinery and light, composed so the architecture and the interior read as one.</p>
@@ -226,11 +226,8 @@
 </main>
 <footer>
   <div class="foot-top">
-    <a href="/" aria-label="Draw Clever, home"><img src="./Logo Variants/Word Mark.png" alt="Draw Clever" /></a>
-  <!-- role="navigation" rather than a <nav> element: src/site.css styles the
-       bare `nav` selector as the fixed site header, so a second <nav> anywhere
-       on the page becomes a second fixed header. Same landmark, no styling. -->
-    <div role="navigation" aria-label="Footer"><ul class="foot-nav"><li><a href="/projects">Portfolio</a></li><li><a href="/about-us">About</a></li><li><a href="/services">Services</a></li><li><a href="/contact">Contact</a></li></ul></div>
+    <a href="/" aria-label="Draw Clever, home"><img src="./Logo Variants/word-mark-720.png" alt="Draw Clever" width="720" height="102" loading="lazy" decoding="async" /></a>
+    <ul class="foot-nav"><li><a href="/projects">Portfolio</a></li><li><a href="/about-us">About</a></li><li><a href="/services">Services</a></li><li><a href="/contact">Contact</a></li></ul>
   </div>
   <div class="foot-bottom">
     <p>© 2026 Draw Clever. We redefine the luxury life.</p>
