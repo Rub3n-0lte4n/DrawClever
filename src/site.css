@@ -734,7 +734,9 @@ html.lb-locked, html.lb-locked body { overflow: hidden; }
    Sits in the footer's bottom row beside the social links and reuses their
    quiet type role. Deliberately not a dropdown: four items fit inline, and a
    <select> would need JS to navigate and would lose the crawlable links. */
-.foot-lang ul { display: flex; gap: 18px; list-style: none; }
+/* Wraps because four language names do not fit a 320px iPhone SE in one row —
+   it put 11px of horizontal overflow on every page until audit:tap caught it. */
+.foot-lang ul { display: flex; flex-wrap: wrap; gap: 10px 18px; list-style: none; }
 .foot-lang a { font-size: var(--t-micro); letter-spacing: .16em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color var(--dur-ui); }
 .foot-lang a[aria-current] { color: var(--gold); }
 @media (hover: hover) and (pointer: fine) { .foot-lang a:hover { color: var(--text); } }

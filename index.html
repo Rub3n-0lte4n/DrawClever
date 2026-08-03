@@ -123,6 +123,48 @@
     .hero-actions { display: flex; align-items: center; gap: 28px; }
     .hero-scroll { position: absolute; left: 50%; bottom: 28px; transform: translateX(-50%); z-index: 3; display: flex; flex-direction: column; align-items: center; gap: 10px; font-size: var(--t-micro); letter-spacing: .22em; text-transform: uppercase; color: rgba(243,238,230,.68); opacity: 0; animation: fadeUp 1s ease 1.5s forwards; }
     .hero-scroll .bar { width: 1px; height: 46px; background: linear-gradient(to bottom, var(--gold), transparent); animation: scrollPulse 2.4s var(--ease) infinite; transform-origin: top; }
+    /* ─── HERO FIT ACROSS LANGUAGES ───
+       The hero is a row: a 9.4vw headline beside a ~470px column that is
+       flex-shrink: 0. The headline's width is set by its longest word, so once
+       the two stop fitting the column is pushed past the viewport edge and
+       body{overflow-x:hidden} clips it in silence — the description and the
+       second CTA just disappear.
+
+       This was ALREADY live in English below 900px before the site had any
+       translations, measured on drawclever.vercel.app. Translation did not
+       introduce it; it moved the threshold, because the longest word differs
+       per language. Each language therefore gets the row only above the width
+       where it demonstrably fits, and stacks below it — the layout the design
+       already has for phones. scripts/audit-hero-fit.mjs holds the thresholds
+       to account across 16 viewports; it is what caught the 1025px boundary
+       these numbers were first set one notch too low for.
+
+         English   fits from 1025      Romanian  fits from 1181
+         Spanish   fits from 1281      Italian   fits from 1281 (with 8vw type)
+
+       Spanish and Italian also take the display size down: sizing display type
+       per language is ordinary multilingual typography, not a workaround. */
+    @media (min-width: 681px) and (max-width: 1024px) {
+      .hero-body { flex-direction: column; align-items: flex-start; gap: 26px; }
+      .hero-right { align-items: flex-start; text-align: left; }
+      .hero-desc { text-align: left; max-width: 64ch; }
+    }
+    @media (min-width: 681px) and (max-width: 1180px) {
+      html[lang="ro"] .hero-body { flex-direction: column; align-items: flex-start; gap: 26px; }
+      html[lang="ro"] .hero-right { align-items: flex-start; text-align: left; }
+      html[lang="ro"] .hero-desc { text-align: left; max-width: 64ch; }
+    }
+    @media (min-width: 681px) and (max-width: 1280px) {
+      html[lang="es"] .hero-body, html[lang="it"] .hero-body { flex-direction: column; align-items: flex-start; gap: 26px; }
+      html[lang="es"] .hero-right, html[lang="it"] .hero-right { align-items: flex-start; text-align: left; }
+      html[lang="es"] .hero-desc, html[lang="it"] .hero-desc { text-align: left; max-width: 64ch; }
+    }
+    /* The scroll cue is positioned against the viewport centre, so in any
+       cramped hero it lands on the action row. Hidden wherever the row is tight
+       enough for that to happen, in every language, stacked or not. */
+    @media (max-width: 1280px) { .hero-scroll { display: none; } }
+    html[lang="es"] .hero-title, html[lang="it"] .hero-title { font-size: clamp(58px, 8vw, 184px); }
+
     @keyframes scrollPulse { 0% { transform: scaleY(0); opacity: 0; } 40% { transform: scaleY(1); opacity: 1; } 100% { transform: scaleY(1) translateY(46px); opacity: 0; } }
     @keyframes fadeUp { to { opacity: 1; transform: none; } }
     @keyframes slideUp { to { transform: none; } }
