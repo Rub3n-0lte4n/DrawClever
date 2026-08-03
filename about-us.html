@@ -57,7 +57,7 @@
         "@id": "https://drawclever.vercel.app/about-us#webpage",
         "url": "https://drawclever.vercel.app/about-us",
         "name": "About · Draw Clever",
-        "description": "Draw Clever is a luxury architecture and interior design studio with ateliers in Romania and Spain. Architecture that elevates how you live.",
+        "description": "Draw Clever is a luxury architecture and interior design studio with ateliers in Romania and Spain. Architecture designed around your life.",
         "isPartOf": { "@id": "https://drawclever.vercel.app/#website" },
         "about": { "@id": "https://drawclever.vercel.app/#organization" },
         "mainEntity": { "@id": "https://drawclever.vercel.app/#organization" }
@@ -74,7 +74,7 @@
     .story-grid h2 { font-size: clamp(36px, 4.2vw, 90px); line-height: 1.04; letter-spacing: 0; }
     .story-grid .body p { font-size: var(--t-body-lg); font-weight: 400; line-height: 1.8; color: var(--sub); max-width: 62ch; margin-bottom: 22px; }
     .story-grid .sig { font-family: 'Playfair Display', serif; font-style: italic; font-size: var(--t-d-sm); letter-spacing: -.01em; color: var(--text); margin-top: 10px; }
-    #story .stats { margin-top: 80px; padding-top: 56px; border-top: 1px solid var(--line); }
+    #story .stats { margin-top: 80px; padding-top: 56px; border-top: 1px solid var(--line); grid-template-columns: repeat(3, 1fr); }
     #ethos { padding: 176px var(--pad); background: var(--ink-2); border-top: 1px solid var(--line); }
     #ateliers { padding: 176px var(--pad); }
     .ateliers-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 56px; }
@@ -84,6 +84,7 @@
     .atelier .place .gold { font-size: .74em; }
     @media (max-width: 860px) { .story-grid { grid-template-columns: 1fr; gap: 36px; } .ateliers-grid { grid-template-columns: 1fr; } }
     @media (max-width: 680px) { #story, #ateliers { padding: 80px 20px; } #ethos { padding: 80px 20px; } .atelier { padding: 38px 28px; }
+      #story .stats { grid-template-columns: 1fr; }
       .banner-bg { background-image: -webkit-image-set(url('./Renders/Penthouse-Oradea/21-1024.avif') type('image/avif'), url('./Renders/Penthouse-Oradea/21-1024.webp') type('image/webp')) !important; background-image: image-set(url('./Renders/Penthouse-Oradea/21-1024.avif') type('image/avif'), url('./Renders/Penthouse-Oradea/21-1024.webp') type('image/webp')) !important; } }
   </style>
 </head>
@@ -126,7 +127,6 @@
     <div class="stat"><div class="n">50+</div><div class="l">Projects<br />delivered</div></div>
     <div class="stat"><div class="n">2</div><div class="l">Studio<br />locations</div></div>
     <div class="stat"><div class="n">8+</div><div class="l">Countries<br />served</div></div>
-    <div class="stat"><div class="n">5★</div><div class="l">Client<br />satisfaction</div></div>
   </div>
 </section>
 
@@ -151,7 +151,7 @@
     <div class="tenet"><div class="tenet-n">01</div><h3 class="tenet-t">Restraint</h3><p class="tenet-b">The discipline of removing, until what remains is essential and exact.</p></div>
     <div class="tenet"><div class="tenet-n">02</div><h3 class="tenet-t">Materiality</h3><p class="tenet-b">Honest materials, honestly detailed. Stone and timber authored as carefully as the geometry, and light as carefully as either.</p></div>
     <div class="tenet"><div class="tenet-n">03</div><h3 class="tenet-t">Permanence</h3><p class="tenet-b">Buildings designed to be inherited, not refurbished. A century is our minimum horizon.</p></div>
-    <div class="tenet"><div class="tenet-n">04</div><h3 class="tenet-t">Discretion</h3><p class="tenet-b">The work speaks first. We let the architecture introduce the client, never the other way around.</p></div>
+    <div class="tenet"><div class="tenet-n">04</div><h3 class="tenet-t">Discretion</h3><p class="tenet-b">The work speaks first. We let the architecture introduce the client.</p></div>
   </div>
 </section>
 

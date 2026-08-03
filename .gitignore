@@ -6,3 +6,8 @@ dist
 vite.config.js.timestamp-*
 _salvage/
 .vercel
+
+# Local tooling output — not part of the site, not for the public repo
+.impeccable/
+motion-audits/
+DESLOP_SYNC.md

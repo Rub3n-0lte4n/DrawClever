@@ -8,32 +8,48 @@ Canonical host: https://drawclever.vercel.app
 
 ## Home · https://drawclever.vercel.app/
 
-Draw Clever is a luxury architecture and interior design atelier, sculpting residences, interiors and grounds from the first sketch to the final handover.
+We Redefine The Luxury Life.
 
-For over a decade, Draw Clever has composed homes for clients who measure luxury in restraint, not excess: architecture, interiors and grounds authored by one hand, from the first sketch to the final handover. Ateliers in Bucharest and Marbella, working across Europe, the United States and the Middle East.
+A luxury architecture & interior design atelier, drawing the house and the ground it stands on, from the first sketch to the final handover.
+
+Accepting commissions for 2026.
+
+An atelier of architecture & interiors. Ateliers in Bucharest & Marbella, working across Europe, the United States and the Middle East.
+
+For over a decade, Draw Clever has composed homes for clients who measure luxury in restraint, not excess: the architecture and everything it holds, authored by one hand, from the first sketch to the final handover.
+
+One team, from sketch to handover.
 
 Studio stats: atelier established 2014. Two ateliers, in Romania and Spain. Work carried out across three continents.
 
-Draw Clever is a luxury architecture and interior design studio with ateliers in Romania and Spain. The studio works with discerning clients across Europe, the United States and the Middle East who seek spaces that are not merely beautiful, but deeply intentional. Every project begins with listening. The studio translates a vision into architecture that tells its story through proportion, material, light, and the discipline of considered detail.
+Draw Clever is a luxury architecture and interior design studio with ateliers in Romania and Spain. We work across Europe, and as far as the United States and the Middle East, for clients who want a house that is exact rather than merely expensive.
 
-Tags associated with the studio's work: House Design, Bespoke Interiors, Furniture Design, Planning, View Design, 3D Renders, Landscaping.
+Every project begins with listening. What you describe in the first meeting is what the drawings have to answer to, right down to the joinery.
+
+Tags associated with the studio's work: House Design, Interior Design, Furniture Design, Planning, View Design, 3D Renders, Landscaping.
+
+### Nothing here is accidental
+
+Proportion and material are settled long before a single stone is laid. Everything after that is consequence.
 
 ### Disciplines (as described on the home page)
 
-Architecture, interiors and grounds, authored end to end by one team. Nothing is handed to a third party and returned to the studio.
+We do not refer out. One team authors the architecture and the interiors, end to end. Nothing is handed to a third party and returned to us.
 
 1. Architecture: Full design from concept through construction drawings, for residences and selected commercial commissions.
-2. Interior Design: Bespoke spatial planning, material specification, joinery and lighting, authored as one continuous gesture.
+2. Interior Design: Spatial planning, material specification, joinery and lighting, drawn as part of the architecture, not after it.
 3. Visualisation: Photoreal renders prepared in-house, so a building can be inhabited on screen long before it is built.
-4. Landscape: Pools, terraces, gardens and entrance courts, designed in the same hand as the architecture.
-5. Stewardship: Oversight from planning permission to handover. The studio does not leave the site until the work matches the drawings.
+4. Landscape: Pools, terraces, gardens and entrance courts: the architecture's quieter half, designed in the same hand.
+5. Stewardship: Oversight from planning permission to handover. We do not leave the site until the work matches the drawings.
 
 ### Philosophy (tenets, also repeated on the About page)
 
+Architecture has confused novelty with value. We work in the older tradition: buildings that compose themselves over a lifetime, in materials that age with their inhabitants.
+
 1. Restraint: The discipline of removing, until what remains is essential and exact.
-2. Materiality: Honest materials, honestly detailed. Stone, timber and light authored as carefully as the geometry itself.
-3. Permanence: Buildings designed to be inherited, not refurbished. A century is the studio's minimum horizon.
-4. Discretion: The work speaks first. The architecture introduces the client, never the other way around.
+2. Materiality: Honest materials, honestly detailed. Stone and timber authored as carefully as the geometry, and light as carefully as either.
+3. Permanence: Buildings designed to be inherited, not refurbished. A century is our minimum horizon.
+4. Discretion: The work speaks first. We let the architecture introduce the client.
 
 ### Selected work shown on the home page
 
@@ -43,9 +59,13 @@ Architecture, interiors and grounds, authored end to end by one team. Nothing is
 - Villa Corbeanca, Corbeanca, Romania (Architecture, Residential)
 - Apartment in Oradea, Oradea, Romania (Interior Design)
 
-Full portfolio at /projects.
+Every commission answers to its site and to the life it is built to hold. Full portfolio at /projects.
+
+Casa Marbella, Andalucía: a Mediterranean villa of glass and stone, set into the hillside above the sea, designed for a life lived between inside and out.
 
 ### Contact points shown on the home page
+
+Let's draw something worth keeping.
 
 Romania Headquarters: hello@drawclever.com, Bucharest, Romania.
 Spain Atelier: hello@drawclever.com, Marbella, Spain.
@@ -54,22 +74,24 @@ Spain Atelier: hello@drawclever.com, Marbella, Spain.
 
 ## Services · https://drawclever.vercel.app/services
 
-Architecture, interiors, visualisation, landscape and management. Five disciplines, one team, no work handed out.
+What the studio does.
 
-1. Architecture: Full architectural design from concept through construction, with residential and commercial projects delivered worldwide.
-2. Interior Design: Bespoke interiors tailored to the client's lifestyle, covering spatial planning, material selection, furniture and lighting.
-3. 3D Visualisation: Photorealistic renders that let a client see and feel a space before a single wall is built.
-4. Landscaping: Exterior environments designed to extend the architecture, including pools, terraces, gardens and entrance courts.
-5. Project Management: End-to-end oversight from planning permission to handover.
+Architecture, interiors, visualisation, landscape and management. Five disciplines under one roof, and none of them handed out.
+
+1. Architecture: From the first concept to the construction set, for residences and the occasional commercial commission.
+2. Interior Design: Spatial planning, material selection, furniture and lighting, drawn for the room rather than chosen from a catalogue.
+3. 3D Visualisation: Photoreal renders made in-house, so you can walk the rooms on screen and change your mind before it costs anything.
+4. Landscaping: Pools, terraces, gardens and entrance courts, set out on the same drawings as the house.
+5. Project Management: Oversight from planning permission to handover, so the person who drew it is the person checking it.
 
 ### How a project moves (the studio's process)
 
-One continuous engagement: no hand-offs, no referrals out. The same team carries a project from the first conversation to the moment the client holds the keys.
+One continuous engagement: no hand-offs, no referrals out. The same team carries your project from the first conversation to the moment you hold the keys.
 
-1. Listen: Every commission begins with listening, to the client, to the site, to the light. Intent is translated into a brief.
+1. Listen: Every commission begins with listening: to you, and to what the site will and will not allow. That becomes the brief.
 2. Design: Concept through construction drawings. Architecture and interiors authored together, in one hand.
-3. Visualise: Photoreal renders, so the client inhabits the space on screen and decides with certainty before building starts.
-4. Deliver: Oversight from permission to handover. The studio does not leave the site until the work matches the drawings.
+3. Visualise: Photoreal renders, so the decisions are made on screen while they are still drawings.
+4. Deliver: Oversight from permission to handover. We do not leave the site until the work matches the drawings.
 
 Note on terminology: this page's five "services" (Architecture, Interior Design, 3D Visualisation, Landscaping, Project Management) correspond one-to-one with the home page's five "disciplines" (Architecture, Interior Design, Visualisation, Landscape, Stewardship). They describe the same five capabilities under slightly different section labels on different pages.
 
@@ -77,7 +99,9 @@ Note on terminology: this page's five "services" (Architecture, Interior Design,
 
 ## Portfolio · https://drawclever.vercel.app/projects
 
-A decade of residences, interiors and commercial spaces, composed across Romania, Spain and beyond.
+The full portfolio.
+
+A decade of work, from a Marbella hillside to a library in Arad. Select any project to enter its gallery.
 
 Full project list, with location and category as published on the site:
 
@@ -92,37 +116,52 @@ Full project list, with location and category as published on the site:
 | Apartment in Oradea | Oradea, Romania | Interior Design |
 | University Library | Arad, Romania | Architecture, Cultural |
 
-The portfolio is filterable on the live page by Architecture, Interior Design, Residential and Commercial. The page does not publish project budgets or completion dates, and no client names appear.
+The portfolio is filterable on the live page by Architecture, Interior Design, Residential, Commercial and Cultural. The page does not publish project budgets or completion dates, and no client names appear.
 
 ---
 
 ## About · https://drawclever.vercel.app/about-us
 
-Draw Clever is a luxury architecture and interior design studio with a presence in Romania and Spain, working with discerning clients worldwide who seek spaces that are not just beautiful, but deeply intentional.
+We redefine the luxury life.
 
-Every project begins with listening, and ends with something extraordinary. The studio authors architecture, interiors and grounds as a single continuous gesture: from the first sketch to the final handover, by one team, never referred out.
+A luxury architecture & interior design atelier, working from Bucharest and Marbella since 2014.
+
+### How we came to be here
+
+Draw Clever draws houses, and the interiors that go in them, from ateliers in Romania and Spain. The work is mostly residential, with commercial commissions taken when they can have the same attention.
+
+Every project begins with listening. From the first sketch to the final handover, one team carries the architecture and the interiors. Nothing is referred out, so nothing arrives back a stranger.
+
+One team, from sketch to handover.
 
 ### Studio stats (as published on the About page)
 
 - 50+ projects delivered
 - 2 studio locations
 - 8+ countries served
-- 5-star client satisfaction, as displayed on the site (no third-party review platform or review count is published alongside this figure)
 
 ### Ethos
 
-The studio works in the older tradition: buildings that compose themselves over a lifetime, in materials that age with their inhabitants. See the Philosophy tenets above (Restraint, Materiality, Permanence, Discretion), which are stated identically on this page.
+What we hold to: four rules. They settle more of the work than taste does. See the Philosophy tenets above (Restraint, Materiality, Permanence, Discretion), which are stated identically on this page.
+
+A top floor in Oradea: spatial planning, materials, joinery and light, composed so the architecture and the interior read as one.
 
 ### The two ateliers
 
-Romania HQ, Headquarters: hello@drawclever.com, Bucharest, Romania.
-Spain Studio, International branch: hello@drawclever.com, Marbella, Spain.
+Two ateliers, one team. A headquarters in Romania and a branch in Spain, running as one practice on one set of drawings.
+
+Romania, Headquarters: hello@drawclever.com, Bucharest, Romania.
+Spain, Studio, International branch: hello@drawclever.com, Marbella, Spain.
+
+We would like to meet you.
 
 ---
 
 ## Contact · https://drawclever.vercel.app/contact
 
-Tell us about your project. We read every enquiry personally and reply within two business days.
+Tell us about the project.
+
+Every commission starts with a conversation. We reply within two business days.
 
 One team, two countries.
 
@@ -134,16 +173,16 @@ The primary contact path is the enquiry form on this page (project type options:
 ### FAQ (published on the Contact page)
 
 Where are you based?
-A headquarters in Bucharest, Romania and a branch in Marbella, Spain, working with clients across Europe, the United States and the Middle East.
+A headquarters in Bucharest, Romania and a branch in Marbella, Spain. Most of the work is in Europe, with commissions in the United States and the Middle East.
 
 Do you handle architecture and interiors together?
-Yes. Architecture, interiors and grounds are authored by one team as a single, continuous gesture. The studio does not refer the work out.
+Yes. The same team draws the building and everything inside and around it. We don't refer the work out.
 
 How does a project begin?
-Every commission begins with a conversation. A client tells the studio about their project using the contact form, and the studio arranges an introductory call to understand the brief.
+Send the form above with whatever you have, even if it is only a plot and a rough idea. We read it and come back with a call to set the brief.
 
 Do you work internationally?
-Yes. The portfolio spans several countries across two continents. A well-run process makes distance a detail, not an obstacle.
+We do. Our portfolio spans several countries across two continents. A well-run process makes distance a detail, not an obstacle.
 
 ---
 
