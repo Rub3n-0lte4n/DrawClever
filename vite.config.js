@@ -1,8 +1,9 @@
 import { defineConfig } from 'vite';
-import { existsSync, readFileSync } from 'node:fs';
-import { dirname, resolve } from 'node:path';
+import { existsSync, readFileSync, writeFileSync, mkdirSync } from 'node:fs';
+import { dirname, relative, resolve, sep } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { PROJECTS, ALT } from './src/data/projects.js';
+import { localize, LOCALES, DEFAULT_LOCALE } from './scripts/i18n-transform.mjs';
 
 /**
  * Draw Clever Architecture — Vite config
@@ -118,11 +119,54 @@ const htmlPartials = () => {
   };
 };
 
+/**
+ * Localised pages.
+ *
+ * A locale is "active" only when its translation file exists, so a clone with
+ * no translations still builds the English site exactly as before, and a
+ * half-finished language never reaches a deploy.
+ *
+ * Vite needs a real file per HTML entry, so each locale page is written out as
+ * a verbatim copy of its English source — @include directives and all. The
+ * partials plugin then inlines the chrome as usual and i18nLocales() translates
+ * the assembled result at order 'post'. The copies are generated, gitignored,
+ * and never edited by hand: src/data/i18n/*.json is the only thing to review.
+ */
+const PAGES = ['index.html', 'about-us.html', 'services.html', 'contact.html', 'projects.html', '404.html'];
+
+const activeLocales = LOCALES.filter((l) => existsSync(resolve(__dirname, `src/data/i18n/${l}.json`)));
+
+for (const locale of activeLocales) {
+  mkdirSync(resolve(__dirname, locale), { recursive: true });
+  for (const page of PAGES) {
+    writeFileSync(resolve(__dirname, locale, page), readFileSync(resolve(__dirname, page), 'utf8'));
+  }
+}
+
+const i18nLocales = () => {
+  const maps = Object.fromEntries(
+    activeLocales.map((l) => [l, JSON.parse(readFileSync(resolve(__dirname, `src/data/i18n/${l}.json`), 'utf8'))]),
+  );
+  return {
+    name: 'i18n-locales',
+    transformIndexHtml: {
+      // 'post' so partials are inlined, cards are rendered and Vite has already
+      // rewritten its own asset URLs — the same shape i18n-extract read.
+      order: 'post',
+      handler(html, ctx) {
+        const parts = relative(__dirname, ctx.filename).split(sep);
+        const locale = activeLocales.includes(parts[0]) ? parts[0] : DEFAULT_LOCALE;
+        return localize(html, { locale, page: parts[parts.length - 1], map: maps[locale] });
+      },
+    },
+  };
+};
+
 export default defineConfig({
   base: './',
   root: __dirname,
   publicDir: resolve(__dirname, 'public'),
-  plugins: [htmlPartials(), cleanUrls()],
+  plugins: [htmlPartials(), i18nLocales(), cleanUrls()],
 
   build: {
     outDir: 'dist',
@@ -136,6 +180,9 @@ export default defineConfig({
         services: resolve(__dirname, 'services.html'),
         contact:  resolve(__dirname, 'contact.html'),
         notFound: resolve(__dirname, '404.html'),
+        ...Object.fromEntries(
+          activeLocales.flatMap((l) => PAGES.map((p) => [`${l}-${p.replace('.html', '')}`, resolve(__dirname, l, p)])),
+        ),
       },
     },
   },

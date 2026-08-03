@@ -110,8 +110,13 @@
     .hero-badge { display: inline-flex; align-items: center; gap: 9px; border: 1px solid rgba(243,238,230,.16); border-radius: 100px; padding: 7px 15px 7px 11px; font-size: var(--t-label); letter-spacing: .12em; text-transform: uppercase; color: rgba(243,238,230,.86); margin-bottom: 28px; backdrop-filter: blur(8px); width: fit-content; opacity: 0; animation: fadeUp .8s ease .3s forwards; }
     .badge-dot { width: 7px; height: 7px; border-radius: 50%; background: #6FCF8E; }
     .hero-title { font-size: clamp(58px, 9.4vw, 215px); line-height: .9; letter-spacing: 0; }
-    .hero-title .row { display: block; overflow: hidden; }
-    .hero-title .row > span { display: block; transform: translateY(105%); animation: slideUp 1.05s var(--ease) forwards; }
+    /* padding-bottom + an equal negative margin widen the MASK without moving the
+       line. The mask exists for the rise, but line-height .9 makes the box shorter
+       than the glyphs, so anything under the baseline was being cut off: Romanian
+       "viața" rendered as "VIATA", the comma-below clipped clean away. Latin-1
+       never showed it because English has no below-baseline diacritic. */
+    .hero-title .row { display: block; overflow: hidden; padding-bottom: .16em; margin-bottom: -.16em; }
+    .hero-title .row > span { display: block; transform: translateY(125%); animation: slideUp 1.05s var(--ease) forwards; }
     .hero-title .row:nth-child(1) > span { animation-delay: .5s; } .hero-title .row:nth-child(2) > span { animation-delay: .66s; } .hero-title .row:nth-child(3) > span { animation-delay: .82s; }
     .hero-right { flex-shrink: 0; text-align: right; display: flex; flex-direction: column; align-items: flex-end; gap: 26px; padding-bottom: 8px; opacity: 0; animation: fadeUp .9s ease 1.15s forwards; }
     .hero-desc { font-size: var(--t-body); font-weight: 400; line-height: 1.85; color: var(--sub); max-width: clamp(312px, 21.7vw, 440px); }

@@ -288,3 +288,36 @@ document.querySelectorAll('a[href^="#"]').forEach((a) => {
   }, { threshold: 0.2, rootMargin: '0px 0px -40px 0px' });
   heads.forEach((h) => obs.observe(h));
 })();
+
+/* ─── LANGUAGE SWITCHER ───
+   The footer ships four static links so a crawler can follow them and the
+   switcher still works without scripting. This does two things on top:
+
+   1. Points each link at the CURRENT page in the target language rather than
+      that language's homepage. Someone reading /services who picks Español
+      wants /es/services, not /es/.
+   2. Records the choice in dc-lang, which middleware.js reads. Without it the
+      geo-redirect would bounce a visitor in Madrid straight back to /es on the
+      next navigation, and the switcher would look broken.
+
+   Marked aria-current so the active language is announced, not just coloured. */
+(() => {
+  const nav = document.querySelector(".foot-lang");
+  if (!nav) return;
+
+  const LOCALES = ['es', 'ro', 'it'];
+  const seg = location.pathname.split('/')[1];
+  const current = LOCALES.includes(seg) ? seg : 'en';
+  // Path with any locale prefix removed, always leading-slashed.
+  const bare = current === 'en' ? location.pathname : location.pathname.slice(current.length + 1) || '/';
+
+  nav.querySelectorAll('a[data-lang]').forEach((a) => {
+    const lang = a.dataset.lang;
+    a.href = lang === 'en' ? bare : `/${lang}${bare === '/' ? '/' : bare}`;
+    if (lang === current) a.setAttribute('aria-current', 'true');
+    a.addEventListener('click', () => {
+      // Max-Age rather than a session cookie: the preference should outlive the tab.
+      document.cookie = `dc-lang=${lang}; path=/; max-age=31536000; samesite=lax`;
+    });
+  });
+})();

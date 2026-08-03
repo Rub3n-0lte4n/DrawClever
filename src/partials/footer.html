@@ -5,6 +5,18 @@
   </div>
   <div class="foot-bottom">
     <p>© 2026 Draw Clever. We redefine the luxury life.</p>
+    <!-- Language. Real links, not a JS widget: a crawler follows them, and the
+         page still switches with scripting off. site.js records the choice so
+         the geo-redirect in middleware.js stops overriding it.
+         A <div role="navigation"> and not a <nav>: site.css styles the bare
+         `nav` element as the fixed primary bar, so a <nav> here inherits
+         position:fixed and lands on top of the logo. -->
+    <div class="foot-lang" role="navigation" aria-label="Language"><ul>
+      <li><a href="/" hreflang="en" data-lang="en">English</a></li>
+      <li><a href="/es/" hreflang="es" data-lang="es">Español</a></li>
+      <li><a href="/ro/" hreflang="ro" data-lang="ro">Română</a></li>
+      <li><a href="/it/" hreflang="it" data-lang="it">Italiano</a></li>
+    </ul></div>
     <ul class="foot-social"><li><a href="https://www.instagram.com/drawclever.design/">Instagram</a></li><li><a href="https://pinterest.com/drawclever/">Pinterest</a></li><li><a href="https://x.com/DrawClever">X</a></li></ul>
     <a href="#top" class="to-top">Back to top <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/></svg></a>
   </div>

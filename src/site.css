@@ -169,8 +169,10 @@ p { text-wrap: pretty; }
 /* ─── HEADLINE LINE-REVEAL — masked per-line rise for display headings.
    Lines are wrapped in site.js (.rl set on the heading); revealed on scroll (.shown).
    Generalises the hero's masked slide-up to any section headline. ─── */
-.rl .ln { display: block; overflow: hidden; }
-.rl .ln-i { display: block; transform: translateY(112%); transition: transform .9s var(--ease); transition-delay: calc(var(--i, 0) * .07s); will-change: transform; }
+/* Same descender fix as the hero: the mask has to clear below-baseline marks
+   (Romanian ș/ț) or the reveal silently eats them. See index.html .hero-title .row. */
+.rl .ln { display: block; overflow: hidden; padding-bottom: .16em; margin-bottom: -.16em; }
+.rl .ln-i { display: block; transform: translateY(125%); transition: transform .9s var(--ease); transition-delay: calc(var(--i, 0) * .07s); will-change: transform; }
 .rl.shown .ln-i { transform: none; }
 
 /* ─── PRIMITIVES ─── */
@@ -727,3 +729,25 @@ html.lb-locked, html.lb-locked body { overflow: hidden; }
   .rl .ln-i { transform: none !important; }
   ::view-transition-old(root), ::view-transition-new(root) { animation: none !important; }
 }
+
+/* ─── LANGUAGE SWITCHER ───
+   Sits in the footer's bottom row beside the social links and reuses their
+   quiet type role. Deliberately not a dropdown: four items fit inline, and a
+   <select> would need JS to navigate and would lose the crawlable links. */
+.foot-lang ul { display: flex; gap: 18px; list-style: none; }
+.foot-lang a { font-size: var(--t-micro); letter-spacing: .16em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color var(--dur-ui); }
+.foot-lang a[aria-current] { color: var(--gold); }
+@media (hover: hover) and (pointer: fine) { .foot-lang a:hover { color: var(--text); } }
+.foot-lang a:active { color: var(--gold); }
+@media (pointer: coarse) { .foot-lang a { display: inline-flex; align-items: center; min-height: 44px; } }
+
+/* ─── ROMANIAN DISPLAY LEADING ───
+   ș and ț carry a comma BELOW the baseline, reaching ~0.24em down. The display
+   headlines run at line-height .9, which puts the next line's cap height about
+   0.2em below the previous baseline — so the comma of "VIAȚA" landed on top of
+   the "L" of the line under it and read as a speck of dust.
+   Only Romanian needs this: Spanish and Italian accents sit above the x-height,
+   which the mask already clears. Scoped to [lang] so the English, Spanish and
+   Italian pages keep the tighter setting the type was drawn for. */
+html[lang="ro"] .hero-title,
+html[lang="ro"] .rl { line-height: 1.0; }

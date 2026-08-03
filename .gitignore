@@ -11,3 +11,8 @@ _salvage/
 .impeccable/
 motion-audits/
 DESLOP_SYNC.md
+
+# Generated locale pages (see vite.config.js). Source of truth is src/data/i18n/*.json
+/es/
+/ro/
+/it/

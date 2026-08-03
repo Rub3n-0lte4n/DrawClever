@@ -96,12 +96,20 @@ for (const [file, html] of Object.entries(pages)) {
 {
   const sitemap = read('public/sitemap.xml');
   const locs = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => m[1]);
-  const expected = new Set(['/', '/projects', '/about-us', '/services', '/contact']);
+  const routes = ['/', '/projects', '/about-us', '/services', '/contact'];
+  // Every built language carries the same five routes under its own prefix.
+  // Derived from the translation files rather than hard-coded, so adding a
+  // language cannot leave this check asserting yesterday's route list.
+  const langs = ['es', 'ro', 'it'].filter((l) => existsSync(resolve(root, `src/data/i18n/${l}.json`)));
+  const expected = new Set([
+    ...routes,
+    ...langs.flatMap((l) => routes.map((r) => `/${l}${r === '/' ? '/' : r}`)),
+  ]);
   const gotPaths = new Set(locs.map((u) => new URL(u).pathname));
 
   report.check('sitemap.xml: every entry is on drawclever.vercel.app', locs.every((u) => u.startsWith('https://drawclever.vercel.app')));
   report.check(
-    'sitemap.xml: paths exactly match the 5 real routes',
+    `sitemap.xml: paths exactly match the ${routes.length} real routes across ${langs.length + 1} language(s)`,
     gotPaths.size === expected.size && [...expected].every((p) => gotPaths.has(p)),
     `expected {${[...expected].join(', ')}}, got {${[...gotPaths].join(', ')}}`
   );
